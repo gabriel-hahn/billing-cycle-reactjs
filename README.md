@@ -1,6 +1,6 @@
 # Billing Cycle ReactJS
 
-Billing Cycle application, developed using ReactJS, Redux and NodeJS :globe_with_meridians: :moneybag:
+Billing Cycle application, developed to manage the money of users and showing the balance about deposit and withdrawal cash. AdminLTE was used as base design of this project :globe_with_meridians: :moneybag:
 
 ## Contributing
 
