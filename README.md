@@ -1,6 +1,8 @@
 # Billing Cycle Application
 
-Billing Cycle application, developed to manage the money of users and showing the balance about deposit and withdrawal cash. AdminLTE was used as base design of this project :globe_with_meridians: :moneybag:
+Billing Cycle application, developed to manage the money of users and showing the balance about deposit and withdrawal cash :globe_with_meridians: :moneybag:
+
+<strong>Important:</strong> For this project, it was not mandatory use GraphQL, PWA or TypeScript because it is a small project and does not have a lot of data to retrieve or a lot of type/objects to handle between the modules. I used these technologies because I would like to put all together in a same project, showing how they could work together :)
 
 ## Contributing
 
