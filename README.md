@@ -2,9 +2,11 @@
 
 Billing Cycle application, developed to manage the money of users and showing the balance about deposit and withdrawal cash :globe_with_meridians: :moneybag:
 
-# Design (Figma)
+### Design (Figma):
 
-## Colors:
+(images)
+
+### Colors:
 
 #313B72 - Deep Koamaru
 #1D84B5 - Cyan Cornflower Blue
