@@ -1,12 +1,15 @@
 {
-  "name": "billing-cycle-app",
+  "name": "billing-cycle-api",
   "version": "0.1.0",
   "private": true,
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/server.js"
   },
   "keywords": [],
   "author": "Gabriel Hahn Schaeffer <gabriel_hahn@hotmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
