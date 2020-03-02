@@ -9,9 +9,13 @@ Billing Cycle application, developed to manage the money of users and showing th
 ### Colors:
 
 #313B72 - Deep Koamaru
+
 #1D84B5 - Cyan Cornflower Blue
+
 #59C9A5 - Medium Aquamarine
+
 #388659 - Sea Green
+
 #4D7C8A - Teal Blue
 
 ## Contributing
