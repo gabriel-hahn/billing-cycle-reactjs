@@ -4,12 +4,26 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start": "node src/server.js"
+    "dev": "nodemon src/server.ts",
+    "build": "sucrase ./src -d ./dist --transforms typescript,imports"
   },
   "keywords": [],
   "author": "Gabriel Hahn Schaeffer <gabriel_hahn@hotmail.com>",
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "1.4.2",
+    "@typescript-eslint/parser": "1.4.2",
+    "eslint": "5.15.3",
+    "eslint-config-standard": "12.0.0",
+    "eslint-plugin-import": "2.16.0",
+    "eslint-plugin-node": "8.0.1",
+    "eslint-plugin-promise": "4.0.1",
+    "eslint-plugin-standard": "4.0.0",
+    "nodemon": "2.0.2",
+    "sucrase": "3.12.1",
+    "typescript": "3.8.3"
   }
 }
