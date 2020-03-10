@@ -1,10 +1,25 @@
 version: "3"
 
 services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: billing_cycle_db
+      POSTGRES_USER: gabriel_postgres
+      POSTGRES_PASSWORD: gabriel_postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - database_data:/var/lib/postgresql/data
   app:
     build: .
     command: npm run start
     ports:
-      - "3000:3000"
+      - 3000:3000
     volumes:
       - .:/usr/app
+    links:
+      - db
+volumes:
+  database_data:
