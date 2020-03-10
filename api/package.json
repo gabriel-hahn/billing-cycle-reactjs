@@ -4,15 +4,19 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/server.ts",
+    "start": "nodemon src/server.ts --ignore __tests__",
     "build": "sucrase ./src -d ./dist --transforms typescript,imports"
   },
   "keywords": [],
   "author": "Gabriel Hahn Schaeffer <gabriel_hahn@hotmail.com>",
   "license": "MIT",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^7.18.2",
+    "sequelize": "^5.21.5"
   },
   "devDependencies": {
     "@types/cors": "^2.8.6",
@@ -30,6 +34,7 @@
     "eslint-plugin-standard": "4.0.0",
     "nodemon": "2.0.2",
     "prettier": "1.16.4",
+    "sequelize-cli": "^5.5.1",
     "sucrase": "3.12.1",
     "typescript": "3.8.3"
   }
