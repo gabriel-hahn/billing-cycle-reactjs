@@ -1,5 +1,5 @@
 const express = require('express');
-const routes = require('./routes');
+const routes = require('./app/routes');
 
 require('dotenv').config({
   path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env',
@@ -21,4 +21,5 @@ class AppController {
     this.express.use(routes);
   }
 }
+
 module.exports = new AppController().express;

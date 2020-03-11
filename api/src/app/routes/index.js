@@ -1,7 +1,7 @@
 const routes = require('express');
-const authMiddleware = require('./app/middleware/auth');
+const authMiddleware = require('./middleware/auth');
 
-const SessionController = require('./app/controllers/SessionController');
+const SessionController = require('./controllers/SessionController');
 
 const router = routes.Router();
 
