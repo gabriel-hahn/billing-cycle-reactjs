@@ -6,9 +6,10 @@ import Sequelize from 'sequelize'
 import basename = path.basename(__filename)
 import env = process.env.NODE_ENV || 'development'
 import config from (__dirname + '/../config/config.json')[env]
-import db = {}
 
+let db = {}
 let sequelize
+
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config)
 } else {

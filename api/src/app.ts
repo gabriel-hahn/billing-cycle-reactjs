@@ -1,11 +1,11 @@
-import express, { Express } from 'express'
+import express from 'express'
 
 require('dotenv').config({
   path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env'
 })
 
 class AppController {
-  public express: Express
+  public express: express.Application
 
   public constructor () {
     this.express = express()

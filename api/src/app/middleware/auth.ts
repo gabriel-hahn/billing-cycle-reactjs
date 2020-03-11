@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import promisify from 'util'
+import { promisify } from 'util'
 
 module.exports = async (req, res, next) => {
   const authHeader = req.headers.authorization
