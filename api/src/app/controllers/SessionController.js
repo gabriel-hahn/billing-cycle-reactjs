@@ -1,7 +1,6 @@
 const { User } = require('../models');
 
 class SessionController {
-  // eslint-disable-next-line class-methods-use-this
   async store(req, res) {
     const { email, password } = req.body;
     const user = await User.findOne({ where: { email } });

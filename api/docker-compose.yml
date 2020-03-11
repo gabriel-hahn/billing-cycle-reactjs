@@ -16,7 +16,7 @@ services:
     build: .
     command: npm run start
     ports:
-      - 3000:3000
+      - 3333:3333
     volumes:
       - .:/usr/app
     links:

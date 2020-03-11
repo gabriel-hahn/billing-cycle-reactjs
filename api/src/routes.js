@@ -1,9 +1,13 @@
 const routes = require('express');
 const authMiddleware = require('./app/middleware/auth');
-// eslint-disable-next-line import/no-named-as-default
+
 const SessionController = require('./app/controllers/SessionController');
 
 const router = routes.Router();
+
+router.get('/healthycheck', (req, res) => {
+  res.status(200).send({ message: 'Server ON' });
+});
 
 router.post('/sessions', SessionController.store);
 
