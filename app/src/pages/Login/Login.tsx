@@ -1,4 +1,7 @@
 import React, { useState, FormEvent } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { Creators as UsersTypes } from '../../store/ducks/users';
 
 import {
   Container,
@@ -10,6 +13,7 @@ import {
   LoginButton,
   RegisterButton,
 } from './styles';
+import { UserInterface } from '../../interfaces/user';
 
 const Login = () => {
   const [name, setName] = useState<string>('');
@@ -17,8 +21,17 @@ const Login = () => {
   const [password, setPassword] = useState<string>('');
   const [isLogin, setIsLogin] = useState<boolean>(true);
 
+  const dispatch = useDispatch();
+
   const handleFormSubit = (e: FormEvent<HTMLDivElement>) => {
     e.preventDefault();
+
+    const user: UserInterface = {
+      email,
+      password,
+    };
+
+    dispatch(UsersTypes.getLoginRequest(user));
   };
 
   return (
