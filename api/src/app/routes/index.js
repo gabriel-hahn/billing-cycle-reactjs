@@ -9,6 +9,7 @@ router.get('/healthycheck', (req, res) => {
   res.status(200).send({ message: 'Server ON' });
 });
 
+router.post('/user', SessionController.create);
 router.post('/sessions', SessionController.store);
 
 router.use(authMiddleware);
