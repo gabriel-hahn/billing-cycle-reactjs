@@ -1,9 +1,7 @@
+require('dotenv').config({ path: `${__dirname}/.env` });
+
 const express = require('express');
 const routes = require('./app/routes');
-
-require('dotenv').config({
-  path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env',
-});
 
 class AppController {
   constructor() {

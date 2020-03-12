@@ -15,6 +15,7 @@ module.exports = {
   "rules": {
     "import/no-dynamic-require": 0,
     "class-methods-use-this": 0,
-    "func-names": 0
+    "no-path-concat": 0,
+    "func-names": 0,
   }
 };
