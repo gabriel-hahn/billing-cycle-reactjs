@@ -1,4 +1,4 @@
-export interface RouteInfo {
+export interface RouteInfoInterface {
   params?: string | undefined;
   isExact?: string | undefined;
   path?: string | undefined;

@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link, Route, RouteComponentProps } from 'react-router-dom';
 
-import { RouteInfo } from '../../interfaces/route';
+import { RouteInfoInterface } from '../../interfaces/route';
 
 import Overview from './Overview/Overview';
 import Transaction from './Transaction/Transaction';
 import Report from './Report/Report';
 
-const Dashboard = ({ match }: RouteComponentProps<RouteInfo>) => {
+const Dashboard = ({ match }: RouteComponentProps<RouteInfoInterface>) => {
   return (
     <>
       <h1>Dashboard Page</h1>
