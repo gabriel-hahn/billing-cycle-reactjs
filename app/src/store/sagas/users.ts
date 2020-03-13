@@ -1,7 +1,7 @@
 import { call, put } from 'redux-saga/effects';
 import api from '../../services/api';
 
-import { UserActionInterface } from '../../interfaces/user';
+import { UserActionInterface, UserInterface } from '../../interfaces/user';
 
 import { Creators as UsersActions } from '../ducks/users';
 
@@ -9,12 +9,17 @@ export function* login({ payload }: UserActionInterface) {
   try {
     const { email, password } = payload.user;
 
-    console.log('User name: ', password);
-    console.log('User email: ', email);
-    const response = yield call(api.post, '/sessions', { email, password });
+    const { data } = yield call(api.post, '/sessions', { email, password });
 
-    console.log('RESPONSE: ', response);
+    const user: UserInterface = {
+      name: data.user.name,
+      email: data.user.email,
+      id: data.user.id,
+      token: data.token,
+    };
+
+    yield put(UsersActions.getLoginSuccess(user));
   } catch (err) {
-    console.error(err);
+    yield put(UsersActions.getLoginError('Invalid credentials'));
   }
 }

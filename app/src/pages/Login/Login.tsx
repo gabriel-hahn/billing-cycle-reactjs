@@ -1,5 +1,5 @@
 import React, { useState, FormEvent } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { Creators as UsersTypes } from '../../store/ducks/users';
 
