@@ -1,5 +1,6 @@
 import React, { useState, useEffect, FormEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { RouteComponentProps } from 'react-router-dom';
 
 import { Creators as UsersTypes } from '../../store/ducks/users';
 
@@ -16,18 +17,20 @@ import {
 import { UserInterface } from '../../interfaces/user';
 import { StoreInterface } from '../../interfaces/store';
 
-const Login = () => {
+const Login = (props: RouteComponentProps) => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [isLogin, setIsLogin] = useState<boolean>(true);
+
+  const { history } = props;
 
   const dispatch = useDispatch();
   const userState = useSelector((state: StoreInterface) => state.users.data);
 
   useEffect(() => {
     if (userState && userState.token) {
-      // Redirect to Dashboard
+      history.push('/dashboard/overview');
     }
   }, [userState]);
 

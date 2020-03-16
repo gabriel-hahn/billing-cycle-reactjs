@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link, Route, RouteComponentProps } from 'react-router-dom';
 
-import { RouteInfoInterface } from '../../interfaces/route';
-
 import Overview from './Overview';
 import Transaction from './Transaction';
 import Report from './Report';
 import Navbar from '../../components/Navbar';
 
-const Dashboard = ({ match }: RouteComponentProps<RouteInfoInterface>) => {
+const Dashboard = (props: RouteComponentProps) => {
+  const { match } = props;
+
   return (
     <>
       <Navbar />
