@@ -4,6 +4,7 @@ export const Types = {
   GET_LOGIN_REQUEST: '@users/GET_LOGIN_REQUEST',
   GET_LOGIN_SUCCESS: '@users/GET_LOGIN_SUCCESS',
   GET_LOGIN_ERROR: '@users/GET_LOGIN_ERROR',
+  LOGOUT_REQUEST: '@users/LOGOUT_REQUEST',
 };
 
 const INITIAL_STATE: UserStateInterface = {
@@ -25,6 +26,8 @@ export default function Users(state = INITIAL_STATE, action: UserActionInterface
       };
     case Types.GET_LOGIN_ERROR:
       return { ...state, loading: false, error: action.payload.error };
+    case Types.LOGOUT_REQUEST:
+      return state.data ? { ...state, data: { ...state.data, token: null } } : state;
     default:
       return state;
   }
@@ -37,4 +40,5 @@ export const Creators = {
   }),
   getLoginSuccess: (user: UserInterface) => ({ type: Types.GET_LOGIN_SUCCESS, payload: { user } }),
   getLoginError: (error: string) => ({ type: Types.GET_LOGIN_ERROR, payload: { error } }),
+  logoutRequest: () => ({ type: Types.LOGOUT_REQUEST }),
 };
