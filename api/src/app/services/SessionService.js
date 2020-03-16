@@ -21,7 +21,7 @@ class SessionService {
     const user = await User.findOne({ where: { email } });
 
     if (!user || !(await user.checkPassword(password))) {
-      return { error: { status: 401, message: 'Incorrect credentials' } };
+      return { error: { status: 401, message: 'Invalid credentials' } };
     }
 
     return { user, token: user.generateToken() };

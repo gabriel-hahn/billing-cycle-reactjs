@@ -5,7 +5,9 @@
   "main": "src/app.js",
   "scripts": {
     "start": "nodemon src/server.js --ignore __tests__",
-    "build": "sucrase ./src -d ./dist"
+    "build": "sucrase ./src -d ./dist",
+    "test": "./node_modules/.bin/jest",
+    "test:watch": "./node_modules/.bin/jest --watchAll"
   },
   "keywords": [],
   "author": "Gabriel Hahn Schaeffer <gabriel_hahn@hotmail.com>",
@@ -23,9 +25,11 @@
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.1",
+    "jest": "^25.1.0",
     "nodemon": "2.0.2",
     "prettier": "1.16.4",
     "sequelize-cli": "^5.5.1",
+    "sinon": "^9.0.1",
     "sucrase": "3.12.1"
   }
 }
