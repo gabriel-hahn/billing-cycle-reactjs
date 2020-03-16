@@ -1,4 +1,5 @@
 import { call, put } from 'redux-saga/effects';
+import { actions as toastrActions } from 'react-redux-toastr';
 import api from '../../services/api';
 
 import { UserActionInterface, UserInterface } from '../../interfaces/user';
@@ -21,5 +22,13 @@ export function* login({ payload }: UserActionInterface) {
     yield put(UsersActions.getLoginSuccess(user));
   } catch (err) {
     yield put(UsersActions.getLoginError('Invalid credentials'));
+    yield put(toastrActions.add({
+      type: 'error',
+      title: 'Sign in failed',
+      message: 'Invalid credentials',
+      options: {
+        timeOut: 4000,
+      },
+    }));
   }
 }
