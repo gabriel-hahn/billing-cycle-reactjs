@@ -27,5 +27,14 @@ module.exports = (sequelize, DataTypes) => {
     return jwt.sign({ id: this.id }, process.env.APP_SECRET);
   };
 
+  User.prototype.toJSON = function () {
+    const values = { ...this.get() };
+
+    delete values.password;
+    delete values.password_hash;
+
+    return values;
+  };
+
   return User;
 };
