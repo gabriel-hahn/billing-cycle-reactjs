@@ -3,9 +3,9 @@ import { Link, Route, RouteComponentProps } from 'react-router-dom';
 
 import { RouteInfoInterface } from '../../interfaces/route';
 
-import Overview from './Overview/Overview';
-import Transaction from './Transaction/Transaction';
-import Report from './Report/Report';
+import Overview from './Overview';
+import Transaction from './Transaction';
+import Report from './Report';
 
 const Dashboard = ({ match }: RouteComponentProps<RouteInfoInterface>) => {
   return (
