@@ -1,5 +1,5 @@
-import React, { useState, FormEvent } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect, FormEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Creators as UsersTypes } from '../../store/ducks/users';
 
@@ -14,6 +14,7 @@ import {
   RegisterButton,
 } from './styles';
 import { UserInterface } from '../../interfaces/user';
+import { StoreInterface } from '../../interfaces/store';
 
 const Login = () => {
   const [name, setName] = useState<string>('');
@@ -22,6 +23,13 @@ const Login = () => {
   const [isLogin, setIsLogin] = useState<boolean>(true);
 
   const dispatch = useDispatch();
+  const userState = useSelector((state: StoreInterface) => state.users.data);
+
+  useEffect(() => {
+    if (userState && userState.token) {
+      // Redirect to Dashboard
+    }
+  }, [userState]);
 
   const handleFormSubit = (e: FormEvent<HTMLDivElement>) => {
     e.preventDefault();

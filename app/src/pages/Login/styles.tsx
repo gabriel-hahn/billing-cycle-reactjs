@@ -54,6 +54,11 @@ export const RegisterButton = styled(sharedButtonStyle)`
   color: #4D7C8A;
   padding: 12px 115px;
   border: none;
+  transition: all 1s;
+
+  &:hover {
+    color: #375963;
+  }
 `;
 
 export const LoginButton = styled(sharedButtonStyle)`
@@ -61,6 +66,11 @@ export const LoginButton = styled(sharedButtonStyle)`
   color: #FFF;
   padding: 12px 120px;
   border-radius: 5px;
+  transition: all 1s;
+
+  &:hover {
+    background: #375963;
+  }
 `;
 
 export const FormInputs = styled.form`
