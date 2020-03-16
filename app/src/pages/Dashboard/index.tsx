@@ -7,11 +7,15 @@ import Report from './Report';
 import Navbar from '../../components/Navbar';
 
 const Dashboard = (props: RouteComponentProps) => {
-  const { match } = props;
+  const { match, history } = props;
+
+  const handleLogout = () => {
+    history.push('/');
+  };
 
   return (
     <>
-      <Navbar />
+      <Navbar onLogout={handleLogout} />
       <ul>
         <li><Link to="overview">Overview</Link></li>
         <li><Link to="transaction">Transaction</Link></li>

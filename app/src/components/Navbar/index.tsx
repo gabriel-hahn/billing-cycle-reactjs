@@ -3,11 +3,17 @@ import { useDispatch } from 'react-redux';
 
 import { Creators as UsersTypes } from '../../store/ducks/users';
 
-const Navbar = () => {
+interface NavbarProps {
+  onLogout: () => void;
+}
+
+const Navbar = ({ onLogout }: NavbarProps) => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
     dispatch(UsersTypes.logoutRequest());
+
+    onLogout();
   };
 
   return (
