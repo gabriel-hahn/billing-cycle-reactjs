@@ -6,11 +6,12 @@ import { RouteInfoInterface } from '../../interfaces/route';
 import Overview from './Overview';
 import Transaction from './Transaction';
 import Report from './Report';
+import Navbar from '../../components/Navbar';
 
 const Dashboard = ({ match }: RouteComponentProps<RouteInfoInterface>) => {
   return (
     <>
-      <h1>Dashboard Page</h1>
+      <Navbar />
       <ul>
         <li><Link to="overview">Overview</Link></li>
         <li><Link to="transaction">Transaction</Link></li>
