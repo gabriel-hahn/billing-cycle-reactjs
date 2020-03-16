@@ -40,9 +40,10 @@ const Login = (props: RouteComponentProps) => {
     const user: UserInterface = {
       email,
       password,
+      name,
     };
 
-    dispatch(UsersTypes.getLoginRequest(user));
+    dispatch(isLogin ? UsersTypes.loginRequest(user) : UsersTypes.registerRequest(user));
   };
 
   return (

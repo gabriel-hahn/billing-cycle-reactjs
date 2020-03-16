@@ -19,13 +19,40 @@ export function* login({ payload }: UserActionInterface) {
       token: data.token,
     };
 
-    yield put(UsersActions.getLoginSuccess(user));
+    yield put(UsersActions.loginSuccess(user));
   } catch (err) {
-    yield put(UsersActions.getLoginError('Invalid credentials'));
+    yield put(UsersActions.loginError('Invalid credentials'));
     yield put(toastrActions.add({
       type: 'error',
       title: 'Sign in failed',
-      message: 'Invalid credentials',
+      message: err.response.data.message,
+      options: {
+        timeOut: 4000,
+      },
+    }));
+  }
+}
+
+export function* register({ payload }: UserActionInterface) {
+  try {
+    const { email, password, name } = payload.user;
+
+    const { data } = yield call(api.post, '/user', { email, password, name });
+
+    const user: UserInterface = {
+      name: data.user.name,
+      email: data.user.email,
+      id: data.user.id,
+      token: data.token,
+    };
+
+    yield put(UsersActions.loginSuccess(user));
+  } catch (err) {
+    yield put(UsersActions.loginError('Error on register'));
+    yield put(toastrActions.add({
+      type: 'error',
+      title: 'Register failed',
+      message: err.response.data.message,
       options: {
         timeOut: 4000,
       },
