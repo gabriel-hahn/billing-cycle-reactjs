@@ -57,9 +57,9 @@ const Login = (props: RouteComponentProps) => {
           {!isLogin && <Input value={name} onChange={e => setName(e.target.value)} placeholder="Name" />}
           <Input value={email} onChange={e => setEmail(e.target.value)} placeholder="E-mail" />
           <Input value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" type="password" />
-          <LoginButton>Login</LoginButton>
+          <LoginButton>{ isLogin ? 'Login' : 'Register' }</LoginButton>
         </FormInputs>
-        <RegisterButton onClick={() => setIsLogin(false)}>Register</RegisterButton>
+        <RegisterButton onClick={() => setIsLogin(!isLogin)}>{ isLogin ? 'Register' : 'Login' }</RegisterButton>
       </FormContainer>
     </Container>
   );

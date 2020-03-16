@@ -64,7 +64,7 @@ export const RegisterButton = styled(sharedButtonStyle)`
 export const LoginButton = styled(sharedButtonStyle)`
   background: #4D7C8A;
   color: #FFF;
-  padding: 12px 120px;
+  padding: 12px 115px;
   border-radius: 5px;
   transition: all 1s;
 
