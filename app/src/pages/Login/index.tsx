@@ -46,6 +46,22 @@ const Login = (props: RouteComponentProps) => {
     dispatch(isLogin ? UsersTypes.loginRequest(user) : UsersTypes.registerRequest(user));
   };
 
+  const handleNameChange = (e: FormEvent<HTMLInputElement>) => {
+    setName(e.currentTarget.value);
+  };
+
+  const handleEmailChange = (e: FormEvent<HTMLInputElement>) => {
+    setEmail(e.currentTarget.value);
+  };
+
+  const handlePasswordChange = (e: FormEvent<HTMLInputElement>) => {
+    setPassword(e.currentTarget.value);
+  };
+
+  const handleLoginChange = (loginStatus: boolean) => {
+    setIsLogin(loginStatus);
+  };
+
   return (
     <Container>
       <AnimationContainer>
@@ -54,12 +70,12 @@ const Login = (props: RouteComponentProps) => {
       <FormContainer onSubmit={handleFormSubit}>
         <Title>Know where your money is</Title>
         <FormInputs>
-          {!isLogin && <Input value={name} onChange={e => setName(e.target.value)} placeholder="Name" />}
-          <Input value={email} onChange={e => setEmail(e.target.value)} placeholder="E-mail" />
-          <Input value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" type="password" />
+          {!isLogin && <Input value={name} onChange={handleNameChange} placeholder="Name" />}
+          <Input value={email} onChange={handleEmailChange} placeholder="E-mail" />
+          <Input value={password} onChange={handlePasswordChange} placeholder="Password" type="password" />
           <LoginButton>{ isLogin ? 'Login' : 'Register' }</LoginButton>
         </FormInputs>
-        <RegisterButton onClick={() => setIsLogin(!isLogin)}>{ isLogin ? 'Register' : 'Login' }</RegisterButton>
+        <RegisterButton onClick={() => handleLoginChange(!isLogin)}>{ isLogin ? 'Register' : 'Login' }</RegisterButton>
       </FormContainer>
     </Container>
   );
