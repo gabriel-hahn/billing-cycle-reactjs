@@ -47,15 +47,15 @@ const Login = (props: RouteComponentProps) => {
   };
 
   const handleNameChange = (e: FormEvent<HTMLInputElement>) => {
-    setName(e.currentTarget.value);
+    setName(e.currentTarget.value.trim());
   };
 
   const handleEmailChange = (e: FormEvent<HTMLInputElement>) => {
-    setEmail(e.currentTarget.value);
+    setEmail(e.currentTarget.value.trim());
   };
 
   const handlePasswordChange = (e: FormEvent<HTMLInputElement>) => {
-    setPassword(e.currentTarget.value);
+    setPassword(e.currentTarget.value.trim());
   };
 
   const handleLoginChange = () => {
