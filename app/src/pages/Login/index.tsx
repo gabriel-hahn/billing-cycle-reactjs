@@ -58,8 +58,8 @@ const Login = (props: RouteComponentProps) => {
     setPassword(e.currentTarget.value);
   };
 
-  const handleLoginChange = (loginStatus: boolean) => {
-    setIsLogin(loginStatus);
+  const handleLoginChange = () => {
+    setIsLogin(!isLogin);
   };
 
   return (
@@ -75,7 +75,7 @@ const Login = (props: RouteComponentProps) => {
           <Input value={password} onChange={handlePasswordChange} placeholder="Password" type="password" />
           <LoginButton>{ isLogin ? 'Login' : 'Register' }</LoginButton>
         </FormInputs>
-        <RegisterButton onClick={() => handleLoginChange(!isLogin)}>{ isLogin ? 'Register' : 'Login' }</RegisterButton>
+        <RegisterButton onClick={handleLoginChange}>{ isLogin ? 'Register' : 'Login' }</RegisterButton>
       </FormContainer>
     </Container>
   );
