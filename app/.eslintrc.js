@@ -33,6 +33,7 @@ module.exports = {
       'error', 'never'
     ],
     'import/prefer-default-export': 'off',
+    'import/no-cycle': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-member-accessibility': 'off'
   },
