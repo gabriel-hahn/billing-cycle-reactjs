@@ -70,9 +70,9 @@ const Login = (props: RouteComponentProps) => {
       <FormContainer onSubmit={handleFormSubit}>
         <Title>Know where your money is</Title>
         <FormInputs>
-          {!isLogin && <Input value={name} onChange={handleNameChange} placeholder="Name" />}
-          <Input value={email} onChange={handleEmailChange} placeholder="E-mail" />
-          <Input value={password} onChange={handlePasswordChange} placeholder="Password" type="password" />
+          {!isLogin && <Input value={name} onChange={handleNameChange} placeholder="Name" name="name" />}
+          <Input value={email} onChange={handleEmailChange} placeholder="E-mail" name="email" />
+          <Input value={password} onChange={handlePasswordChange} placeholder="Password" name="password" type="password" />
           <LoginButton>{ isLogin ? 'Login' : 'Register' }</LoginButton>
         </FormInputs>
         <RegisterButton onClick={handleLoginChange}>{ isLogin ? 'Register' : 'Login' }</RegisterButton>

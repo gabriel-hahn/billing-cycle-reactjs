@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { mount } from 'enzyme';
 import createStore from 'redux-mock-store';
 
-import { props } from '../utils/props';
+import { props, wrapperUpdateFunction } from '../utils/props';
 import Login from '../../pages/Login';
 import { StoreInterface } from '../../interfaces/store';
 
@@ -40,6 +40,19 @@ describe('Login Page', () => {
 
     it('Should render 2 buttons - Login and Register', () => {
       expect(wrapper.find('button').length).toEqual(2);
+    });
+
+    it('Should not show name field when is login', () => {
+      expect(wrapper.find('input[name="name"]').length).toEqual(0);
+    });
+  });
+
+  describe('Event tests', () => {
+    it('Should show name field when click on "Register" button', async () => {
+      const registerButton = wrapper.find('button').last();
+      await wrapperUpdateFunction(registerButton.props().onClick, wrapper);
+
+      expect(wrapper.find('input[name="name"]').length).toEqual(1);
     });
   });
 });
