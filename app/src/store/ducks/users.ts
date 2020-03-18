@@ -17,6 +17,7 @@ const INITIAL_STATE: UserStateInterface = {
 export default function Users(state = INITIAL_STATE, action: UserActionInterface) {
   switch (action.type) {
     case Types.LOGIN_REQUEST:
+    case Types.REGISTER_REQUEST:
       return { ...state, loading: true, error: null };
     case Types.LOGIN_SUCCESS:
       return {
