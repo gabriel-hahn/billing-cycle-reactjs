@@ -10,7 +10,7 @@ interface RoutePropsInterface {
   exact?: boolean;
 }
 
-const PrivateRoute = ({ component: Component, ...rest }: RoutePropsInterface) => {
+export const Private = ({ component: Component, ...rest }: RoutePropsInterface) => {
   const userState = useSelector((state: StoreInterface) => state.users.data);
 
   return (
@@ -24,4 +24,16 @@ const PrivateRoute = ({ component: Component, ...rest }: RoutePropsInterface) =>
   );
 };
 
-export default PrivateRoute;
+export const Public = ({ component: Component, ...rest }: RoutePropsInterface) => {
+  const userState = useSelector((state: StoreInterface) => state.users.data);
+
+  return (
+    <Route
+      {...rest}
+      render={props => (userState && userState.token
+        ? (<Redirect to="/dashboard/overview" />)
+        : (<Component {...props} />)
+      )}
+    />
+  );
+};
