@@ -19,6 +19,8 @@ export function* login({ payload }: UserActionInterface) {
       token: data.token,
     };
 
+    localStorage.setItem('@bc:user', JSON.stringify(user));
+
     yield put(UsersActions.loginSuccess(user));
   } catch (err) {
     yield put(UsersActions.loginError('Invalid credentials'));
@@ -46,6 +48,8 @@ export function* register({ payload }: UserActionInterface) {
       token: data.token,
     };
 
+    localStorage.setItem('@bc:user', JSON.stringify(user));
+
     yield put(UsersActions.loginSuccess(user));
   } catch (err) {
     yield put(UsersActions.loginError('Error on register'));
@@ -53,6 +57,23 @@ export function* register({ payload }: UserActionInterface) {
       type: 'error',
       title: 'Register failed',
       message: err.response.data.message,
+      options: {
+        timeOut: 4000,
+      },
+    }));
+  }
+}
+
+export function* logout() {
+  try {
+    localStorage.removeItem('@bc:user');
+
+    yield put(UsersActions.logoutSuccess());
+  } catch (err) {
+    yield put(toastrActions.add({
+      type: 'error',
+      title: 'Error on logout',
+      message: 'Something is wrong with logout, try again in few minutes!',
       options: {
         timeOut: 4000,
       },
