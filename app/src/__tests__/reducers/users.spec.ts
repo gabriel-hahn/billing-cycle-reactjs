@@ -82,8 +82,14 @@ describe('Users Reducer', () => {
     expect(creator.type).toEqual(UsersTypes.REGISTER_REQUEST);
   });
 
-  it('Should be able to set logout request', () => {
-    action.type = UsersTypes.LOGOUT_REQUEST;
+  it('Should return correct action to logout creator', () => {
+    const creator = UsersActions.logoutRequest();
+
+    expect(creator.type).toEqual(UsersTypes.LOGOUT_REQUEST);
+  });
+
+  it('Should be able to set logout success', () => {
+    action.type = UsersTypes.LOGOUT_SUCCESS;
     action.payload.user = null;
     INITIAL_STATE.data = USER;
 
@@ -96,9 +102,9 @@ describe('Users Reducer', () => {
   });
 
   it('Should return correct action to logout creator', () => {
-    const creator = UsersActions.logoutRequest();
+    const creator = UsersActions.logoutSuccess();
 
-    expect(creator.type).toEqual(UsersTypes.LOGOUT_REQUEST);
+    expect(creator.type).toEqual(UsersTypes.LOGOUT_SUCCESS);
   });
 
   it('Should return correct action to error login creator', () => {
