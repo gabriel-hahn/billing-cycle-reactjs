@@ -3,7 +3,8 @@ import { Provider } from 'react-redux';
 import { mount } from 'enzyme';
 import createStore from 'redux-mock-store';
 
-import { props, wrapperUpdateFunction } from '../utils/props';
+import { props } from '../utils/props';
+import { wrapperUpdateFunction } from '../utils/geral';
 import Login from '../../pages/Login';
 import { StoreInterface } from '../../interfaces/store';
 

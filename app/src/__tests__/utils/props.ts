@@ -1,7 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { createMemoryHistory, createLocation } from 'history';
 import { match } from 'react-router';
-import { act } from 'react-dom/test-utils';
 
 const history = createMemoryHistory();
 const path = '/route/:id';
@@ -19,12 +18,4 @@ export const props = {
   location,
   match: matchObj,
   history,
-};
-
-export const wrapperUpdateFunction = async (fn, wrapper) => {
-  await act(async () => {
-    fn();
-  });
-
-  wrapper.update();
 };
