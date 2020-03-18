@@ -1,6 +1,7 @@
 import React from 'react';
-
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
+import Private from './Access';
 
 import Login from '../pages/Login';
 import Dashboard from '../pages/Dashboard';
@@ -9,7 +10,7 @@ const Routes: React.FC = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={Login} />
-      <Route path="/dashboard" component={Dashboard} />
+      <Private path="/dashboard" component={Dashboard} />
     </Switch>
   </BrowserRouter>
 );
