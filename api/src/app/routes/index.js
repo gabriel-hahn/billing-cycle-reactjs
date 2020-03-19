@@ -14,7 +14,7 @@ router.post('/sessions', SessionController.store);
 
 router.use(authMiddleware);
 
-router.get('/dashboard', (req, res) => {
+router.get('/overview', (req, res) => {
   res.status(200).send({ message: 'Success !' });
 });
 
