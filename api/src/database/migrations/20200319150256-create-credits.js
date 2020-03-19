@@ -1,5 +1,5 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('Transactions', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('credits', {
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -32,10 +32,12 @@ module.exports = {
     quantity: {
       allowNull: false,
       type: Sequelize.INTEGER,
+      defaultValue: 1,
     },
     repeat: {
       allowNull: false,
       type: Sequelize.BOOLEAN,
+      defaultValue: false,
     },
     date_repeat: {
       allowNull: true,
@@ -50,5 +52,5 @@ module.exports = {
       type: Sequelize.DATE,
     },
   }),
-  down: (queryInterface) => queryInterface.dropTable('Transactions'),
+  down: (queryInterface) => queryInterface.dropTable('credits'),
 };
