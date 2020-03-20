@@ -49,6 +49,21 @@ class CreditsService {
 
     return credit;
   }
+
+  async update(newCredit) {
+    const credit = await Credit.findByPk(newCredit.id);
+    const where = {
+      id: credit.id,
+    };
+
+    if (!credit) {
+      return { error: { status: 404, message: 'Credit does not exist!' } };
+    }
+
+    const creditUpdated = await Credit.update({ ...credit, ...newCredit }, { where });
+
+    return creditUpdated;
+  }
 }
 
 module.exports = new CreditsService();

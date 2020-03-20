@@ -50,7 +50,15 @@ class CreditsController {
   }
 
   async update(req, res) {
-    // Update a credit
+    const credit = await CreditsService.update(req.body);
+
+    if (credit.error) {
+      const { status, message } = credit.error;
+
+      return res.status(status).json({ message });
+    }
+
+    return res.json(credit);
   }
 }
 

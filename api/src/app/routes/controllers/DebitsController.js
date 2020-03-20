@@ -50,7 +50,15 @@ class DebitsController {
   }
 
   async update(req, res) {
-    // Update a debit
+    const debit = await DebitsService.update(req.body);
+
+    if (debit.error) {
+      const { status, message } = debit.error;
+
+      return res.status(status).json({ message });
+    }
+
+    return res.json(debit);
   }
 }
 

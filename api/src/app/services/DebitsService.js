@@ -49,6 +49,21 @@ class DebitsService {
 
     return debit;
   }
+
+  async update(newDebit) {
+    const debit = await Debit.findByPk(newDebit.id);
+    const where = {
+      id: Debit.id,
+    };
+
+    if (!debit) {
+      return { error: { status: 404, message: 'Debit does not exist!' } };
+    }
+
+    const debitUpdated = await debit.update({ ...debit, ...newDebit }, { where });
+
+    return debitUpdated;
+  }
 }
 
 module.exports = new DebitsService();
