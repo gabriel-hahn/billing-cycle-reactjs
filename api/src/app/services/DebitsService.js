@@ -1,11 +1,10 @@
-const { Debit } = require('../../database/models');
-const { User } = require('../../database/models');
+const { Debit, User, Sequelize } = require('../../database/models');
 
 class DebitsService {
   async index(startDate, endDate) {
     const where = {
       date: {
-        $between: [startDate, endDate],
+        [Sequelize.Op.between]: [startDate, endDate],
       },
     };
 

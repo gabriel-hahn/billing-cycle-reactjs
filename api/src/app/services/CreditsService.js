@@ -1,11 +1,10 @@
-const { Credit } = require('../../database/models');
-const { User } = require('../../database/models');
+const { Credit, User, Sequelize } = require('../../database/models');
 
 class CreditsService {
   async index(startDate, endDate) {
     const where = {
       date: {
-        $between: [startDate, endDate],
+        [Sequelize.Op.between]: [startDate, endDate],
       },
     };
 
