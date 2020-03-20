@@ -10,13 +10,27 @@ class DebitsController {
   }
 
   async store(req, res) {
-    // Store debit
+    const debit = await DebitsService.store(req.body);
+
+    if (debit.error) {
+      const { status, message } = debit.error;
+
+      return res.status(status).json({ message });
+    }
+
+    return res.json(debit);
   }
 
   async destroy(req, res) {
     const { id } = req.params;
 
     const debit = await DebitsService.destroy(id);
+
+    if (debit.error) {
+      const { status, message } = debit.error;
+
+      return res.status(status).json({ message });
+    }
 
     return res.json(debit);
   }
@@ -25,6 +39,12 @@ class DebitsController {
     const { id } = req.params;
 
     const debit = await DebitsService.show(id);
+
+    if (debit.error) {
+      const { status, message } = debit.error;
+
+      return res.status(status).json({ message });
+    }
 
     return res.json(debit);
   }

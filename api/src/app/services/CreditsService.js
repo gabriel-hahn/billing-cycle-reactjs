@@ -1,4 +1,5 @@
-const { Credits } = require('../../database/models');
+const { Credit } = require('../../database/models');
+const { User } = require('../../database/models');
 
 class CreditsService {
   async index(startDate, endDate) {
@@ -8,17 +9,28 @@ class CreditsService {
       },
     };
 
-    const credits = await Credits.findAll({ where });
+    const credit = await Credit.findAll({ where });
 
-    return credits;
+    return credit;
   }
 
-  async store(credit) {
-    // Store credit
+  async store(newCredit) {
+    const { user_id: userId } = newCredit;
+    const storeCredit = { ...newCredit, user_id: userId };
+
+    const user = await User.findByPk(userId);
+
+    if (!user) {
+      return { error: { status: 404, message: 'User does not exist!' } };
+    }
+
+    const credit = await Credit.create(storeCredit);
+
+    return credit;
   }
 
   async show(id) {
-    const credit = await Credits.findByPk(id);
+    const credit = await Credit.findByPk(id);
 
     if (!credit) {
       return { error: { status: 404, message: 'Credit does not exist!' } };
@@ -28,7 +40,7 @@ class CreditsService {
   }
 
   async destroy(id) {
-    const credit = await Credits.findByPk(id);
+    const credit = await Credit.findByPk(id);
 
     if (!credit) {
       return { error: { status: 404, message: 'Credit does not exist!' } };

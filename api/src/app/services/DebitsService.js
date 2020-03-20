@@ -1,4 +1,5 @@
-const { Debits } = require('../../database/models');
+const { Debit } = require('../../database/models');
+const { User } = require('../../database/models');
 
 class DebitsService {
   async index(startDate, endDate) {
@@ -8,17 +9,28 @@ class DebitsService {
       },
     };
 
-    const debits = await Debits.findAll({ where });
+    const debit = await Debit.findAll({ where });
 
-    return debits;
+    return debit;
   }
 
-  async store(debit) {
-    // Store debit
+  async store(newDebit) {
+    const { user_id: userId } = newDebit;
+    const storeDebit = { ...newDebit, user_id: userId };
+
+    const user = await User.findByPk(userId);
+
+    if (!user) {
+      return { error: { status: 404, message: 'User does not exist!' } };
+    }
+
+    const debit = await Debit.create(storeDebit);
+
+    return debit;
   }
 
   async show(id) {
-    const debit = await Debits.findByPk(id);
+    const debit = await Debit.findByPk(id);
 
     if (!debit) {
       return { error: { status: 404, message: 'Debit does not exist!' } };
@@ -28,7 +40,7 @@ class DebitsService {
   }
 
   async destroy(id) {
-    const debit = await Debits.findByPk(id);
+    const debit = await Debit.findByPk(id);
 
     if (!debit) {
       return { error: { status: 404, message: 'Debit does not exist!' } };
