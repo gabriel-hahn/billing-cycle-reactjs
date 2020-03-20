@@ -2,7 +2,11 @@ const DebitsService = require('../../services/DebitsService');
 
 class DebitsController {
   async index(req, res) {
-    // All debits (1 month range)
+    const { startDate, endDate } = req.body;
+
+    const debits = await DebitsService.index(startDate, endDate);
+
+    return res.json(debits);
   }
 
   async store(req, res) {
@@ -10,11 +14,19 @@ class DebitsController {
   }
 
   async destroy(req, res) {
-    // Delete debit
+    const { id } = req.params;
+
+    const debit = await DebitsService.destroy(id);
+
+    return res.json(debit);
   }
 
   async show(req, res) {
-    // By ID debit
+    const { id } = req.params;
+
+    const debit = await DebitsService.show(id);
+
+    return res.json(debit);
   }
 
   async update(req, res) {

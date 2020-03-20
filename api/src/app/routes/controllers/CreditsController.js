@@ -1,6 +1,12 @@
+const CreditsService = require('../../services/CreditsService');
+
 class CreditsController {
   async index(req, res) {
-    // All credits (1 month range)
+    const { startDate, endDate } = req.body;
+
+    const credits = await CreditsService.index(startDate, endDate);
+
+    return res.json(credits);
   }
 
   async store(req, res) {
@@ -8,11 +14,19 @@ class CreditsController {
   }
 
   async destroy(req, res) {
-    // Delete credit
+    const { id } = req.params;
+
+    const credit = await CreditsService.destroy(id);
+
+    return res.json(credit);
   }
 
   async show(req, res) {
-    // By ID credit
+    const { id } = req.params;
+
+    const credit = await CreditsService.show(id);
+
+    return res.json(credit);
   }
 
   async update(req, res) {
