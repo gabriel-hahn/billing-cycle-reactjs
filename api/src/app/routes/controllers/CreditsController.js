@@ -1,10 +1,22 @@
 class CreditsController {
-  async store(credit) {
+  async index(req, res) {
+    // All credits (1 month range)
+  }
+
+  async store(req, res) {
     // Store credit
   }
 
-  async destroy({ id }) {
+  async destroy(req, res) {
     // Delete credit
+  }
+
+  async show(req, res) {
+    // By ID credit
+  }
+
+  async update(req, res) {
+    // Update a credit
   }
 }
 
