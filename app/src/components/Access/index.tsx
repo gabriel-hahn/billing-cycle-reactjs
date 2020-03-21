@@ -10,7 +10,7 @@ interface RoutePropsInterface {
   exact?: boolean;
 }
 
-export const Private = ({ component: Component, ...rest }: RoutePropsInterface) => {
+export const Private: React.FC<RoutePropsInterface> = ({ component: Component, ...rest }) => {
   const userState = useSelector((state: StoreInterface) => state.users.data);
 
   return (
@@ -24,7 +24,7 @@ export const Private = ({ component: Component, ...rest }: RoutePropsInterface) 
   );
 };
 
-export const Public = ({ component: Component, ...rest }: RoutePropsInterface) => {
+export const Public: React.FC<RoutePropsInterface> = ({ component: Component, ...rest }) => {
   const userState = useSelector((state: StoreInterface) => state.users.data);
 
   return (

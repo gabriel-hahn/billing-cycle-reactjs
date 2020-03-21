@@ -17,13 +17,11 @@ import {
 import { UserInterface } from '../../interfaces/user';
 import { StoreInterface } from '../../interfaces/store';
 
-const Login = (props: RouteComponentProps) => {
+const Login: React.FC<RouteComponentProps> = ({ history }) => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [isLogin, setIsLogin] = useState<boolean>(true);
-
-  const { history } = props;
 
   const dispatch = useDispatch();
   const userState = useSelector((state: StoreInterface) => state.users.data);
