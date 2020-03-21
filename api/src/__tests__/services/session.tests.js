@@ -2,16 +2,9 @@ const sinon = require('sinon');
 
 const { User } = require('../../database/models');
 const SessionService = require('../../app/services/SessionService');
+const { USER } = require('../dummy');
 
 describe('Session Service', () => {
-  const USER = new User({
-    id: 3,
-    name: 'Gabriel Hahn Schaeffer',
-    email: 'gabriel_hahn@hotmail.com',
-    password: '123456',
-    password_hash: 'some_hash',
-  });
-
   process.env.APP_SECRET = 'my_secret_key';
 
   beforeEach(() => {
