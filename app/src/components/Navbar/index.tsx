@@ -2,15 +2,20 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { Container, PagesList, Page, Logout } from './styles';
+import {
+  Container,
+  PagesList,
+  Page,
+  Logout,
+} from './styles';
 
 import { Creators as UsersTypes } from '../../store/ducks/users';
 
-interface NavbarProps {
+interface NavbarPropsInterface {
   onLogout: () => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ onLogout }) => {
+const Navbar: React.FC<NavbarPropsInterface> = ({ onLogout }) => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {

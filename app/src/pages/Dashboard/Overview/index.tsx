@@ -1,5 +1,16 @@
 import React from 'react';
 
-const Overview = () => <h1>Overview Page</h1>;
+import Amount from '../../../components/Amount';
+
+import { AmountContainer } from './styles';
+
+const Overview = () => {
+  return (
+    <AmountContainer>
+      <Amount incoming />
+      <Amount />
+    </AmountContainer>
+  );
+};
 
 export default Overview;
