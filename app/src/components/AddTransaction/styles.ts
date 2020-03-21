@@ -8,6 +8,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 2px 2px 15px 0 rgba(0,0,0,0.5)
 `;
 
 export const PlusText = styled.p`

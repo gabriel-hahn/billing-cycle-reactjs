@@ -2,7 +2,6 @@ import React from 'react';
 
 import Amount from '../../../components/Amount';
 import TransactionsForm from '../../../components/TransactionsForm';
-import AddTransaction from '../../../components/AddTransaction';
 
 import { Container, AmountContainer, TransactionsContainer } from './styles';
 
@@ -16,7 +15,6 @@ const Overview = () => {
       <TransactionsContainer>
         <TransactionsForm />
       </TransactionsContainer>
-      <AddTransaction />
     </Container>
   );
 };
