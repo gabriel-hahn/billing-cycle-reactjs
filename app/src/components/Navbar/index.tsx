@@ -23,7 +23,6 @@ const Navbar: React.FC<NavbarProps> = ({ onLogout }) => {
     <Container>
       <PagesList>
         <Page><Link to="overview">Overview</Link></Page>
-        <Page><Link to="transaction">Transaction</Link></Page>
         <Page><Link to="report">Report</Link></Page>
       </PagesList>
 

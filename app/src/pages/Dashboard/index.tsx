@@ -3,7 +3,6 @@ import { RouteComponentProps, Route } from 'react-router-dom';
 
 import Navbar from '../../components/Navbar';
 import Overview from './Overview';
-import Transaction from './Transaction';
 import Report from './Report';
 
 import { Container } from './styles';
@@ -18,7 +17,6 @@ const Dashboard: React.FC<RouteComponentProps> = ({ match, history }) => {
       <Navbar onLogout={handleLogout} />
 
       <Route path={`${match.url}/overview`} component={Overview} />
-      <Route path={`${match.url}/transaction`} component={Transaction} />
       <Route path={`${match.url}/report`} component={Report} />
     </Container>
   );
