@@ -1,8 +1,73 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background: #333;
-  height: 45vh;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const DateButtonContainer = styled.div`
+
+`;
+
+export const DateRangeContainer = styled.div`
+  z-index: 1;
+  right: 10px;
+  height: 100%;
+`;
+
+export const ContainerDate = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  height: 1.8em;
+`;
+
+export const DateButton = styled.button`
+  background: #4D7C8A;
+  color: #FFF;
+  border-radius: 5px;
+  width: 5em;
+  height: 100%;
+  font-size: 1em;
+  margin-right: 5px;
+  transition: all 0.5s;
+
+  &:hover {
+    background: #416975;
+  }
+`;
+
+export const ContainerTable = styled.table`
+  background: #FFF;
   width: 73em;
   border-radius: 5px;
+  border-collapse: collapse;
+  font-size: 1em;
+
+  tbody {
+    max-height: 45vh;
+
+    td, th {
+      font-size: 1em;
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      max-height: 12px;
+      text-align: left;
+      background-color: #4D7C8A;
+      color: white;
+    }
+
+    tr:nth-child(even){
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: rgba(77, 124, 138, 0.3);
+    }
+  }
 `;

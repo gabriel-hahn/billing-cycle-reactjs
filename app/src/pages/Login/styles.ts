@@ -54,10 +54,10 @@ export const RegisterButton = styled(sharedButtonStyle)`
   color: #4D7C8A;
   padding: 12px 115px;
   border: none;
-  transition: all 1s;
+  transition: all 0.5s;
 
   &:hover {
-    color: #375963;
+    color: #416975;
   }
 `;
 
@@ -66,10 +66,10 @@ export const LoginButton = styled(sharedButtonStyle)`
   color: #FFF;
   padding: 12px 115px;
   border-radius: 5px;
-  transition: all 1s;
+  transition: all 0.5s;
 
   &:hover {
-    background: #375963;
+    background: #416975;
   }
 `;
 

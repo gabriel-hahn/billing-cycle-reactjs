@@ -8,7 +8,14 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 2px 2px 15px 0 rgba(0,0,0,0.5)
+  cursor: pointer;
+  box-shadow: 2px 2px 15px 0 rgba(0,0,0,0.5);
+  transition: all 0.5s;
+
+  &:hover {
+    background: #17729C;
+    margin-bottom: 4px;
+  }
 `;
 
 export const PlusText = styled.p`
