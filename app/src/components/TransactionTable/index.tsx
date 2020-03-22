@@ -9,6 +9,24 @@ import {
   DateRangeContainer,
 } from './styles';
 
+const transactions = [
+  {
+    description: 'Hamburguer John',
+    date: '20/01/2020',
+    value: 'R$ 19.90',
+  },
+  {
+    description: 'Hamburguer John',
+    date: '20/01/2020',
+    value: 'R$ 19.90',
+  },
+  {
+    description: 'Hamburguer John',
+    date: '20/01/2020',
+    value: 'R$ 19.90',
+  },
+];
+
 const TransactionTable: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [dateRange, setDateRange] = useState<DateRange>({});
@@ -44,51 +62,17 @@ const TransactionTable: React.FC = () => {
             <th>Value</th>
             <th />
           </tr>
-          <tr>
-            <td>Hamburguer John</td>
-            <td>20/01/2020</td>
-            <td>R$ 19.90</td>
-            <td>
-              <button type="button">Edit</button>
-              <button type="button">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Hamburguer John</td>
-            <td>20/01/2020</td>
-            <td>R$ 19.90</td>
-            <td>
-              <button type="button">Edit</button>
-              <button type="button">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Hamburguer John</td>
-            <td>20/01/2020</td>
-            <td>R$ 19.90</td>
-            <td>
-              <button type="button">Edit</button>
-              <button type="button">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Hamburguer John</td>
-            <td>20/01/2020</td>
-            <td>R$ 19.90</td>
-            <td>
-              <button type="button">Edit</button>
-              <button type="button">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Hamburguer John</td>
-            <td>20/01/2020</td>
-            <td>R$ 19.90</td>
-            <td>
-              <button type="button">Edit</button>
-              <button type="button">Delete</button>
-            </td>
-          </tr>
+          { transactions.map(transaction => (
+            <tr>
+              <td>{transaction.description}</td>
+              <td>{transaction.date}</td>
+              <td>{transaction.value}</td>
+              <td>
+                <button type="button">Edit</button>
+                <button type="button">Delete</button>
+              </td>
+            </tr>
+          )) }
         </tbody>
       </ContainerTable>
     </Container>
