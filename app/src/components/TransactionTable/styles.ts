@@ -5,10 +5,6 @@ export const Container = styled.div`
   flex-direction: column;
 `;
 
-export const DateButtonContainer = styled.div`
-
-`;
-
 export const DateRangeContainer = styled.div`
   z-index: 1;
   right: 10px;
@@ -17,7 +13,6 @@ export const DateRangeContainer = styled.div`
 
 export const ContainerDate = styled.div`
   display: flex;
-  justify-content: space-between;
   margin-bottom: 5px;
   height: 1.8em;
 `;

@@ -7,7 +7,6 @@ import {
   DateButton,
   ContainerTable,
   DateRangeContainer,
-  DateButtonContainer,
 } from './styles';
 
 const TransactionTable: React.FC = () => {
@@ -16,6 +15,8 @@ const TransactionTable: React.FC = () => {
 
   const handleDatePickerChange = (date: DateRange) => {
     console.log(date);
+
+    setOpen(false);
   };
 
   const handleDatePickerToggle = () => {
@@ -25,13 +26,13 @@ const TransactionTable: React.FC = () => {
   return (
     <Container>
       <ContainerDate>
-        <DateButtonContainer>
+        <div>
           <DateButton>Day</DateButton>
           <DateButton>Week</DateButton>
           <DateButton>Month</DateButton>
-        </DateButtonContainer>
+        </div>
         <DateRangeContainer>
-          <DateButton onClick={handleDatePickerToggle}>Date</DateButton>
+          <DateButton onClick={handleDatePickerToggle}>Choose</DateButton>
           <DateRangePicker open={open} onChange={handleDatePickerChange} />
         </DateRangeContainer>
       </ContainerDate>
