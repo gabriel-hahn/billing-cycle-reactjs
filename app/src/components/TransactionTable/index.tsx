@@ -11,16 +11,19 @@ import {
 
 const transactions = [
   {
+    id: 1,
     description: 'Hamburguer John',
     date: '20/01/2020',
     value: 'R$ 19.90',
   },
   {
+    id: 2,
     description: 'Hamburguer John',
     date: '20/01/2020',
     value: 'R$ 19.90',
   },
   {
+    id: 3,
     description: 'Hamburguer John',
     date: '20/01/2020',
     value: 'R$ 19.90',
@@ -63,7 +66,7 @@ const TransactionTable: React.FC = () => {
             <th />
           </tr>
           { transactions.map(transaction => (
-            <tr>
+            <tr key={transaction.id}>
               <td>{transaction.description}</td>
               <td>{transaction.date}</td>
               <td>{transaction.value}</td>

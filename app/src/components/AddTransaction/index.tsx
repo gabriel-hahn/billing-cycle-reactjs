@@ -2,10 +2,13 @@ import React from 'react';
 
 import { Container, PlusText } from './styles';
 
-const AddTransaction: React.FC = () => {
+interface AddTransactionPropsInterface {
+  onAdd: () => void;
+}
+
+const AddTransaction: React.FC<AddTransactionPropsInterface> = ({ onAdd }) => {
   const handleAddTransaction = () => {
-    // Open model to add a new transaction
-    console.log('Adding new transaction');
+    onAdd();
   };
 
   return (
