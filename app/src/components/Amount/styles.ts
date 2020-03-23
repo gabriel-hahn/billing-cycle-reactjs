@@ -21,5 +21,6 @@ export const Icon = styled.div`
 
 export const Value = styled.h2`
   font-size: 2em;
+  font-weight: 300;
   margin-right: 120px;
 `;

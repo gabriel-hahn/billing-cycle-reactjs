@@ -30,7 +30,6 @@ export const Input = styled.input`
   margin: 5px;
   padding: 15px;
   width: 300px;
-  background: rgba(77, 124, 138, 0.5);
   border: 1px solid #4D7C8A;
   border-radius: 5px;
   font-size: 14px;
