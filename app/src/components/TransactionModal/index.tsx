@@ -1,9 +1,13 @@
 import React from 'react';
 
-import { Container, ModalContainer } from './styles';
+import { Container, ModalContainer, Button } from './styles';
 
 interface TransactionModalPropsInterface {
   onClose: () => void;
+}
+
+export interface StylesProps {
+  transparent?: boolean;
 }
 
 const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose }) => {
@@ -14,7 +18,8 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
   return (
     <Container>
       <ModalContainer>
-        <button type="button" onClick={handleCloseModal}>Close</button>
+        <Button onClick={handleCloseModal}>Add Transaction</Button>
+        <Button transparent onClick={handleCloseModal}>Close</Button>
       </ModalContainer>
     </Container>
   );

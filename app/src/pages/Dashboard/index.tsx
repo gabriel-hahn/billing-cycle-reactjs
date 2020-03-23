@@ -17,12 +17,8 @@ const Dashboard: React.FC<RouteComponentProps> = ({ match, history }) => {
     history.push('/');
   };
 
-  const handleAddTransaction = () => {
-    setModalOpen(true);
-  };
-
-  const handleOnTransactionModalClose = () => {
-    setModalOpen(false);
+  const handleTransactionModalToggle = () => {
+    setModalOpen(!modalOpen);
   };
 
   return (
@@ -33,10 +29,10 @@ const Dashboard: React.FC<RouteComponentProps> = ({ match, history }) => {
       <Route path={`${match.url}/report`} component={Report} />
 
       <AddTransactionContainer>
-        <AddTransaction onAdd={handleAddTransaction} />
+        <AddTransaction onAdd={handleTransactionModalToggle} />
       </AddTransactionContainer>
 
-      { modalOpen && <TransactionModal onClose={handleOnTransactionModalClose} /> }
+      { modalOpen && <TransactionModal onClose={handleTransactionModalToggle} /> }
     </Container>
   );
 };
