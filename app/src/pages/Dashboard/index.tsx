@@ -25,14 +25,14 @@ const Dashboard: React.FC<RouteComponentProps> = ({ match, history }) => {
     <Container>
       <Navbar onLogout={handleLogout} />
 
-      <Route path={`${match.url}/overview`} component={Overview} />
-      <Route path={`${match.url}/report`} component={Report} />
-
       <AddTransactionContainer>
         <AddTransaction onAdd={handleTransactionModalToggle} />
       </AddTransactionContainer>
 
       { modalOpen && <TransactionModal onClose={handleTransactionModalToggle} /> }
+
+      <Route path={`${match.url}/overview`} component={Overview} />
+      <Route path={`${match.url}/report`} component={Report} />
     </Container>
   );
 };

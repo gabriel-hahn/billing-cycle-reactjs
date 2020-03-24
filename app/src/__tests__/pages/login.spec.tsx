@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { mount } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
 import createStore from 'redux-mock-store';
 
 import { props } from '../utils/props';
@@ -11,7 +11,7 @@ import Login from '../../pages/Login';
 const mockStore = createStore();
 const store = mockStore(INITIAL_STATE);
 
-let wrapper;
+let wrapper: ReactWrapper;
 
 beforeEach(() => {
   wrapper = mount(
