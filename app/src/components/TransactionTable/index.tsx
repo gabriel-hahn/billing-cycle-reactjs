@@ -14,6 +14,10 @@ import {
 } from '../../utils/date';
 
 import {
+  formatCurrency,
+} from '../../utils/currency';
+
+import {
   Container,
   ContainerDate,
   DateButton,
@@ -84,7 +88,7 @@ const TransactionTable: React.FC = () => {
             <th>Description</th>
             <th>Date</th>
             <th>Type</th>
-            <th>Value</th>
+            <th>Value (R$)</th>
             <th />
           </tr>
           { transactions.map(transaction => (
@@ -92,7 +96,7 @@ const TransactionTable: React.FC = () => {
               <td>{transaction.description}</td>
               <td>{transaction.date}</td>
               <td>{transaction.type}</td>
-              <td>{transaction.value}</td>
+              <td>{formatCurrency(transaction.value)}</td>
               <td>
                 <button type="button">Edit</button>
                 <button type="button">Delete</button>

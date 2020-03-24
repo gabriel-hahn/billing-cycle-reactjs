@@ -17,8 +17,8 @@ const Overview = () => {
   return (
     <Container>
       <AmountContainer>
-        <Amount currency="R$" value={totalIncomes} incoming />
-        <Amount currency="R$" value={totalDebts} />
+        <Amount value={totalIncomes} incoming />
+        <Amount value={totalDebts} />
       </AmountContainer>
       <TransactionsContainer>
         <TransactionTable />
