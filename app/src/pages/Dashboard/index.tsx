@@ -3,12 +3,11 @@ import { RouteComponentProps, Route } from 'react-router-dom';
 
 import Navbar from '../../components/Navbar';
 import TransactionModal from '../../components/TransactionModal';
-import AddTransaction from '../../components/AddTransaction';
 
 import Overview from './Overview';
 import Report from './Report';
 
-import { Container, AddTransactionContainer } from './styles';
+import { Container, AddTransactionContainer, PlusText } from './styles';
 
 const Dashboard: React.FC<RouteComponentProps> = ({ match, history }) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -18,6 +17,7 @@ const Dashboard: React.FC<RouteComponentProps> = ({ match, history }) => {
   };
 
   const handleTransactionModalToggle = () => {
+    console.log('STATE: ', modalOpen);
     setModalOpen(!modalOpen);
   };
 
@@ -25,8 +25,8 @@ const Dashboard: React.FC<RouteComponentProps> = ({ match, history }) => {
     <Container>
       <Navbar onLogout={handleLogout} />
 
-      <AddTransactionContainer>
-        <AddTransaction onAdd={handleTransactionModalToggle} />
+      <AddTransactionContainer onClick={handleTransactionModalToggle}>
+        <PlusText />
       </AddTransactionContainer>
 
       { modalOpen && <TransactionModal onClose={handleTransactionModalToggle} /> }
