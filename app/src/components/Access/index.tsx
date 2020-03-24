@@ -4,7 +4,7 @@ import { Route, Redirect } from 'react-router-dom';
 
 import { StoreInterface } from '../../interfaces/store';
 
-interface RoutePropsInterface {
+export interface RoutePropsInterface {
   component: any;
   path: string;
   exact?: boolean;
