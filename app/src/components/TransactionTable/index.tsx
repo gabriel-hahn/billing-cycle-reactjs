@@ -1,5 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { DateRangePicker, DateRange } from '@matharumanpreet00/react-daterange-picker';
+
+import { Creators as IncomesActions } from '../../store/ducks/incomes';
+import { Creators as DebtsActions } from '../../store/ducks/debts';
+import { TransactionInterface, TransactionsRangeDateInterface } from '../../interfaces/transaction';
+import { StoreInterface } from '../../interfaces/store';
+
+import {
+  currentDateFormat,
+  dateOneMonthBeforeFormat,
+  toLocaleDateString,
+} from '../../utils/date';
 
 import {
   Container,
@@ -9,33 +21,42 @@ import {
   DateRangeContainer,
 } from './styles';
 
-const transactions = [
-  {
-    id: 1,
-    description: 'Hamburguer John',
-    date: '20/01/2020',
-    value: 'R$ 19.90',
-  },
-  {
-    id: 2,
-    description: 'Hamburguer John',
-    date: '20/01/2020',
-    value: 'R$ 19.90',
-  },
-  {
-    id: 3,
-    description: 'Hamburguer John',
-    date: '20/01/2020',
-    value: 'R$ 19.90',
-  },
-];
-
 const TransactionTable: React.FC = () => {
   const [open, setOpen] = useState(false);
-  const [dateRange, setDateRange] = useState<DateRange>({});
+  const [transactions, setTransactions] = useState<TransactionInterface[]>([]);
+  const [dateRange, setDateRange] = useState<TransactionsRangeDateInterface>({
+    startDate: dateOneMonthBeforeFormat(),
+    endDate: currentDateFormat(),
+  });
+
+  const incomesList = useSelector((state: StoreInterface) => (state.incomes.data));
+  const debtsList = useSelector((state: StoreInterface) => (state.debts.data));
+
+  const dispatch = useDispatch();
+
+  const handleUpdateRange = () => {
+    dispatch(IncomesActions.incomesRequest(dateRange.startDate, dateRange.endDate));
+    dispatch(DebtsActions.debtsRequest(dateRange.startDate, dateRange.endDate));
+  };
+
+  useEffect(() => {
+    handleUpdateRange();
+  }, []);
+
+  useEffect(() => {
+    setTransactions([...incomesList, ...debtsList]);
+  }, [incomesList, debtsList]);
 
   const handleDatePickerChange = (date: DateRange) => {
-    console.log(date);
+    const startDate = date.startDate
+      ? toLocaleDateString(date.startDate)
+      : dateOneMonthBeforeFormat();
+
+    const endDate = date.endDate
+      ? toLocaleDateString(date.endDate)
+      : currentDateFormat();
+
+    setDateRange({ startDate, endDate });
 
     setOpen(false);
   };
@@ -62,6 +83,7 @@ const TransactionTable: React.FC = () => {
           <tr>
             <th>Description</th>
             <th>Date</th>
+            <th>Type</th>
             <th>Value</th>
             <th />
           </tr>
@@ -69,6 +91,7 @@ const TransactionTable: React.FC = () => {
             <tr key={transaction.id}>
               <td>{transaction.description}</td>
               <td>{transaction.date}</td>
+              <td>{transaction.type}</td>
               <td>{transaction.value}</td>
               <td>
                 <button type="button">Edit</button>
