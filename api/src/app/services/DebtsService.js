@@ -2,9 +2,15 @@ const { Debt, User, Sequelize } = require('../../database/models');
 
 class DebtsService {
   async index(startDate, endDate) {
+    const newEndDate = new Date(endDate);
+    newEndDate.setDate(newEndDate.getDate() + 1);
+
     const where = {
       date: {
-        [Sequelize.Op.between]: [startDate, endDate],
+        [Sequelize.Op.and]: {
+          [Sequelize.Op.gte]: startDate,
+          [Sequelize.Op.lte]: newEndDate,
+        },
       },
     };
 
