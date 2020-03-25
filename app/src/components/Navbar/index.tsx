@@ -14,7 +14,7 @@ import {
 
 import { Creators as UsersTypes } from '../../store/ducks/users';
 
-interface NavbarPropsInterface {
+export interface NavbarPropsInterface {
   onLogout: () => void;
 }
 
@@ -44,7 +44,7 @@ const Navbar: React.FC<NavbarPropsInterface> = ({ onLogout }) => {
         </Page>
       </PagesList>
 
-      <Logout type="button" onClick={handleLogout}>
+      <Logout onClick={handleLogout}>
         <FontAwesomeIcon icon={faSignOutAlt} />
         <p>Logout</p>
       </Logout>

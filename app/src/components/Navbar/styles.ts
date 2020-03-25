@@ -66,3 +66,6 @@ export const Logout = styled.button`
     margin-left: 15px;
   }
 `;
+
+PagesList.displayName = 'PagesList';
+Logout.displayName = 'Logout';
