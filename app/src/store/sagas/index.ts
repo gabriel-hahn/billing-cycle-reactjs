@@ -14,8 +14,8 @@ export default function* rootSaga() {
     takeLatest(UsersTypes.REGISTER_REQUEST, register),
     takeLatest(UsersTypes.LOGOUT_REQUEST, logout),
 
-    takeLatest(IncomesTypes.LOAD_INCOMES_REQUEST, loadCreditsAllByDate),
+    takeLatest(IncomesTypes.INCOMES_REQUEST, loadCreditsAllByDate),
 
-    takeLatest(DebtsTypes.LOAD_DEBTS_REQUEST, loadDebtsAllByDate),
+    takeLatest(DebtsTypes.DEBTS_REQUEST, loadDebtsAllByDate),
   ]);
 }

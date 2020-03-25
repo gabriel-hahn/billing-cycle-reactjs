@@ -17,7 +17,6 @@ const Dashboard: React.FC<RouteComponentProps> = ({ match, history }) => {
   };
 
   const handleTransactionModalToggle = () => {
-    console.log('STATE: ', modalOpen);
     setModalOpen(!modalOpen);
   };
 

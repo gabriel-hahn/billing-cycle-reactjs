@@ -27,7 +27,7 @@ describe('Debts Saga', () => {
       apiMock.onGet('/debts').reply(200, TRANSACTIONS);
       await runSagaTest(loadAllByDate, param, dispatched);
 
-      expect(dispatched[0].type).toEqual(DebtsTypes.LOAD_DEBTS_SUCCESS);
+      expect(dispatched[0].type).toEqual(DebtsTypes.DEBTS_SUCCESS);
       expect(dispatched[0].payload.transactions).toEqual(TRANSACTIONS_DEBIT);
     });
 
@@ -43,7 +43,7 @@ describe('Debts Saga', () => {
       apiMock.onGet('/debts').reply(401, apiResponse);
       await runSagaTest(loadAllByDate, param, dispatched);
 
-      expect(dispatched[0].type).toEqual(DebtsTypes.LOAD_DEBTS_ERROR);
+      expect(dispatched[0].type).toEqual(DebtsTypes.DEBTS_ERROR);
       expect(dispatched[0].payload.error).toEqual('Request error');
 
       expect(dispatched[1].type).toEqual('@ReduxToastr/toastr/ADD');
