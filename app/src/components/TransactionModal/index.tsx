@@ -1,6 +1,18 @@
 import React from 'react';
 
-import { Container, ModalContainer, Button } from './styles';
+import {
+  Container,
+  ModalContainer,
+  Button,
+  ButtonsContainer,
+  FormContainer,
+  InputValue,
+  InputDate,
+  InputDescription,
+  InputQuantity,
+  InputCheckbox,
+  InputContainer,
+} from './styles';
 
 interface TransactionModalPropsInterface {
   onClose: () => void;
@@ -18,8 +30,22 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
   return (
     <Container>
       <ModalContainer>
-        <Button onClick={handleCloseModal}>Add Transaction</Button>
-        <Button transparent onClick={handleCloseModal}>Close</Button>
+        <FormContainer>
+          <InputValue required />
+          <InputDescription />
+          <InputContainer>
+            <InputDate required />
+            <InputQuantity required />
+          </InputContainer>
+          <InputContainer>
+            <InputCheckbox />
+            <InputDate />
+          </InputContainer>
+        </FormContainer>
+        <ButtonsContainer>
+          <Button onClick={handleCloseModal}>Add Transaction</Button>
+          <Button transparent onClick={handleCloseModal}>Close</Button>
+        </ButtonsContainer>
       </ModalContainer>
     </Container>
   );
