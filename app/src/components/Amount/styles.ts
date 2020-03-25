@@ -24,3 +24,6 @@ export const Value = styled.h2`
   font-weight: 300;
   margin-right: 120px;
 `;
+
+Icon.displayName = 'Icon';
+Value.displayName = 'Value';
