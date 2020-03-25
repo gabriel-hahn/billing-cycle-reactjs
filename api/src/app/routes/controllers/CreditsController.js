@@ -2,7 +2,7 @@ const CreditsService = require('../../services/CreditsService');
 
 class CreditsController {
   async index(req, res) {
-    const { startDate, endDate } = req.body;
+    const { startDate, endDate } = req.query;
 
     const credits = await CreditsService.index(startDate, endDate);
 

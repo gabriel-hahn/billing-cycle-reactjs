@@ -1,31 +1,38 @@
-import React from 'react';
-import { Link, Route, RouteComponentProps } from 'react-router-dom';
+import React, { useState } from 'react';
+import { RouteComponentProps, Route } from 'react-router-dom';
+
+import Navbar from '../../components/Navbar';
+import TransactionModal from '../../components/TransactionModal';
 
 import Overview from './Overview';
-import Transaction from './Transaction';
 import Report from './Report';
-import Navbar from '../../components/Navbar';
 
-const Dashboard = (props: RouteComponentProps) => {
-  const { match, history } = props;
+import { Container, AddTransactionContainer, PlusText } from './styles';
+
+const Dashboard: React.FC<RouteComponentProps> = ({ match, history }) => {
+  const [modalOpen, setModalOpen] = useState(false);
 
   const handleLogout = () => {
     history.push('/');
   };
 
+  const handleTransactionModalToggle = () => {
+    setModalOpen(!modalOpen);
+  };
+
   return (
-    <>
+    <Container>
       <Navbar onLogout={handleLogout} />
-      <ul>
-        <li><Link to="overview">Overview</Link></li>
-        <li><Link to="transaction">Transaction</Link></li>
-        <li><Link to="report">Report</Link></li>
-      </ul>
+
+      <AddTransactionContainer onClick={handleTransactionModalToggle}>
+        <PlusText />
+      </AddTransactionContainer>
+
+      { modalOpen && <TransactionModal onClose={handleTransactionModalToggle} /> }
 
       <Route path={`${match.url}/overview`} component={Overview} />
-      <Route path={`${match.url}/transaction`} component={Transaction} />
       <Route path={`${match.url}/report`} component={Report} />
-    </>
+    </Container>
   );
 };
 

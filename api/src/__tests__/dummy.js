@@ -1,4 +1,4 @@
-const { Credit, Debit, User } = require('../database/models');
+const { Credit, Debt, User } = require('../database/models');
 
 const USER = new User({
   id: 3,
@@ -48,7 +48,7 @@ const CREDIT_ARRAY = [
   }),
 ];
 
-const DEBIT = new Debit({
+const DEBT = new Debt({
   id: 5,
   user_id: 1,
   description: 'Hamburguer John',
@@ -61,8 +61,8 @@ const DEBIT = new Debit({
   updatedAt: '2020-03-20T13:38:53.511Z',
 });
 
-const DEBIT_ARRAY = [
-  new Debit({
+const DEBT_ARRAY = [
+  new Debt({
     id: 5,
     user_id: 1,
     description: 'Hamburguer John',
@@ -74,7 +74,7 @@ const DEBIT_ARRAY = [
     createdAt: '2020-03-20T13:38:53.511Z',
     updatedAt: '2020-03-20T13:38:53.511Z',
   }),
-  new Debit({
+  new Debt({
     id: 2,
     user_id: 2,
     description: 'Academia',
@@ -92,6 +92,6 @@ module.exports = {
   USER,
   CREDIT,
   CREDIT_ARRAY,
-  DEBIT,
-  DEBIT_ARRAY,
+  DEBT,
+  DEBT_ARRAY,
 };

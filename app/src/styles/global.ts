@@ -9,18 +9,22 @@ export default createGlobalStyle`
     outline: 0;
     box-sizing: border-box;
   }
+
   body {
     color: #000;
     font-family: Arial, Helvetica, sans-serif;
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
   }
+
   html, body, #root {
     height: 100%;
   }
+
   input, button {
     font-family: Arial, Helvetica, sans-serif;
   }
+
   button {
     cursor: pointer;
   }
