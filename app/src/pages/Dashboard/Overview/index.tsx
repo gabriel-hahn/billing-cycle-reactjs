@@ -13,18 +13,18 @@ const Overview = () => {
   const totalIncomes = useSelector((state: StoreInterface) => (
     state.transactions.data
       .filter((transaction: TransactionInterface) => transaction.type === TransactionType.CREDIT)
-      .reduce((total, debt) => total + debt.value, 0)));
+      .reduce((total, debit) => total + debit.value, 0)));
 
-  const totalDebts = useSelector((state: StoreInterface) => (
+  const totalDebits = useSelector((state: StoreInterface) => (
     state.transactions.data
-      .filter((transaction: TransactionInterface) => transaction.type === TransactionType.DEBT)
-      .reduce((total, debt) => total + debt.value, 0)));
+      .filter((transaction: TransactionInterface) => transaction.type === TransactionType.DEBIT)
+      .reduce((total, debit) => total + debit.value, 0)));
 
   return (
     <Container>
       <AmountContainer>
         <Amount value={totalIncomes} incoming />
-        <Amount value={totalDebts} />
+        <Amount value={totalDebits} />
       </AmountContainer>
       <TransactionsContainer>
         <TransactionTable />

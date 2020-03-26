@@ -91,8 +91,8 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
     setTransactionType(TransactionType.CREDIT);
   };
 
-  const handleDebtClick = () => {
-    setTransactionType(TransactionType.DEBT);
+  const handleDebitClick = () => {
+    setTransactionType(TransactionType.DEBIT);
   };
 
   return (
@@ -113,7 +113,7 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
         </FormContainer>
         <ButtonsContainer>
           <Button onClick={handleCreditClick}>Credit</Button>
-          <Button onClick={handleDebtClick}>Debt</Button>
+          <Button onClick={handleDebitClick}>Debit</Button>
         </ButtonsContainer>
         <ButtonsFormContainer>
           <Button fullWidth onClick={handleAddTransaction}>Add Transaction</Button>

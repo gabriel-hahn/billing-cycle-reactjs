@@ -35,7 +35,7 @@ describe('Transactions Saga', () => {
       };
 
       apiMock.onGet('/credits').reply(200, TRANSACTIONS_CREDIT);
-      apiMock.onGet('/debts').reply(200, TRANSACTIONS_DEBIT);
+      apiMock.onGet('/debits').reply(200, TRANSACTIONS_DEBIT);
 
       await runSagaTest(loadAllByDate, param, dispatched);
 
@@ -52,11 +52,11 @@ describe('Transactions Saga', () => {
           transactions: TRANSACTIONS,
           error: null,
           range: RANGE,
-          type: TransactionType.DEBT,
+          type: TransactionType.DEBIT,
         },
       };
 
-      apiMock.onGet('/debts').reply(200, TRANSACTIONS_DEBIT);
+      apiMock.onGet('/debits').reply(200, TRANSACTIONS_DEBIT);
 
       await runSagaTest(loadAllByDate, param, dispatched);
 
@@ -73,7 +73,7 @@ describe('Transactions Saga', () => {
         payload: { transactions: TRANSACTIONS, error: null, range: RANGE },
       };
 
-      apiMock.onGet('/debts').reply(401, apiResponse);
+      apiMock.onGet('/debits').reply(401, apiResponse);
       await runSagaTest(loadAllByDate, param, dispatched);
 
       expect(dispatched[0].type).toEqual(TransactionsTypes.TRANSACTIONS_ERROR);

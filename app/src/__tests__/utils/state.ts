@@ -29,7 +29,7 @@ export const INITIAL_STATE_FILLED: StoreInterface = {
         date: new Date(),
         quantity: 1,
         repeat: false,
-        type: TransactionType.DEBT,
+        type: TransactionType.DEBIT,
         value: 100.00,
       },
       {

@@ -2,7 +2,7 @@ const routes = require('express');
 const authMiddleware = require('./middleware/auth');
 
 const SessionController = require('./controllers/SessionController');
-const DebtsController = require('./controllers/DebtsController');
+const DebitsController = require('./controllers/DebitsController');
 const CreditsController = require('./controllers/CreditsController');
 
 const router = routes.Router();
@@ -20,11 +20,11 @@ router.get('/overview', (req, res) => {
   res.status(200).send({ message: 'Success !' });
 });
 
-router.get('/debts', DebtsController.index);
-router.get('/debt/:id', DebtsController.show);
-router.post('/debt', DebtsController.store);
-router.put('/debt', DebtsController.update);
-router.delete('/debt/:id', DebtsController.destroy);
+router.get('/debits', DebitsController.index);
+router.get('/debit/:id', DebitsController.show);
+router.post('/debit', DebitsController.store);
+router.put('/debit', DebitsController.update);
+router.delete('/debit/:id', DebitsController.destroy);
 
 router.get('/credits', CreditsController.index);
 router.get('/credit/:id', CreditsController.show);

@@ -10,8 +10,8 @@ import { StoreInterface } from '../../interfaces/store';
 
 const CREDITS_PATH = '/credits';
 const CREDIT_PATH = '/credit';
-const DEBTS_PATH = '/debts';
-const DEBT_PATH = '/debt';
+const DEBITS_PATH = '/debits';
+const DEBIT_PATH = '/debit';
 
 export function* loadAllByDate({ payload: { range, type } }: TransactionsActionsInterface) {
   try {
@@ -20,22 +20,22 @@ export function* loadAllByDate({ payload: { range, type } }: TransactionsActions
     let incomes: TransactionInterface[] = [];
 
     if (type) {
-      const path = type === TransactionType.CREDIT ? CREDITS_PATH : DEBTS_PATH;
+      const path = type === TransactionType.CREDIT ? CREDITS_PATH : DEBITS_PATH;
       const { data } = yield call(api.get, path, { params: { startDate, endDate } });
 
       incomes = data.map((income: TransactionInterface) => ({ ...income, type }));
     } else {
-      const { data: debtsData } = yield call(api.get, DEBTS_PATH, { params: { startDate, endDate } });
+      const { data: debitsData } = yield call(api.get, DEBITS_PATH, { params: { startDate, endDate } });
       const { data: creditsData } = yield call(api.get, CREDITS_PATH, { params: { startDate, endDate } });
 
-      const debts: TransactionInterface[] = debtsData.map((income: TransactionInterface) => (
-        { ...income, type: TransactionType.DEBT }
+      const debits: TransactionInterface[] = debitsData.map((income: TransactionInterface) => (
+        { ...income, type: TransactionType.DEBIT }
       ));
       const credits: TransactionInterface[] = creditsData.map((income: TransactionInterface) => (
         { ...income, type: TransactionType.CREDIT }
       ));
 
-      incomes = [...debts, ...credits];
+      incomes = [...debits, ...credits];
     }
 
     yield put(TransactionsActions.getTransactionsSuccess(incomes));
@@ -57,7 +57,7 @@ export function* addTransaction({ payload: { transaction } }: TransactionsAction
     if (transaction) {
       const addData = transaction;
       const user = yield select((state: StoreInterface) => state.users.data);
-      const path = addData.type === TransactionType.CREDIT ? CREDIT_PATH : DEBT_PATH;
+      const path = addData.type === TransactionType.CREDIT ? CREDIT_PATH : DEBIT_PATH;
 
       addData.user_id = user.id;
 

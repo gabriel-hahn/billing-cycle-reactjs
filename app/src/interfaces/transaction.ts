@@ -15,7 +15,7 @@ export interface TransactionsActionsInterface {
 }
 
 export enum TransactionType {
-  DEBT = 'Debt',
+  DEBIT = 'Debit',
   CREDIT = 'Credit',
 }
 

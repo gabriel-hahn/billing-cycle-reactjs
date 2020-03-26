@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Debt = sequelize.define('Debt', {
+  const Debit = sequelize.define('Debit', {
     user_id: DataTypes.INTEGER,
     description: DataTypes.STRING,
     date: DataTypes.DATE,
@@ -9,9 +9,9 @@ module.exports = (sequelize, DataTypes) => {
     date_repeat: DataTypes.DATE,
   }, {});
 
-  Debt.associate = (models) => {
-    Debt.belongsTo(models.User, { as: 'user', foreignKey: 'user_id' });
+  Debit.associate = (models) => {
+    Debit.belongsTo(models.User, { as: 'user', foreignKey: 'user_id' });
   };
 
-  return Debt;
+  return Debit;
 };
