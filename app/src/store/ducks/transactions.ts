@@ -19,7 +19,7 @@ const INITIAL_STATE: TransactionStateInterface = {
   loading: false,
 };
 
-export default function Incomes(state = INITIAL_STATE, action: TransactionsActionsInterface) {
+export default function Transactions(state = INITIAL_STATE, action: TransactionsActionsInterface) {
   switch (action.type) {
     case Types.GET_TRANSACTIONS_REQUEST:
     case Types.ADD_TRANSACTION_REQUEST:

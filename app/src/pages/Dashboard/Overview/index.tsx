@@ -10,7 +10,7 @@ import { Container, AmountContainer, TransactionsContainer } from './styles';
 import { TransactionInterface, TransactionType } from '../../../interfaces/transaction';
 
 const Overview = () => {
-  const totalIncomes = useSelector((state: StoreInterface) => (
+  const totalCredits = useSelector((state: StoreInterface) => (
     state.transactions.data
       .filter((transaction: TransactionInterface) => transaction.type === TransactionType.CREDIT)
       .reduce((total, debit) => total + debit.value, 0)));
@@ -23,7 +23,7 @@ const Overview = () => {
   return (
     <Container>
       <AmountContainer>
-        <Amount value={totalIncomes} incoming />
+        <Amount value={totalCredits} incoming />
         <Amount value={totalDebits} />
       </AmountContainer>
       <TransactionsContainer>

@@ -17,28 +17,28 @@ export function* loadAllByDate({ payload: { range, type } }: TransactionsActions
   try {
     const startDate = range ? range.startDate : dateOneMonthBeforeFormat();
     const endDate = range ? range.endDate : currentDateFormat();
-    let incomes: TransactionInterface[] = [];
+    let transactions: TransactionInterface[] = [];
 
     if (type) {
       const path = type === TransactionType.CREDIT ? CREDITS_PATH : DEBITS_PATH;
       const { data } = yield call(api.get, path, { params: { startDate, endDate } });
 
-      incomes = data.map((income: TransactionInterface) => ({ ...income, type }));
+      transactions = data.map((transaction: TransactionInterface) => ({ ...transaction, type }));
     } else {
       const { data: debitsData } = yield call(api.get, DEBITS_PATH, { params: { startDate, endDate } });
       const { data: creditsData } = yield call(api.get, CREDITS_PATH, { params: { startDate, endDate } });
 
-      const debits: TransactionInterface[] = debitsData.map((income: TransactionInterface) => (
-        { ...income, type: TransactionType.DEBIT }
+      const debits: TransactionInterface[] = debitsData.map((transaction: TransactionInterface) => (
+        { ...transaction, type: TransactionType.DEBIT }
       ));
-      const credits: TransactionInterface[] = creditsData.map((income: TransactionInterface) => (
-        { ...income, type: TransactionType.CREDIT }
+      const credits: TransactionInterface[] = creditsData.map((transaction: TransactionInterface) => (
+        { ...transaction, type: TransactionType.CREDIT }
       ));
 
-      incomes = [...debits, ...credits];
+      transactions = [...debits, ...credits];
     }
 
-    yield put(TransactionsActions.getTransactionsSuccess(incomes));
+    yield put(TransactionsActions.getTransactionsSuccess(transactions));
   } catch (err) {
     yield put(TransactionsActions.transactionsError('Request error'));
     yield put(toastrActions.add({
