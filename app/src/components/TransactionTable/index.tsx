@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { DateRangePicker, DateRange } from '@matharumanpreet00/react-daterange-picker';
 
-import { Creators as IncomesActions } from '../../store/ducks/incomes';
-import { Creators as DebtsActions } from '../../store/ducks/debts';
-import { TransactionInterface, TransactionsRangeDateInterface } from '../../interfaces/transaction';
+import { Creators as TransactionsActions } from '../../store/ducks/transactions';
+import { TransactionInterface, TransactionsRangeDateInterface, TransactionType } from '../../interfaces/transaction';
 import { StoreInterface } from '../../interfaces/store';
 
 import {
@@ -33,14 +32,11 @@ const TransactionTable: React.FC = () => {
     endDate: currentDateFormat(),
   });
 
-  const incomesList = useSelector((state: StoreInterface) => (state.incomes.data));
-  const debtsList = useSelector((state: StoreInterface) => (state.debts.data));
-
+  const transactionsList = useSelector((state: StoreInterface) => (state.transactions.data));
   const dispatch = useDispatch();
 
   const handleUpdateRange = () => {
-    dispatch(IncomesActions.incomesRequest(dateRange.startDate, dateRange.endDate));
-    dispatch(DebtsActions.debtsRequest(dateRange.startDate, dateRange.endDate));
+    dispatch(TransactionsActions.getTransactionsRequest(dateRange.startDate, dateRange.endDate));
   };
 
   useEffect(() => {
@@ -48,8 +44,8 @@ const TransactionTable: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    setTransactions([...incomesList, ...debtsList]);
-  }, [incomesList, debtsList]);
+    setTransactions(transactionsList);
+  }, [transactionsList]);
 
   const handleDatePickerChange = (date: DateRange) => {
     const startDate = date.startDate

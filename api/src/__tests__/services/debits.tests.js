@@ -1,118 +1,118 @@
 const sinon = require('sinon');
 
-const { Debt, User } = require('../../database/models');
-const DebtsService = require('../../app/services/DebtsService');
-const { USER, DEBT, DEBT_ARRAY } = require('../dummy');
+const { Debit, User } = require('../../database/models');
+const DebitsService = require('../../app/services/DebitsService');
+const { USER, DEBIT, DEBIT_ARRAY } = require('../dummy');
 
-describe('Debts Service', () => {
+describe('Debits Service', () => {
   beforeEach(() => {
     sinon.restore();
   });
 
-  describe('Debt create errors', () => {
+  describe('Debit create errors', () => {
     it('Should return user does not exist', async () => {
       sinon.stub(User, 'findByPk').resolves(null);
-      const response = await DebtsService.store(DEBT);
+      const response = await DebitsService.store(DEBIT);
 
       expect(response.error).toBeTruthy();
       expect(response.error.status).toBe(404);
       expect(response.error.message).toBe('User does not exist!');
     });
 
-    it('Should return Debt does not exist - Show method', async () => {
-      sinon.stub(Debt, 'findByPk').resolves(null);
-      const response = await DebtsService.show(5);
+    it('Should return Debit does not exist - Show method', async () => {
+      sinon.stub(Debit, 'findByPk').resolves(null);
+      const response = await DebitsService.show(5);
 
       expect(response.error).toBeTruthy();
       expect(response.error.status).toBe(404);
-      expect(response.error.message).toBe('Debt does not exist!');
+      expect(response.error.message).toBe('Debit does not exist!');
     });
 
-    it('Should return Debt does not exist - Destroy method', async () => {
-      sinon.stub(Debt, 'findByPk').resolves(null);
-      const response = await DebtsService.destroy(5);
+    it('Should return Debit does not exist - Destroy method', async () => {
+      sinon.stub(Debit, 'findByPk').resolves(null);
+      const response = await DebitsService.destroy(5);
 
       expect(response.error).toBeTruthy();
       expect(response.error.status).toBe(404);
-      expect(response.error.message).toBe('Debt does not exist!');
+      expect(response.error.message).toBe('Debit does not exist!');
     });
 
-    it('Should return Debt does not exist - Update method', async () => {
-      sinon.stub(Debt, 'findByPk').resolves(null);
-      const response = await DebtsService.update(DEBT);
+    it('Should return Debit does not exist - Update method', async () => {
+      sinon.stub(Debit, 'findByPk').resolves(null);
+      const response = await DebitsService.update(DEBIT);
 
       expect(response.error).toBeTruthy();
       expect(response.error.status).toBe(404);
-      expect(response.error.message).toBe('Debt does not exist!');
+      expect(response.error.message).toBe('Debit does not exist!');
     });
   });
 
-  describe('Debts index', () => {
+  describe('Debits index', () => {
     it('Should return an empty array', async () => {
-      sinon.stub(Debt, 'findAll').resolves([]);
+      sinon.stub(Debit, 'findAll').resolves([]);
 
-      const response = await DebtsService.index();
+      const response = await DebitsService.index();
 
       expect(response.error).toBeFalsy();
       expect(response).toBeTruthy();
       expect(response).toEqual([]);
     });
 
-    it('Should return an array of Debts', async () => {
-      sinon.stub(Debt, 'findAll').resolves(DEBT_ARRAY);
+    it('Should return an array of Debits', async () => {
+      sinon.stub(Debit, 'findAll').resolves(DEBIT_ARRAY);
 
-      const response = await DebtsService.index();
+      const response = await DebitsService.index();
 
       expect(response.error).toBeFalsy();
       expect(response).toBeTruthy();
-      expect(response).toEqual(DEBT_ARRAY);
+      expect(response).toEqual(DEBIT_ARRAY);
     });
   });
 
-  describe('Debts store', () => {
-    it('Should return a new Debt created', async () => {
+  describe('Debits store', () => {
+    it('Should return a new Debit created', async () => {
       sinon.stub(User, 'findByPk').resolves(USER);
-      sinon.stub(Debt, 'create').resolves(DEBT);
+      sinon.stub(Debit, 'create').resolves(DEBIT);
 
-      const response = await DebtsService.store(DEBT);
+      const response = await DebitsService.store(DEBIT);
 
       expect(response.error).toBeFalsy();
-      expect(response).toEqual(DEBT);
+      expect(response).toEqual(DEBIT);
     });
   });
 
-  describe('Debts show', () => {
-    it('Should return a Debt by ID', async () => {
-      sinon.stub(Debt, 'findByPk').resolves(DEBT);
+  describe('Debits show', () => {
+    it('Should return a Debit by ID', async () => {
+      sinon.stub(Debit, 'findByPk').resolves(DEBIT);
 
-      const response = await DebtsService.show(5);
+      const response = await DebitsService.show(5);
 
       expect(response.error).toBeFalsy();
-      expect(response).toEqual(DEBT);
+      expect(response).toEqual(DEBIT);
     });
   });
 
-  describe('Debts destroy', () => {
-    it('Should delete a Debt by ID', async () => {
-      sinon.stub(Debt, 'findByPk').resolves(DEBT);
-      sinon.stub(DEBT, 'destroy').resolves(null);
+  describe('Debits destroy', () => {
+    it('Should delete a Debit by ID', async () => {
+      sinon.stub(Debit, 'findByPk').resolves(DEBIT);
+      sinon.stub(DEBIT, 'destroy').resolves(null);
 
-      const response = await DebtsService.destroy(5);
+      const response = await DebitsService.destroy(5);
 
       expect(response.error).toBeFalsy();
-      expect(response).toEqual(DEBT);
+      expect(response).toEqual(DEBIT);
     });
   });
 
-  describe('Debts update', () => {
-    it('Should update a Debt', async () => {
-      sinon.stub(Debt, 'findByPk').resolves(DEBT);
-      sinon.stub(DEBT, 'update').resolves(DEBT);
+  describe('Debits update', () => {
+    it('Should update a Debit', async () => {
+      sinon.stub(Debit, 'findByPk').resolves(DEBIT);
+      sinon.stub(DEBIT, 'update').resolves(DEBIT);
 
-      const response = await DebtsService.update(DEBT);
+      const response = await DebitsService.update(DEBIT);
 
       expect(response.error).toBeFalsy();
-      expect(response).toEqual(DEBT);
+      expect(response).toEqual(DEBIT);
     });
   });
 });

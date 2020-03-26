@@ -2,14 +2,12 @@ import { combineReducers } from 'redux';
 
 import { reducer as toastr } from 'react-redux-toastr';
 import users from './users';
-import incomes from './incomes';
-import debts from './debts';
+import transactions from './transactions';
 
 const reducers = combineReducers({
   toastr,
   users,
-  incomes,
-  debts,
+  transactions,
 });
 
 export default reducers;

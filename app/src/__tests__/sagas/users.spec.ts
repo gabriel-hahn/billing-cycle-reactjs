@@ -22,6 +22,10 @@ beforeEach(() => {
   dispatched = [];
 });
 
+afterEach(() => {
+  apiMock.reset();
+});
+
 describe('Users Saga', () => {
   describe('Login', () => {
     it('Should be able to login', async () => {

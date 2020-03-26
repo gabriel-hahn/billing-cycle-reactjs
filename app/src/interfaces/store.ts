@@ -3,6 +3,5 @@ import { TransactionStateInterface } from './transaction';
 
 export interface StoreInterface {
   users: UserStateInterface,
-  debts: TransactionStateInterface,
-  incomes: TransactionStateInterface,
+  transactions: TransactionStateInterface,
 }

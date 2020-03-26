@@ -1,5 +1,5 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('debts', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('debits', {
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -15,6 +15,22 @@ module.exports = {
       },
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
+    },
+    type: {
+      allowNull: false,
+      type: Sequelize.ENUM,
+      values: [
+        'FOOD',
+        'LEISURE',
+        'SERVICES',
+        'EDUCATION',
+        'OTHERS',
+        'ELECTRONICS',
+        'HEALTH',
+        'SHOPPING',
+        'DEBT',
+      ],
+      defaultValue: 'OTHERS',
     },
     description: {
       allowNull: true,
@@ -52,5 +68,5 @@ module.exports = {
       type: Sequelize.DATE,
     },
   }),
-  down: (queryInterface) => queryInterface.dropTable('debts'),
+  down: (queryInterface) => queryInterface.dropTable('debits'),
 };

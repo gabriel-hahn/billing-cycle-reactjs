@@ -6,25 +6,27 @@ export interface TransactionsRangeDateInterface {
 export interface TransactionsActionsInterface {
   type: string,
   payload: {
+    type?: TransactionType,
     transactions: TransactionInterface[],
+    transaction?: TransactionInterface,
     error?: string,
-    range: TransactionsRangeDateInterface,
+    range?: TransactionsRangeDateInterface,
   },
 }
 
 export enum TransactionType {
-  DEBT = 'Debt',
+  DEBIT = 'Debit',
   CREDIT = 'Credit',
 }
 
 export interface TransactionInterface {
   id?: number;
-  user_id: number;
+  user_id?: number;
   value: number;
   quantity: number;
   date: Date;
   date_repeat?: Date;
-  type?: TransactionType;
+  type: TransactionType;
   repeat: boolean;
   description?: string;
 }

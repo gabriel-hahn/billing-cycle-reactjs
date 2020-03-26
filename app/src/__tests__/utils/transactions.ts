@@ -8,6 +8,7 @@ export const TRANSACTIONS: TransactionInterface[] = [
     quantity: 1,
     repeat: false,
     value: 1500,
+    type: TransactionType.CREDIT,
     description: 'Cartão de Crédito',
   },
   {
@@ -17,7 +18,8 @@ export const TRANSACTIONS: TransactionInterface[] = [
     quantity: 1,
     repeat: false,
     value: 1500,
-    description: 'Viagens',
+    type: TransactionType.DEBIT,
+    description: 'Vendas',
   },
 ];
 
@@ -26,7 +28,7 @@ export const TRANSACTIONS_CREDIT: TransactionInterface[] = TRANSACTIONS.map(
 );
 
 export const TRANSACTIONS_DEBIT: TransactionInterface[] = TRANSACTIONS.map(
-  (debt: TransactionInterface) => ({ ...debt, type: TransactionType.DEBT }),
+  (debit: TransactionInterface) => ({ ...debit, type: TransactionType.DEBIT }),
 );
 
 export const RANGE: TransactionsRangeDateInterface = {

@@ -1,12 +1,10 @@
 import { all, takeLatest } from 'redux-saga/effects';
 
 import { Types as UsersTypes } from '../ducks/users';
-import { Types as IncomesTypes } from '../ducks/incomes';
-import { Types as DebtsTypes } from '../ducks/debts';
+import { Types as TransactionsTypes } from '../ducks/transactions';
 
 import { login, register, logout } from './users';
-import { loadAllByDate as loadCreditsAllByDate } from './incomes';
-import { loadAllByDate as loadDebtsAllByDate } from './debts';
+import { loadAllByDate, addTransaction } from './transactions';
 
 export default function* rootSaga() {
   yield all([
@@ -14,8 +12,7 @@ export default function* rootSaga() {
     takeLatest(UsersTypes.REGISTER_REQUEST, register),
     takeLatest(UsersTypes.LOGOUT_REQUEST, logout),
 
-    takeLatest(IncomesTypes.INCOMES_REQUEST, loadCreditsAllByDate),
-
-    takeLatest(DebtsTypes.DEBTS_REQUEST, loadDebtsAllByDate),
+    takeLatest(TransactionsTypes.GET_TRANSACTIONS_REQUEST, loadAllByDate),
+    takeLatest(TransactionsTypes.ADD_TRANSACTION_REQUEST, addTransaction),
   ]);
 }
