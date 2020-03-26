@@ -7,8 +7,9 @@ export interface TransactionsActionsInterface {
   type: string,
   payload: {
     transactions: TransactionInterface[],
+    transaction?: TransactionInterface,
     error?: string,
-    range: TransactionsRangeDateInterface,
+    range?: TransactionsRangeDateInterface,
   },
 }
 
@@ -19,7 +20,7 @@ export enum TransactionType {
 
 export interface TransactionInterface {
   id?: number;
-  user_id: number;
+  user_id?: number;
   value: number;
   quantity: number;
   date: Date;

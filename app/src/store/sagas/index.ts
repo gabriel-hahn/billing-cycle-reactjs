@@ -5,8 +5,8 @@ import { Types as IncomesTypes } from '../ducks/incomes';
 import { Types as DebtsTypes } from '../ducks/debts';
 
 import { login, register, logout } from './users';
-import { loadAllByDate as loadCreditsAllByDate } from './incomes';
-import { loadAllByDate as loadDebtsAllByDate } from './debts';
+import { loadAllByDate as loadCreditsAllByDate, addTransaction as addIncomes } from './incomes';
+import { loadAllByDate as loadDebtsAllByDate, addTransaction as addDebt } from './debts';
 
 export default function* rootSaga() {
   yield all([
@@ -15,7 +15,9 @@ export default function* rootSaga() {
     takeLatest(UsersTypes.LOGOUT_REQUEST, logout),
 
     takeLatest(IncomesTypes.INCOMES_REQUEST, loadCreditsAllByDate),
+    takeLatest(IncomesTypes.ADD_INCOME_REQUEST, addIncomes),
 
     takeLatest(DebtsTypes.DEBTS_REQUEST, loadDebtsAllByDate),
+    takeLatest(DebtsTypes.ADD_DEBT_REQUEST, addDebt),
   ]);
 }
