@@ -7,12 +7,18 @@ import Amount from '../../../components/Amount';
 import TransactionTable from '../../../components/TransactionTable';
 
 import { Container, AmountContainer, TransactionsContainer } from './styles';
+import { TransactionInterface, TransactionType } from '../../../interfaces/transaction';
 
 const Overview = () => {
   const totalIncomes = useSelector((state: StoreInterface) => (
-    state.incomes.data.reduce((total, debt) => total + debt.value, 0)));
+    state.transactions.data
+      .filter((transaction: TransactionInterface) => transaction.type === TransactionType.CREDIT)
+      .reduce((total, debt) => total + debt.value, 0)));
+
   const totalDebts = useSelector((state: StoreInterface) => (
-    state.debts.data.reduce((total, debt) => total + debt.value, 0)));
+    state.transactions.data
+      .filter((transaction: TransactionInterface) => transaction.type === TransactionType.DEBT)
+      .reduce((total, debt) => total + debt.value, 0)));
 
   return (
     <Container>

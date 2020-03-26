@@ -8,3 +8,13 @@ export const runSagaTest = async (method, param, dispatched) => {
     () => method(param),
   ).toPromise();
 };
+
+export const runSagaTestState = async (method, param, dispatched, state) => {
+  await runSaga(
+    {
+      dispatch: action => dispatched.push(action),
+      getState: () => ({ ...state }),
+    },
+    () => method(param),
+  ).toPromise();
+};

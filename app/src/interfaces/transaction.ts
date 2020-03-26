@@ -6,6 +6,7 @@ export interface TransactionsRangeDateInterface {
 export interface TransactionsActionsInterface {
   type: string,
   payload: {
+    type?: TransactionType,
     transactions: TransactionInterface[],
     transaction?: TransactionInterface,
     error?: string,
@@ -25,7 +26,7 @@ export interface TransactionInterface {
   quantity: number;
   date: Date;
   date_repeat?: Date;
-  type?: TransactionType;
+  type: TransactionType;
   repeat: boolean;
   description?: string;
 }

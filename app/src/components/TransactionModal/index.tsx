@@ -1,8 +1,7 @@
 import React, { useState, FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { Creators as DebtsActions } from '../../store/ducks/debts';
-import { Creators as IncomesActions } from '../../store/ducks/incomes';
+import { Creators as TransactionsActions } from '../../store/ducks/transactions';
 import { currentDateInputFormat } from '../../utils/date';
 
 import {
@@ -53,14 +52,13 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
       value,
       quantity,
       repeat,
+      type: transactionType,
       description,
       date: new Date(date),
       date_repeat: repeat ? new Date(dateRepeat) : undefined,
     };
 
-    dispatch(transactionType === TransactionType.CREDIT
-      ? IncomesActions.addIncomeRequest(newTransaction)
-      : DebtsActions.addDebtRequest(newTransaction));
+    dispatch(TransactionsActions.addTransactionRequest(newTransaction));
 
     onClose();
   };

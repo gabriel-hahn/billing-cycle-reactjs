@@ -8,6 +8,7 @@ export const TRANSACTIONS: TransactionInterface[] = [
     quantity: 1,
     repeat: false,
     value: 1500,
+    type: TransactionType.CREDIT,
     description: 'Cartão de Crédito',
   },
   {
@@ -17,7 +18,8 @@ export const TRANSACTIONS: TransactionInterface[] = [
     quantity: 1,
     repeat: false,
     value: 1500,
-    description: 'Viagens',
+    type: TransactionType.DEBT,
+    description: 'Vendas',
   },
 ];
 
