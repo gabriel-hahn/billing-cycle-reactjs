@@ -16,6 +16,22 @@ module.exports = {
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
     },
+    type: {
+      allowNull: false,
+      type: Sequelize.ENUM,
+      values: [
+        'FOOD',
+        'LEISURE',
+        'SERVICES',
+        'EDUCATION',
+        'OTHERS',
+        'ELECTRONICS',
+        'HEALTH',
+        'SHOPPING',
+        'DEBT',
+      ],
+      defaultValue: 'OTHERS',
+    },
     description: {
       allowNull: true,
       type: Sequelize.STRING,
