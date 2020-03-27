@@ -100,7 +100,7 @@ const TransactionTable: React.FC = () => {
           { transactions.map(transaction => (
             <tr key={transaction.id}>
               <td>{transaction.description}</td>
-              <td>{transaction.date}</td>
+              <td>{toLocaleDateString(new Date(transaction.date))}</td>
               <td>{transaction.type}</td>
               <td>{formatCurrency(transaction.value || 0)}</td>
               <td>
