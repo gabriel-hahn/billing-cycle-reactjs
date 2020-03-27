@@ -41,7 +41,7 @@ const TransactionTable: React.FC = () => {
 
   useEffect(() => {
     handleUpdateRange();
-  }, []);
+  }, [dateRange]);
 
   useEffect(() => {
     setTransactions(transactionsList);
@@ -77,6 +77,7 @@ const TransactionTable: React.FC = () => {
           <DateButton onClick={handleDatePickerToggle}>Choose</DateButton>
           <DateRangePicker open={open} onChange={handleDatePickerChange} />
         </DateRangeContainer>
+        <p>{dateRange.startDate} - {dateRange.endDate}</p>
       </ContainerDate>
       <ContainerTable>
         <tbody>
