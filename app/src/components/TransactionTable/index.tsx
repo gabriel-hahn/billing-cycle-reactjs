@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { DateRangePicker, DateRange } from '@matharumanpreet00/react-daterange-picker';
 
 import { Creators as TransactionsActions } from '../../store/ducks/transactions';
-import { TransactionInterface, TransactionsRangeDateInterface, TransactionType } from '../../interfaces/transaction';
+import { TransactionInterface, TransactionsRangeDateInterface } from '../../interfaces/transaction';
 import { StoreInterface } from '../../interfaces/store';
 
 import {
@@ -22,6 +22,7 @@ import {
   DateButton,
   ContainerTable,
   DateRangeContainer,
+  ActionsButton,
 } from './styles';
 
 const TransactionTable: React.FC = () => {
@@ -41,7 +42,7 @@ const TransactionTable: React.FC = () => {
 
   useEffect(() => {
     handleUpdateRange();
-  }, []);
+  }, [dateRange]);
 
   useEffect(() => {
     setTransactions(transactionsList);
@@ -65,6 +66,14 @@ const TransactionTable: React.FC = () => {
     setOpen(!open);
   };
 
+  const handleEditItem = (transaction: TransactionInterface) => {
+    dispatch(TransactionsActions.transactionModalToggle(transaction));
+  };
+
+  const handleDeleteItem = (transaction: TransactionInterface) => {
+    dispatch(TransactionsActions.deleteTransactionRequest(transaction));
+  };
+
   return (
     <Container>
       <ContainerDate>
@@ -77,6 +86,7 @@ const TransactionTable: React.FC = () => {
           <DateButton onClick={handleDatePickerToggle}>Choose</DateButton>
           <DateRangePicker open={open} onChange={handleDatePickerChange} />
         </DateRangeContainer>
+        <p>{dateRange.startDate} - {dateRange.endDate}</p>
       </ContainerDate>
       <ContainerTable>
         <tbody>
@@ -90,12 +100,12 @@ const TransactionTable: React.FC = () => {
           { transactions.map(transaction => (
             <tr key={transaction.id}>
               <td>{transaction.description}</td>
-              <td>{transaction.date}</td>
+              <td>{toLocaleDateString(new Date(transaction.date))}</td>
               <td>{transaction.type}</td>
-              <td>{formatCurrency(transaction.value)}</td>
+              <td>{formatCurrency(transaction.value || 0)}</td>
               <td>
-                <button type="button">Edit</button>
-                <button type="button">Delete</button>
+                <ActionsButton onClick={() => handleEditItem(transaction)}>Edit</ActionsButton>
+                <ActionsButton onClick={() => handleDeleteItem(transaction)}>Delete</ActionsButton>
               </td>
             </tr>
           )) }

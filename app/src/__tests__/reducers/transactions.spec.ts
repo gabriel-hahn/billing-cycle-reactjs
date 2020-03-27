@@ -1,4 +1,4 @@
-import transactionsReducer, { Creators as TransactionsActions, Types as TransactionsTypes } from '../../store/ducks/transactions';
+import transactionsReducer, { Creators as TransactionsActions, Types as TransactionsTypes, LOADING_DEFAULT } from '../../store/ducks/transactions';
 import {
   TransactionsActionsInterface,
   TransactionStateInterface,
@@ -9,7 +9,7 @@ import { RANGE, TRANSACTIONS_CREDIT } from '../utils/transactions';
 const INITIAL_STATE: TransactionStateInterface = {
   data: [],
   error: null,
-  loading: false,
+  loading: LOADING_DEFAULT,
 };
 
 let action: TransactionsActionsInterface;
@@ -33,7 +33,7 @@ describe('Transactions Reducer', () => {
     const state = transactionsReducer(INITIAL_STATE, action);
 
     expect(state.error).toBeNull();
-    expect(state.loading).toBeTruthy();
+    expect(state.loading).toEqual({ ...LOADING_DEFAULT, allLoading: true });
     expect(state.data).toEqual([]);
   });
 
@@ -51,7 +51,7 @@ describe('Transactions Reducer', () => {
     const state = transactionsReducer(INITIAL_STATE, action);
 
     expect(state.error).toBeNull();
-    expect(state.loading).toBeFalsy();
+    expect(state.loading).toEqual({ ...LOADING_DEFAULT, allLoading: false });
     expect(state.data).toEqual(TRANSACTIONS_CREDIT);
   });
 
@@ -72,7 +72,7 @@ describe('Transactions Reducer', () => {
     const state = transactionsReducer(INITIAL_STATE, action);
 
     expect(state.error).toEqual('Error test message transactions reducer');
-    expect(state.loading).toBeFalsy();
+    expect(state.loading).toEqual(LOADING_DEFAULT);
     expect(state.data).toEqual([]);
   });
 
@@ -93,7 +93,7 @@ describe('Transactions Reducer', () => {
     const state = transactionsReducer(INITIAL_STATE, action);
 
     expect(state.error).toBeNull();
-    expect(state.loading).toBeTruthy();
+    expect(state.loading).toEqual({ ...LOADING_DEFAULT, addLoading: true });
     expect(state.data).toEqual([]);
   });
 
@@ -113,7 +113,7 @@ describe('Transactions Reducer', () => {
     const state = transactionsReducer(INITIAL_STATE, action);
 
     expect(state.error).toBeNull();
-    expect(state.loading).toBeFalsy();
+    expect(state.loading).toEqual({ ...LOADING_DEFAULT, allLoading: false });
     expect(state.data).toEqual([transaction]);
   });
 
@@ -122,5 +122,101 @@ describe('Transactions Reducer', () => {
 
     expect(creator.payload.transaction).toEqual(TRANSACTIONS_CREDIT[0]);
     expect(creator.type).toEqual(TransactionsTypes.ADD_TRANSACTION_SUCCESS);
+  });
+
+  it('Should be able to set a delete transaction request', () => {
+    const [transaction] = TRANSACTIONS_CREDIT;
+
+    action.type = TransactionsTypes.DELETE_TRANSACTION_REQUEST;
+    action.payload.transaction = transaction;
+
+    const state = transactionsReducer(INITIAL_STATE, action);
+
+    expect(state.error).toBeNull();
+    expect(state.loading).toEqual({ ...LOADING_DEFAULT, deleteLoading: true });
+  });
+
+  it('Should return correct action to request transaction delete creator', () => {
+    const creator = TransactionsActions.deleteTransactionRequest(TRANSACTIONS_CREDIT[0]);
+
+    expect(creator.payload.transaction).toEqual(TRANSACTIONS_CREDIT[0]);
+    expect(creator.type).toEqual(TransactionsTypes.DELETE_TRANSACTION_REQUEST);
+  });
+
+  it('Should be able to set a delete transaction success', () => {
+    const [transaction] = TRANSACTIONS_CREDIT;
+
+    action.type = TransactionsTypes.DELETE_TRANSACTION_SUCCESS;
+    action.payload.transaction = transaction;
+
+    const state = transactionsReducer(INITIAL_STATE, action);
+
+    expect(state.error).toBeNull();
+    expect(state.loading).toEqual({ ...LOADING_DEFAULT, deleteLoading: false });
+  });
+
+  it('Should return correct action to success transaction delete creator', () => {
+    const creator = TransactionsActions.deleteTransactionSuccess(TRANSACTIONS_CREDIT[0]);
+
+    expect(creator.payload.transaction).toEqual(TRANSACTIONS_CREDIT[0]);
+    expect(creator.type).toEqual(TransactionsTypes.DELETE_TRANSACTION_SUCCESS);
+  });
+
+  it('Should be able to set a update transaction request', () => {
+    const [transaction] = TRANSACTIONS_CREDIT;
+
+    action.type = TransactionsTypes.UPDATE_TRANSACTION_REQUEST;
+    action.payload.transaction = transaction;
+
+    const state = transactionsReducer(INITIAL_STATE, action);
+
+    expect(state.error).toBeNull();
+    expect(state.loading).toEqual({ ...LOADING_DEFAULT, editLoading: true });
+  });
+
+  it('Should return correct action to request transaction update creator', () => {
+    const creator = TransactionsActions.updateTransactionRequest(TRANSACTIONS_CREDIT[0]);
+
+    expect(creator.payload.transaction).toEqual(TRANSACTIONS_CREDIT[0]);
+    expect(creator.type).toEqual(TransactionsTypes.UPDATE_TRANSACTION_REQUEST);
+  });
+
+  it('Should be able to set a update transaction success', () => {
+    const [transaction] = TRANSACTIONS_CREDIT;
+
+    action.type = TransactionsTypes.UPDATE_TRANSACTION_SUCCESS;
+    action.payload.transaction = transaction;
+
+    const state = transactionsReducer(INITIAL_STATE, action);
+
+    expect(state.error).toBeNull();
+    expect(state.loading).toEqual({ ...LOADING_DEFAULT, editLoading: false });
+  });
+
+  it('Should return correct action to success transaction update creator', () => {
+    const creator = TransactionsActions.updateTransactionSuccess(TRANSACTIONS_CREDIT[0]);
+
+    expect(creator.payload.transaction).toEqual(TRANSACTIONS_CREDIT[0]);
+    expect(creator.type).toEqual(TransactionsTypes.UPDATE_TRANSACTION_SUCCESS);
+  });
+
+  it('Should be able to set a toggle transaction', () => {
+    const [transaction] = TRANSACTIONS_CREDIT;
+
+    action.type = TransactionsTypes.TRANSACTION_MODAL_TOGGLE;
+    action.payload.transaction = transaction;
+
+    const state = transactionsReducer(INITIAL_STATE, action);
+
+    expect(state.error).toBeNull();
+    expect(state.loading).toEqual({ ...LOADING_DEFAULT });
+    expect(state.transactionSelected).toEqual(transaction);
+  });
+
+  it('Should return correct action to toggle transaction modal creator', () => {
+    const creator = TransactionsActions.transactionModalToggle(TRANSACTIONS_CREDIT[0]);
+
+    expect(creator.payload.transaction).toEqual(TRANSACTIONS_CREDIT[0]);
+    expect(creator.type).toEqual(TransactionsTypes.TRANSACTION_MODAL_TOGGLE);
   });
 });

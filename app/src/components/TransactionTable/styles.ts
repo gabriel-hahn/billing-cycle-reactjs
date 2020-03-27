@@ -66,3 +66,11 @@ export const ContainerTable = styled.table`
     }
   }
 `;
+
+export const ActionsButton = styled.button`
+  height: 1.5em;
+  width: 5em;
+  font-size: 14px;
+  background-color: #FFF;
+  color: #333;
+`;

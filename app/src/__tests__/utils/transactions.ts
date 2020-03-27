@@ -4,7 +4,7 @@ export const TRANSACTIONS: TransactionInterface[] = [
   {
     id: 1,
     user_id: 1,
-    date: new Date(),
+    date: new Date().toString(),
     quantity: 1,
     repeat: false,
     value: 1500,
@@ -14,7 +14,7 @@ export const TRANSACTIONS: TransactionInterface[] = [
   {
     id: 2,
     user_id: 2,
-    date: new Date(),
+    date: new Date().toString(),
     quantity: 1,
     repeat: false,
     value: 1500,
