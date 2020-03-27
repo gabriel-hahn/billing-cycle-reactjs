@@ -3,12 +3,16 @@ const MONTH = 30;
 
 const offset = new Date().getTimezoneOffset();
 
-export const currentDateInputFormat = () => {
-  let date = new Date();
+export const currentDateInputFormat = (date?: Date) => {
+  let dateFormat = date;
 
-  date = new Date(date.getTime() + (offset * 60 * 1000));
+  if (!dateFormat) {
+    dateFormat = new Date();
+  }
 
-  return date.toISOString().split('T')[0];
+  dateFormat = new Date(dateFormat.getTime() + (offset * 60 * 1000));
+
+  return dateFormat.toISOString().split('T')[0];
 };
 
 export const currentDateFormat = (): string => new Date().toLocaleDateString(LANGUAGE);

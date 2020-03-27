@@ -13,7 +13,10 @@ export const Types = {
   ADD_TRANSACTION_SUCCESS: '@transaction/ADD_TRANSACTION_SUCCESS',
   DELETE_TRANSACTION_REQUEST: '@transaction/DELETE_TRANSACTION_REQUEST',
   DELETE_TRANSACTION_SUCCESS: '@transaction/DELETE_TRANSACTION_SUCCESS',
+  UPDATE_TRANSACTION_REQUEST: '@transaction/UPDATE_TRANSACTION_REQUEST',
+  UPDATE_TRANSACTION_SUCCESS: '@transaction/UPDATE_TRANSACTION_SUCCESS',
   TRANSACTIONS_ERROR: '@transaction/TRANSACTIONS_ERROR',
+  TRANSACTION_MODAL_TOGGLE: '@transaction/TRANSACTION_MODAL_TOGGLE',
 };
 
 export const LOADING_DEFAULT: TransactionLoading = {
@@ -26,13 +29,19 @@ export const LOADING_DEFAULT: TransactionLoading = {
 const INITIAL_STATE: TransactionStateInterface = {
   data: [],
   error: null,
+  transactionSelected: null,
   loading: LOADING_DEFAULT,
+  modalOpen: false,
 };
 
 export default function Transactions(state = INITIAL_STATE, action: TransactionsActionsInterface) {
+  const { payload } = action;
+
   switch (action.type) {
     case Types.GET_TRANSACTIONS_REQUEST:
       return { ...state, loading: { ...state.loading, allLoading: true }, error: null };
+    case Types.UPDATE_TRANSACTION_REQUEST:
+      return { ...state, loading: { ...state.loading, editLoading: true }, error: null };
     case Types.ADD_TRANSACTION_REQUEST:
       return { ...state, loading: { ...state.loading, addLoading: true }, error: null };
     case Types.DELETE_TRANSACTION_REQUEST:
@@ -42,25 +51,35 @@ export default function Transactions(state = INITIAL_STATE, action: Transactions
         ...state,
         error: null,
         loading: { ...state.loading, allLoading: false },
-        data: action.payload.transactions,
+        data: payload.transactions,
       };
     case Types.ADD_TRANSACTION_SUCCESS:
       return {
         ...state,
         error: null,
         loading: { ...state.loading, addLoading: false },
-        data: [...state.data, action.payload.transaction],
+        data: [...state.data, payload.transaction],
+      };
+    case Types.UPDATE_TRANSACTION_SUCCESS:
+      return {
+        ...state,
+        error: null,
+        loading: { ...state.loading, editLoading: false },
+        data: state.data.map(item => (
+          payload.transaction && item.id === payload.transaction.id
+          ? payload.transaction
+          : item)),
       };
     case Types.DELETE_TRANSACTION_SUCCESS:
-      const { transaction } = action.payload;
-
-      return transaction ? {
+      return {
         ...state,
         loading: { ...state.loading, deleteLoading: false },
-        data: state.data.filter(item => item.id !== transaction.id),
-      } : state;
+        data: state.data.filter(item => payload.transaction && item.id !== payload.transaction.id),
+      };
     case Types.TRANSACTIONS_ERROR:
-      return { ...state, loading: LOADING_DEFAULT, error: action.payload.error };
+      return { ...state, loading: LOADING_DEFAULT, error: payload.error };
+    case Types.TRANSACTION_MODAL_TOGGLE:
+      return { ...state, modalOpen: !state.modalOpen, transactionSelected: payload.transaction };
     default:
       return state;
   }
@@ -74,6 +93,10 @@ export const Creators = {
   }),
   deleteTransactionRequest: (transaction: TransactionInterface): TransactionsActionsInterface => ({
     type: Types.DELETE_TRANSACTION_REQUEST,
+    payload: { transaction, transactions: [] },
+  }),
+  updateTransactionRequest: (transaction: TransactionInterface): TransactionsActionsInterface => ({
+    type: Types.UPDATE_TRANSACTION_REQUEST,
     payload: { transaction, transactions: [] },
   }),
   addTransactionRequest: (transaction: TransactionInterface): TransactionsActionsInterface => ({
@@ -92,8 +115,16 @@ export const Creators = {
     type: Types.DELETE_TRANSACTION_SUCCESS,
     payload: { transaction },
   }),
+  updateTransactionSuccess: (transaction: TransactionInterface) => ({
+    type: Types.UPDATE_TRANSACTION_SUCCESS,
+    payload: { transaction },
+  }),
   transactionsError: (error: string) => ({
     type: Types.TRANSACTIONS_ERROR,
     payload: { error },
+  }),
+  transactionModalToggle: (transaction?: TransactionInterface) => ({
+    type: Types.TRANSACTION_MODAL_TOGGLE,
+    payload: { transaction },
   }),
 };

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { DateRangePicker, DateRange } from '@matharumanpreet00/react-daterange-picker';
 
 import { Creators as TransactionsActions } from '../../store/ducks/transactions';
-import { TransactionInterface, TransactionsRangeDateInterface, TransactionType } from '../../interfaces/transaction';
+import { TransactionInterface, TransactionsRangeDateInterface } from '../../interfaces/transaction';
 import { StoreInterface } from '../../interfaces/store';
 
 import {
@@ -67,7 +67,7 @@ const TransactionTable: React.FC = () => {
   };
 
   const handleEditItem = (transaction: TransactionInterface) => {
-    // Edit transaction
+    dispatch(TransactionsActions.transactionModalToggle(transaction));
   };
 
   const handleDeleteItem = (transaction: TransactionInterface) => {
@@ -102,7 +102,7 @@ const TransactionTable: React.FC = () => {
               <td>{transaction.description}</td>
               <td>{transaction.date}</td>
               <td>{transaction.type}</td>
-              <td>{formatCurrency(transaction.value)}</td>
+              <td>{formatCurrency(transaction.value || 0)}</td>
               <td>
                 <ActionsButton onClick={() => handleEditItem(transaction)}>Edit</ActionsButton>
                 <ActionsButton onClick={() => handleDeleteItem(transaction)}>Delete</ActionsButton>

@@ -100,3 +100,26 @@ export function* deleteTransaction({ payload: { transaction } }: TransactionsAct
     }));
   }
 }
+
+export function* updateTransaction({ payload: { transaction } }: TransactionsActionsInterface) {
+  try {
+    if (transaction) {
+      const path = transaction.type === TransactionType.CREDIT ? CREDIT_PATH : DEBIT_PATH;
+      const { data } = yield call(api.put, path, transaction);
+
+      data.type = transaction.type;
+
+      yield put(TransactionsActions.updateTransactionSuccess(data));
+    }
+  } catch (err) {
+    yield put(TransactionsActions.transactionsError('Update transaction error'));
+    yield put(toastrActions.add({
+      type: 'error',
+      title: 'Error on update transaction',
+      message: err.response.data.message,
+      options: {
+        timeOut: 4000,
+      },
+    }));
+  }
+}

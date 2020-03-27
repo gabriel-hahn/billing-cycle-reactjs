@@ -34,7 +34,6 @@ module.exports = {
     ],
     'import/prefer-default-export': 'off',
     'import/no-cycle': 'off',
-    'no-case-declarations': 'off',
     'react/prop-types': 'off',
     'react/jsx-one-expression-per-line': 'off',
     '@typescript-eslint/camelcase': 'off',

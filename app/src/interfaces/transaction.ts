@@ -21,14 +21,16 @@ export enum TransactionType {
 
 export interface TransactionInterface {
   id?: number;
-  user_id?: number;
-  value: number;
+  user_id?: number | null;
+  value?: number;
   quantity: number;
-  date: Date;
-  date_repeat?: Date;
+  date: string;
+  date_repeat?: string;
   type: TransactionType;
   repeat: boolean;
   description?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface TransactionLoading {
@@ -39,7 +41,9 @@ export interface TransactionLoading {
 }
 
 export interface TransactionStateInterface {
+  transactionSelected?: TransactionInterface | null,
   data: TransactionInterface[];
   loading: TransactionLoading;
+  modalOpen: boolean;
   error: string | null;
 }

@@ -51,6 +51,12 @@ export const InputQuantity = styled(Input).attrs({
   type: 'number',
 })``;
 
+export const InputDateRepeat = styled(Input).attrs({
+  placeholder: 'Date',
+  name: 'date_repeat',
+  type: 'date',
+})``;
+
 export const InputDate = styled(Input).attrs({
   placeholder: 'Date',
   name: 'date',
