@@ -1,17 +1,29 @@
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
+import { Provider } from 'react-redux';
+import { mount, ReactWrapper } from 'enzyme';
+import createStore from 'redux-mock-store';
+import { BrowserRouter } from 'react-router-dom';
 
 import { props } from '../utils/props';
-import { wrapperUpdateFunction } from '../utils/geral';
+import { INITIAL_STATE } from '../utils/state';
 
 import Dashboard from '../../pages/Dashboard';
 import NavBar from '../../components/Navbar';
 import TransactionModal from '../../components/TransactionModal';
 
-let wrapper: ShallowWrapper;
+const mockStore = createStore();
+const store = mockStore(INITIAL_STATE);
+
+let wrapper: ReactWrapper;
 
 beforeEach(() => {
-  wrapper = shallow(<Dashboard {...props} />).dive();
+  wrapper = mount(
+    <Provider store={store}>
+      <BrowserRouter>
+        <Dashboard {...props} />
+      </BrowserRouter>
+    </Provider>,
+  );
 });
 
 describe('Login Page', () => {
@@ -26,17 +38,6 @@ describe('Login Page', () => {
 
     it('Should not render TransactionModal as initial state', () => {
       expect(wrapper.find(TransactionModal).length).toEqual(0);
-    });
-  });
-
-  describe('Event tests', () => {
-    it('Should show TransactionModal when click on add transaction element', async () => {
-      wrapper = shallow(<Dashboard {...props} />);
-
-      const addTransactionDiv = wrapper.dive().find('AddTransactionContainer');
-      await wrapperUpdateFunction(addTransactionDiv.props().onClick, wrapper);
-
-      expect(wrapper.dive().find(TransactionModal).length).toEqual(1);
     });
   });
 });

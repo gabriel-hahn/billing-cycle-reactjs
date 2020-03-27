@@ -64,6 +64,7 @@ export default function Transactions(state = INITIAL_STATE, action: Transactions
       return {
         ...state,
         error: null,
+        transactionSelected: null,
         loading: { ...state.loading, editLoading: false },
         data: state.data.map(item => (
           payload.transaction && item.id === payload.transaction.id

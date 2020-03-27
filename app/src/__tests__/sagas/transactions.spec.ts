@@ -2,9 +2,14 @@ import MockAdapter from 'axios-mock-adapter';
 
 import api from '../../services/api';
 import { runSagaTest, runSagaTestState } from '../utils/sagas';
-import { loadAllByDate, addTransaction } from '../../store/sagas/transactions';
 import { Types as TransactionsTypes } from '../../store/ducks/transactions';
 import { TransactionsActionsInterface, TransactionType } from '../../interfaces/transaction';
+import {
+  loadAllByDate,
+  addTransaction,
+  deleteTransaction,
+  updateTransaction,
+} from '../../store/sagas/transactions';
 
 import { INITIAL_STATE_FILLED } from '../utils/state';
 import {
@@ -118,6 +123,78 @@ describe('Transactions Saga', () => {
       expect(dispatched[1].type).toEqual('@ReduxToastr/toastr/ADD');
       expect(dispatched[1].payload.type).toEqual('error');
       expect(dispatched[1].payload.title).toEqual('Error on add new transaction');
+      expect(dispatched[1].payload.message).toEqual('Request error');
+    });
+  });
+
+  describe('Delete a transaction', () => {
+    it('Should be able to delete a transaction', async () => {
+      const param: TransactionsActionsInterface = {
+        type: null,
+        payload: { transaction: TRANSACTIONS_CREDIT[0], transactions: [] },
+      };
+
+      apiMock.onDelete('/credit/1').reply(200, TRANSACTIONS_CREDIT[0]);
+
+      await runSagaTestState(deleteTransaction, param, dispatched, INITIAL_STATE_FILLED);
+
+      expect(dispatched[0].type).toEqual(TransactionsTypes.DELETE_TRANSACTION_SUCCESS);
+    });
+
+    it('Should return a error', async () => {
+      const apiResponse = {
+        message: 'Request error',
+      };
+      const param: TransactionsActionsInterface = {
+        type: null,
+        payload: { transaction: TRANSACTIONS_CREDIT[0], transactions: [] },
+      };
+
+      apiMock.onDelete('/credit/1').reply(401, apiResponse);
+      await runSagaTestState(deleteTransaction, param, dispatched, INITIAL_STATE_FILLED);
+
+      expect(dispatched[0].type).toEqual(TransactionsTypes.TRANSACTIONS_ERROR);
+      expect(dispatched[0].payload.error).toEqual('Delete transaction error');
+
+      expect(dispatched[1].type).toEqual('@ReduxToastr/toastr/ADD');
+      expect(dispatched[1].payload.type).toEqual('error');
+      expect(dispatched[1].payload.title).toEqual('Error on delete transaction');
+      expect(dispatched[1].payload.message).toEqual('Request error');
+    });
+  });
+
+  describe('Update a transaction', () => {
+    it('Should be able to update a transaction', async () => {
+      const param: TransactionsActionsInterface = {
+        type: null,
+        payload: { transaction: TRANSACTIONS_CREDIT[0], transactions: [] },
+      };
+
+      apiMock.onPut('/credit').reply(200, TRANSACTIONS_CREDIT[0]);
+
+      await runSagaTestState(updateTransaction, param, dispatched, INITIAL_STATE_FILLED);
+
+      expect(dispatched[0].type).toEqual(TransactionsTypes.UPDATE_TRANSACTION_SUCCESS);
+    });
+
+    it('Should return a error', async () => {
+      const apiResponse = {
+        message: 'Request error',
+      };
+      const param: TransactionsActionsInterface = {
+        type: null,
+        payload: { transaction: TRANSACTIONS_CREDIT[0], transactions: [] },
+      };
+
+      apiMock.onPut('/credit').reply(401, apiResponse);
+      await runSagaTestState(updateTransaction, param, dispatched, INITIAL_STATE_FILLED);
+
+      expect(dispatched[0].type).toEqual(TransactionsTypes.TRANSACTIONS_ERROR);
+      expect(dispatched[0].payload.error).toEqual('Update transaction error');
+
+      expect(dispatched[1].type).toEqual('@ReduxToastr/toastr/ADD');
+      expect(dispatched[1].payload.type).toEqual('error');
+      expect(dispatched[1].payload.title).toEqual('Error on update transaction');
       expect(dispatched[1].payload.message).toEqual('Request error');
     });
   });
