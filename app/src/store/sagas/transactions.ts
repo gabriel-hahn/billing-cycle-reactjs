@@ -79,3 +79,24 @@ export function* addTransaction({ payload: { transaction } }: TransactionsAction
     }));
   }
 }
+
+export function* deleteTransaction({ payload: { transaction } }: TransactionsActionsInterface) {
+  try {
+    if (transaction) {
+      const path = transaction.type === TransactionType.CREDIT ? CREDIT_PATH : DEBIT_PATH;
+      const { data } = yield call(api.delete, `${path}/${transaction.id}`);
+
+      yield put(TransactionsActions.deleteTransactionSuccess(data));
+    }
+  } catch (err) {
+    yield put(TransactionsActions.transactionsError('Delete transaction error'));
+    yield put(toastrActions.add({
+      type: 'error',
+      title: 'Error on delete transaction',
+      message: err.response.data.message,
+      options: {
+        timeOut: 4000,
+      },
+    }));
+  }
+}

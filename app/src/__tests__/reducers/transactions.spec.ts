@@ -1,4 +1,4 @@
-import transactionsReducer, { Creators as TransactionsActions, Types as TransactionsTypes } from '../../store/ducks/transactions';
+import transactionsReducer, { Creators as TransactionsActions, Types as TransactionsTypes, LOADING_DEFAULT } from '../../store/ducks/transactions';
 import {
   TransactionsActionsInterface,
   TransactionStateInterface,
@@ -9,7 +9,7 @@ import { RANGE, TRANSACTIONS_CREDIT } from '../utils/transactions';
 const INITIAL_STATE: TransactionStateInterface = {
   data: [],
   error: null,
-  loading: false,
+  loading: LOADING_DEFAULT,
 };
 
 let action: TransactionsActionsInterface;
@@ -33,7 +33,7 @@ describe('Transactions Reducer', () => {
     const state = transactionsReducer(INITIAL_STATE, action);
 
     expect(state.error).toBeNull();
-    expect(state.loading).toBeTruthy();
+    expect(state.loading).toEqual({ ...LOADING_DEFAULT, allLoading: true });
     expect(state.data).toEqual([]);
   });
 
@@ -51,7 +51,7 @@ describe('Transactions Reducer', () => {
     const state = transactionsReducer(INITIAL_STATE, action);
 
     expect(state.error).toBeNull();
-    expect(state.loading).toBeFalsy();
+    expect(state.loading).toEqual({ ...LOADING_DEFAULT, allLoading: false });
     expect(state.data).toEqual(TRANSACTIONS_CREDIT);
   });
 
@@ -72,7 +72,7 @@ describe('Transactions Reducer', () => {
     const state = transactionsReducer(INITIAL_STATE, action);
 
     expect(state.error).toEqual('Error test message transactions reducer');
-    expect(state.loading).toBeFalsy();
+    expect(state.loading).toEqual(LOADING_DEFAULT);
     expect(state.data).toEqual([]);
   });
 
@@ -93,7 +93,7 @@ describe('Transactions Reducer', () => {
     const state = transactionsReducer(INITIAL_STATE, action);
 
     expect(state.error).toBeNull();
-    expect(state.loading).toBeTruthy();
+    expect(state.loading).toEqual({ ...LOADING_DEFAULT, addLoading: true });
     expect(state.data).toEqual([]);
   });
 
@@ -113,7 +113,7 @@ describe('Transactions Reducer', () => {
     const state = transactionsReducer(INITIAL_STATE, action);
 
     expect(state.error).toBeNull();
-    expect(state.loading).toBeFalsy();
+    expect(state.loading).toEqual({ ...LOADING_DEFAULT, allLoading: false });
     expect(state.data).toEqual([transaction]);
   });
 

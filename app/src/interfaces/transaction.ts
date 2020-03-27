@@ -31,8 +31,15 @@ export interface TransactionInterface {
   description?: string;
 }
 
+export interface TransactionLoading {
+  allLoading: false,
+  addLoading: false,
+  editLoading: false,
+  deleteLoading: false,
+}
+
 export interface TransactionStateInterface {
   data: TransactionInterface[];
+  loading: TransactionLoading;
   error: string | null;
-  loading: boolean;
 }

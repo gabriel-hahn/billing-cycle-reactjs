@@ -4,7 +4,7 @@ import { Types as UsersTypes } from '../ducks/users';
 import { Types as TransactionsTypes } from '../ducks/transactions';
 
 import { login, register, logout } from './users';
-import { loadAllByDate, addTransaction } from './transactions';
+import { loadAllByDate, addTransaction, deleteTransaction } from './transactions';
 
 export default function* rootSaga() {
   yield all([
@@ -14,5 +14,7 @@ export default function* rootSaga() {
 
     takeLatest(TransactionsTypes.GET_TRANSACTIONS_REQUEST, loadAllByDate),
     takeLatest(TransactionsTypes.ADD_TRANSACTION_REQUEST, addTransaction),
+
+    takeLatest(TransactionsTypes.DELETE_TRANSACTION_REQUEST, deleteTransaction),
   ]);
 }

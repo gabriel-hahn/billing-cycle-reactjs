@@ -22,6 +22,7 @@ import {
   DateButton,
   ContainerTable,
   DateRangeContainer,
+  ActionsButton,
 } from './styles';
 
 const TransactionTable: React.FC = () => {
@@ -65,6 +66,14 @@ const TransactionTable: React.FC = () => {
     setOpen(!open);
   };
 
+  const handleEditItem = (transaction: TransactionInterface) => {
+    // Edit transaction
+  };
+
+  const handleDeleteItem = (transaction: TransactionInterface) => {
+    dispatch(TransactionsActions.deleteTransactionRequest(transaction));
+  };
+
   return (
     <Container>
       <ContainerDate>
@@ -95,8 +104,8 @@ const TransactionTable: React.FC = () => {
               <td>{transaction.type}</td>
               <td>{formatCurrency(transaction.value)}</td>
               <td>
-                <button type="button">Edit</button>
-                <button type="button">Delete</button>
+                <ActionsButton onClick={() => handleEditItem(transaction)}>Edit</ActionsButton>
+                <ActionsButton onClick={() => handleDeleteItem(transaction)}>Delete</ActionsButton>
               </td>
             </tr>
           )) }
