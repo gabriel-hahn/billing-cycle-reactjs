@@ -1,5 +1,13 @@
 import React from 'react';
 
-const Report = () => <h1>Report Page</h1>;
+import LineChart from '../../../components/LineChart';
+
+import { Container } from './styles';
+
+const Report = () => (
+  <Container>
+    <LineChart />
+  </Container>
+);
 
 export default Report;
