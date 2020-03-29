@@ -13,8 +13,10 @@ interface SumInterface {
 
 const BarChart: React.FC = () => {
   const transactions = useSelector((state: StoreInterface) => state.transactions.data);
-  const debits = transactions.filter(transaction => transaction.type === TransactionType.DEBIT);
-  const credits = transactions.filter(transaction => transaction.type === TransactionType.CREDIT);
+  const debits = transactions.filter(transaction => (
+    transaction.category === TransactionType.DEBIT));
+  const credits = transactions.filter(transaction => (
+    transaction.category === TransactionType.CREDIT));
 
   const charOptions = barChartConfig();
 

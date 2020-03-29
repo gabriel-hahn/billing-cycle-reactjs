@@ -1,19 +1,19 @@
 export enum CreditType {
-  'SERVICES',
-  'OTHERS',
-  'INCOME',
-  'SALES',
-  'SALARY'
+  Services = 'SERVICES',
+  Others = 'OTHERS',
+  Income = 'INCOME',
+  Sales = 'SALES',
+  Salary = 'SALARY'
 }
 
 export enum DebitType {
-  'FOOD',
-  'LEISURE',
-  'SERVICES',
-  'EDUCATION',
-  'OTHERS',
-  'ELECTRONICS',
-  'HEALTH',
-  'SHOPPING',
-  'DEBT',
+  Food = 'FOOD',
+  Leisure = 'LEISURE',
+  Services = 'SERVICES',
+  Educations = 'EDUCATIONS',
+  Others = 'OTHERS',
+  Electronics = 'ELECTRONICS',
+  Health = 'HEALTH',
+  Shopping = 'SHOPPING',
+  Debt = 'DEBT',
 }

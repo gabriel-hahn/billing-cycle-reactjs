@@ -9,6 +9,7 @@ import { RANGE, TRANSACTIONS_CREDIT } from '../utils/transactions';
 const INITIAL_STATE: TransactionStateInterface = {
   data: [],
   error: null,
+  modalOpen: false,
   loading: LOADING_DEFAULT,
 };
 

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Creators as TransactionsActions } from '../../store/ducks/transactions';
 import { currentDateInputFormat } from '../../utils/date';
+import { CreditType, DebitType } from '../../enums/transactions';
 
 import {
   Container,
@@ -16,6 +17,7 @@ import {
   InputDescription,
   InputQuantity,
   InputCheckbox,
+  SelectType,
   InputContainer,
   InputCheckboxText,
   ButtonsFormContainer,
@@ -36,9 +38,10 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
   const [transaction, setTransaction] = useState<TransactionInterface>({
     quantity: 1,
     repeat: false,
+    type: CreditType.Others,
+    category: TransactionType.CREDIT,
     date: currentDateInputFormat(),
     date_repeat: currentDateInputFormat(),
-    type: TransactionType.CREDIT,
   });
 
   const transactionSelected = useSelector((store: StoreInterface) => (
@@ -79,11 +82,19 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
   };
 
   const handleCreditClick = () => {
-    setTransaction({ ...transaction, type: TransactionType.CREDIT });
+    setTransaction({ ...transaction, category: TransactionType.CREDIT });
   };
 
   const handleDebitClick = () => {
-    setTransaction({ ...transaction, type: TransactionType.DEBIT });
+    setTransaction({ ...transaction, category: TransactionType.DEBIT });
+  };
+
+  const handleTypeChanged = (e: FormEvent<HTMLSelectElement>) => {
+    const { value } = e.currentTarget;
+    const type = transaction.category === TransactionType.CREDIT
+      ? (value as CreditType) : (value as DebitType);
+
+    setTransaction({ ...transaction, type });
   };
 
   return transaction && (
@@ -92,6 +103,12 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
         <FormContainer>
           <InputValue value={transaction.value} onChange={handleTransactionChanged} required />
           <InputDescription value={transaction.description} onChange={handleTransactionChanged} />
+          <SelectType value={transaction.type} onChange={handleTypeChanged}>
+            { Object.entries(transaction.category === TransactionType.CREDIT
+              ? CreditType : DebitType).map((type : [string, CreditType]) => (
+                <option key={type[1]} value={type[1]}>{type[0]}</option>
+            )) }
+          </SelectType>
           <InputContainer>
             <InputDate value={transaction.date} onChange={handleTransactionChanged} required />
             <InputQuantity

@@ -1,3 +1,5 @@
+import { CreditType, DebitType } from '../enums/transactions';
+
 export interface TransactionsRangeDateInterface {
   startDate: string;
   endDate: string;
@@ -26,7 +28,8 @@ export interface TransactionInterface {
   quantity: number;
   date: string;
   date_repeat?: string;
-  type: TransactionType;
+  type: CreditType | DebitType;
+  category?: TransactionType;
   repeat: boolean;
   description?: string;
   createdAt?: string;
