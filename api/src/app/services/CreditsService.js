@@ -67,6 +67,24 @@ class CreditsService {
 
     return creditUpdated;
   }
+
+  async allByCurrentMonth() {
+    const currentDay = new Date();
+    const firstDayCurrentMonth = new Date(currentDay.getFullYear(), currentDay.getMonth(), 1);
+
+    const where = {
+      date: {
+        [Sequelize.Op.and]: {
+          [Sequelize.Op.gte]: currentDay,
+          [Sequelize.Op.lte]: firstDayCurrentMonth,
+        },
+      },
+    };
+
+    const credit = await Credit.findAll({ where });
+
+    return credit;
+  }
 }
 
 module.exports = new CreditsService();

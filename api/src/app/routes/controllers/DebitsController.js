@@ -60,6 +60,18 @@ class DebitsController {
 
     return res.json(debit);
   }
+
+  async allByCurrentMonth(req, res) {
+    const debits = await DebitsService.allByCurrentMonth();
+
+    if (debits.error) {
+      const { status, message } = debits.error;
+
+      return res.status(status).json({ message });
+    }
+
+    return res.json(debits);
+  }
 }
 
 module.exports = new DebitsController();

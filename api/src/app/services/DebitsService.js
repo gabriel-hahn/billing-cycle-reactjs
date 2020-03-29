@@ -67,6 +67,24 @@ class DebitsService {
 
     return debitUpdated;
   }
+
+  async allByCurrentMonth() {
+    const currentDay = new Date();
+    const firstDayCurrentMonth = new Date(currentDay.getFullYear(), currentDay.getMonth(), 1);
+
+    const where = {
+      date: {
+        [Sequelize.Op.and]: {
+          [Sequelize.Op.gte]: currentDay,
+          [Sequelize.Op.lte]: firstDayCurrentMonth,
+        },
+      },
+    };
+
+    const debit = await Debit.findAll({ where });
+
+    return debit;
+  }
 }
 
 module.exports = new DebitsService();

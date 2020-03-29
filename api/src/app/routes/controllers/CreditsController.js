@@ -60,6 +60,18 @@ class CreditsController {
 
     return res.json(credit);
   }
+
+  async allByCurrentMonth(req, res) {
+    const credits = await CreditsService.allByCurrentMonth();
+
+    if (credits.error) {
+      const { status, message } = credits.error;
+
+      return res.status(status).json({ message });
+    }
+
+    return res.json(credits);
+  }
 }
 
 module.exports = new CreditsController();
