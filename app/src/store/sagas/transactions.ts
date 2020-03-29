@@ -13,17 +13,17 @@ const CREDIT_PATH = '/credit';
 const DEBITS_PATH = '/debits';
 const DEBIT_PATH = '/debit';
 
-export function* loadAllByDate({ payload: { range, type } }: TransactionsActionsInterface) {
+export function* loadAllByDate({ payload: { range, category } }: TransactionsActionsInterface) {
   try {
     const startDate = range ? range.startDate : dateOneMonthBeforeFormat();
     const endDate = range ? range.endDate : currentDateFormat();
     let transactions: TransactionInterface[] = [];
 
-    if (type) {
-      const path = type === TransactionType.CREDIT ? CREDITS_PATH : DEBITS_PATH;
+    if (category) {
+      const path = category === TransactionType.CREDIT ? CREDITS_PATH : DEBITS_PATH;
       const { data } = yield call(api.get, path, { params: { startDate, endDate } });
 
-      transactions = data.map((transaction: TransactionInterface) => ({ ...transaction, type }));
+      transactions = data.map((transaction: TransactionInterface) => ({ ...transaction, category }));
     } else {
       const { data: debitsData } = yield call(api.get, DEBITS_PATH, { params: { startDate, endDate } });
       const { data: creditsData } = yield call(api.get, CREDITS_PATH, { params: { startDate, endDate } });
@@ -63,7 +63,7 @@ export function* addTransaction({ payload: { transaction } }: TransactionsAction
 
       const { data } = yield call(api.post, path, addData);
 
-      data.type = transaction.type;
+      data.type = transaction.category;
 
       yield put(TransactionsActions.addTransactionSuccess(data));
     }
@@ -107,7 +107,7 @@ export function* updateTransaction({ payload: { transaction } }: TransactionsAct
       const path = transaction.category === TransactionType.CREDIT ? CREDIT_PATH : DEBIT_PATH;
       const { data } = yield call(api.put, path, transaction);
 
-      data.type = transaction.type;
+      data.type = transaction.category;
 
       yield put(TransactionsActions.updateTransactionSuccess(data));
     }

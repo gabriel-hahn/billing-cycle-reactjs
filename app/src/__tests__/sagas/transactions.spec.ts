@@ -57,7 +57,7 @@ describe('Transactions Saga', () => {
           transactions: TRANSACTIONS,
           error: null,
           range: RANGE,
-          type: TransactionType.DEBIT,
+          category: TransactionType.DEBIT,
         },
       };
 

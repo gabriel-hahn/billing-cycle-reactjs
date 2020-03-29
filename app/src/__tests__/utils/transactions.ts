@@ -1,4 +1,5 @@
 import { TransactionInterface, TransactionType, TransactionsRangeDateInterface } from '../../interfaces/transaction';
+import { CreditType, DebitType } from '../../enums/transactions';
 
 export const TRANSACTIONS: TransactionInterface[] = [
   {
@@ -8,7 +9,7 @@ export const TRANSACTIONS: TransactionInterface[] = [
     quantity: 1,
     repeat: false,
     value: 1500,
-    type: TransactionType.CREDIT,
+    type: CreditType.Income,
     description: 'Cartão de Crédito',
   },
   {
@@ -18,17 +19,17 @@ export const TRANSACTIONS: TransactionInterface[] = [
     quantity: 1,
     repeat: false,
     value: 1500,
-    type: TransactionType.DEBIT,
+    type: DebitType.Educations,
     description: 'Vendas',
   },
 ];
 
 export const TRANSACTIONS_CREDIT: TransactionInterface[] = TRANSACTIONS.map(
-  (credit: TransactionInterface) => ({ ...credit, type: TransactionType.CREDIT }),
+  (credit: TransactionInterface) => ({ ...credit, category: TransactionType.CREDIT }),
 );
 
 export const TRANSACTIONS_DEBIT: TransactionInterface[] = TRANSACTIONS.map(
-  (debit: TransactionInterface) => ({ ...debit, type: TransactionType.DEBIT }),
+  (debit: TransactionInterface) => ({ ...debit, category: TransactionType.DEBIT }),
 );
 
 export const RANGE: TransactionsRangeDateInterface = {

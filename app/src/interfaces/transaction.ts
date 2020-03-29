@@ -8,7 +8,7 @@ export interface TransactionsRangeDateInterface {
 export interface TransactionsActionsInterface {
   type: string,
   payload: {
-    type?: TransactionType,
+    category?: TransactionType,
     transactions: TransactionInterface[],
     transaction?: TransactionInterface,
     error?: string,

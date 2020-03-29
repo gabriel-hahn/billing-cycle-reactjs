@@ -37,17 +37,15 @@ export const Input = styled.input`
   outline: 0;
   border-bottom: 1px solid #4D7C8A;
   font-size: 14px;
-
-  &::-webkit-input-placeholder {
-    padding-left: 5px;
-  }
 `;
 
 export const InputValue = styled(Input).attrs({
   placeholder: 'Value',
   name: 'value',
   type: 'number',
-})``;
+})`
+  margin-left: 5px;
+`;
 
 export const InputQuantity = styled(Input).attrs({
   placeholder: 'Quantity',
@@ -81,7 +79,9 @@ export const InputDescription = styled(Input).attrs({
   placeholder: 'Description',
   name: 'description',
   type: 'text',
-})``;
+})`
+  margin-left: 5px;
+`;
 
 export const FormContainer = styled.div`
   height: 15em;

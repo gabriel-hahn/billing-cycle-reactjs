@@ -87,10 +87,10 @@ export default function Transactions(state = INITIAL_STATE, action: Transactions
 }
 
 export const Creators = {
-  getTransactionsRequest: (startDate: string, endDate: string, type?: TransactionType)
+  getTransactionsRequest: (startDate: string, endDate: string, category?: TransactionType)
     : TransactionsActionsInterface => ({
       type: Types.GET_TRANSACTIONS_REQUEST,
-      payload: { range: { startDate, endDate }, transactions: [], type },
+      payload: { range: { startDate, endDate }, transactions: [], category },
   }),
   deleteTransactionRequest: (transaction: TransactionInterface): TransactionsActionsInterface => ({
     type: Types.DELETE_TRANSACTION_REQUEST,
