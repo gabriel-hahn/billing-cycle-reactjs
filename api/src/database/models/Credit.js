@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     quantity: DataTypes.INTEGER,
     repeat: DataTypes.BOOLEAN,
     date_repeat: DataTypes.DATE,
+    type: DataTypes.STRING,
   }, {});
 
   Credit.associate = (models) => {
