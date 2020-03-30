@@ -83,7 +83,7 @@ export const pieChartConfig = (debitsData: ChartInterface[]) => (
       text: 'Debits',
     },
     subtitle: {
-      text: 'Current month',
+      text: 'Current month (%)',
     },
     tooltip: {
       pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
