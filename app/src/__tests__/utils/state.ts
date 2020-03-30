@@ -1,5 +1,6 @@
 import { StoreInterface } from '../../interfaces/store';
 import { TransactionType } from '../../interfaces/transaction';
+import { CreditType, DebitType } from '../../enums/transactions';
 
 export const INITIAL_STATE: StoreInterface = {
   users: {
@@ -9,8 +10,14 @@ export const INITIAL_STATE: StoreInterface = {
   },
   transactions: {
     data: [],
+    modalOpen: false,
     error: null,
-    loading: false,
+    loading: {
+      addLoading: false,
+      allLoading: false,
+      deleteLoading: false,
+      editLoading: false,
+    },
   },
 };
 
@@ -26,22 +33,30 @@ export const INITIAL_STATE_FILLED: StoreInterface = {
   transactions: {
     data: [
       {
-        date: new Date(),
+        date: new Date().toString(),
         quantity: 1,
         repeat: false,
-        type: TransactionType.DEBIT,
+        type: DebitType.Educations,
+        category: TransactionType.DEBIT,
         value: 100.00,
       },
       {
-        date: new Date(),
+        date: new Date().toString(),
         quantity: 5,
         repeat: true,
-        date_repeat: new Date(),
-        type: TransactionType.CREDIT,
+        date_repeat: new Date().toString(),
+        category: TransactionType.CREDIT,
+        type: CreditType.Income,
         value: 150.00,
       },
     ],
+    modalOpen: false,
     error: null,
-    loading: false,
+    loading: {
+      addLoading: false,
+      allLoading: false,
+      deleteLoading: false,
+      editLoading: false,
+    },
   },
 };

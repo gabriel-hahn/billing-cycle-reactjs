@@ -13,26 +13,26 @@ const CREDIT_PATH = '/credit';
 const DEBITS_PATH = '/debits';
 const DEBIT_PATH = '/debit';
 
-export function* loadAllByDate({ payload: { range, type } }: TransactionsActionsInterface) {
+export function* loadAllByDate({ payload: { range, category } }: TransactionsActionsInterface) {
   try {
     const startDate = range ? range.startDate : dateOneMonthBeforeFormat();
     const endDate = range ? range.endDate : currentDateFormat();
     let transactions: TransactionInterface[] = [];
 
-    if (type) {
-      const path = type === TransactionType.CREDIT ? CREDITS_PATH : DEBITS_PATH;
+    if (category) {
+      const path = category === TransactionType.CREDIT ? CREDITS_PATH : DEBITS_PATH;
       const { data } = yield call(api.get, path, { params: { startDate, endDate } });
 
-      transactions = data.map((transaction: TransactionInterface) => ({ ...transaction, type }));
+      transactions = data.map((transaction: TransactionInterface) => ({ ...transaction, category }));
     } else {
       const { data: debitsData } = yield call(api.get, DEBITS_PATH, { params: { startDate, endDate } });
       const { data: creditsData } = yield call(api.get, CREDITS_PATH, { params: { startDate, endDate } });
 
       const debits: TransactionInterface[] = debitsData.map((transaction: TransactionInterface) => (
-        { ...transaction, type: TransactionType.DEBIT }
+        { ...transaction, category: TransactionType.DEBIT }
       ));
       const credits: TransactionInterface[] = creditsData.map((transaction: TransactionInterface) => (
-        { ...transaction, type: TransactionType.CREDIT }
+        { ...transaction, category: TransactionType.CREDIT }
       ));
 
       transactions = [...debits, ...credits];
@@ -57,13 +57,13 @@ export function* addTransaction({ payload: { transaction } }: TransactionsAction
     if (transaction) {
       const addData = transaction;
       const user = yield select((state: StoreInterface) => state.users.data);
-      const path = addData.type === TransactionType.CREDIT ? CREDIT_PATH : DEBIT_PATH;
+      const path = addData.category === TransactionType.CREDIT ? CREDIT_PATH : DEBIT_PATH;
 
       addData.user_id = user.id;
 
       const { data } = yield call(api.post, path, addData);
 
-      data.type = transaction.type;
+      data.type = transaction.category;
 
       yield put(TransactionsActions.addTransactionSuccess(data));
     }
@@ -83,7 +83,7 @@ export function* addTransaction({ payload: { transaction } }: TransactionsAction
 export function* deleteTransaction({ payload: { transaction } }: TransactionsActionsInterface) {
   try {
     if (transaction) {
-      const path = transaction.type === TransactionType.CREDIT ? CREDIT_PATH : DEBIT_PATH;
+      const path = transaction.category === TransactionType.CREDIT ? CREDIT_PATH : DEBIT_PATH;
       const { data } = yield call(api.delete, `${path}/${transaction.id}`);
 
       yield put(TransactionsActions.deleteTransactionSuccess(data));
@@ -104,10 +104,10 @@ export function* deleteTransaction({ payload: { transaction } }: TransactionsAct
 export function* updateTransaction({ payload: { transaction } }: TransactionsActionsInterface) {
   try {
     if (transaction) {
-      const path = transaction.type === TransactionType.CREDIT ? CREDIT_PATH : DEBIT_PATH;
+      const path = transaction.category === TransactionType.CREDIT ? CREDIT_PATH : DEBIT_PATH;
       const { data } = yield call(api.put, path, transaction);
 
-      data.type = transaction.type;
+      data.type = transaction.category;
 
       yield put(TransactionsActions.updateTransactionSuccess(data));
     }

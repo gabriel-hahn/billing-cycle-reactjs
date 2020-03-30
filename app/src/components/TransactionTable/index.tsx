@@ -93,7 +93,7 @@ const TransactionTable: React.FC = () => {
           <tr>
             <th>Description</th>
             <th>Date</th>
-            <th>Type</th>
+            <th>Category</th>
             <th>Value (R$)</th>
             <th />
           </tr>
@@ -101,7 +101,7 @@ const TransactionTable: React.FC = () => {
             <tr key={transaction.id}>
               <td>{transaction.description}</td>
               <td>{toLocaleDateString(new Date(transaction.date))}</td>
-              <td>{transaction.type}</td>
+              <td>{transaction.category}</td>
               <td>{formatCurrency(transaction.value || 0)}</td>
               <td>
                 <ActionsButton onClick={() => handleEditItem(transaction)}>Edit</ActionsButton>

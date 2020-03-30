@@ -1,5 +1,6 @@
 const LANGUAGE = 'en-EN';
 const MONTH = 30;
+const THREE_MONTHS = 90;
 
 const offset = new Date().getTimezoneOffset();
 
@@ -22,6 +23,14 @@ export const dateOneMonthBefore = (): Date => {
   const date = new Date();
 
   date.setDate(date.getDate() - MONTH);
+
+  return date;
+};
+
+export const dateThreeMonthBefore = (): Date => {
+  const date = new Date();
+
+  date.setDate(date.getDate() - THREE_MONTHS);
 
   return date;
 };

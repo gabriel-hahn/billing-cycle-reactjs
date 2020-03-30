@@ -1,5 +1,9 @@
 const { Debit, User, Sequelize } = require('../../database/models');
 
+const order = [
+  ['date', 'DESC'],
+];
+
 class DebitsService {
   async index(startDate, endDate) {
     const newEndDate = new Date(endDate);
@@ -14,7 +18,7 @@ class DebitsService {
       },
     };
 
-    const debit = await Debit.findAll({ where });
+    const debit = await Debit.findAll({ where, order });
 
     return debit;
   }
@@ -66,6 +70,34 @@ class DebitsService {
     const debitUpdated = await debit.update(newDebit);
 
     return debitUpdated;
+  }
+
+  async getAllByCurrentMonth() {
+    const currentDay = new Date();
+    const firstDayCurrentMonth = new Date(currentDay.getFullYear(), currentDay.getMonth(), 1);
+
+    const where = {
+      date: {
+        [Sequelize.Op.and]: {
+          [Sequelize.Op.gte]: firstDayCurrentMonth,
+          [Sequelize.Op.lte]: currentDay,
+        },
+      },
+    };
+
+    const debits = await Debit.findAll({ where, order });
+
+    return debits;
+  }
+
+  async getAllRepeat() {
+    const where = {
+      repeat: true,
+    };
+
+    const debits = await Debit.findAll({ where, order });
+
+    return debits;
   }
 }
 

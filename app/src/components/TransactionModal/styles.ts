@@ -43,7 +43,9 @@ export const InputValue = styled(Input).attrs({
   placeholder: 'Value',
   name: 'value',
   type: 'number',
-})``;
+})`
+  margin-left: 5px;
+`;
 
 export const InputQuantity = styled(Input).attrs({
   placeholder: 'Quantity',
@@ -77,7 +79,9 @@ export const InputDescription = styled(Input).attrs({
   placeholder: 'Description',
   name: 'description',
   type: 'text',
-})``;
+})`
+  margin-left: 5px;
+`;
 
 export const FormContainer = styled.div`
   height: 15em;
@@ -106,4 +110,14 @@ export const Button = styled.button.attrs({
   color: ${(props: StylesProps) => (props.transparent ? '#1D84B5' : '#FFF')};
   font-size: 16px;
   border-radius: 5px;
+`;
+
+export const SelectType = styled.select.attrs({
+  placeholder: 'Classification',
+})`
+  height: 50px;
+  border: 0;
+  outline: 0;
+  border-bottom: 1px solid #4D7C8A;
+  font-size: 14px;
 `;

@@ -21,15 +21,19 @@ router.get('/overview', (req, res) => {
 });
 
 router.get('/debits', DebitsController.index);
-router.get('/debit/:id', DebitsController.show);
 router.post('/debit', DebitsController.store);
 router.put('/debit', DebitsController.update);
+router.get('/debits/allByCurrentMonth', DebitsController.getAllByCurrentMonth);
+router.get('/debits/allRepeat', DebitsController.getAllRepeat);
+router.get('/debit/:id', DebitsController.show);
 router.delete('/debit/:id', DebitsController.destroy);
 
 router.get('/credits', CreditsController.index);
-router.get('/credit/:id', CreditsController.show);
 router.post('/credit', CreditsController.store);
 router.put('/credit', CreditsController.update);
+router.get('/credits/allByCurrentMonth', CreditsController.getAllByCurrentMonth);
+router.get('/credits/allRepeat', CreditsController.getAllRepeat);
+router.get('/credit/:id', CreditsController.show);
 router.delete('/credit/:id', CreditsController.destroy);
 
 module.exports = router;

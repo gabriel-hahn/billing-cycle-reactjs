@@ -1,5 +1,9 @@
 const { Credit, User, Sequelize } = require('../../database/models');
 
+const order = [
+  ['date', 'DESC'],
+];
+
 class CreditsService {
   async index(startDate, endDate) {
     const newEndDate = new Date(endDate);
@@ -14,7 +18,7 @@ class CreditsService {
       },
     };
 
-    const credit = await Credit.findAll({ where });
+    const credit = await Credit.findAll({ where, order });
 
     return credit;
   }
@@ -66,6 +70,34 @@ class CreditsService {
     const creditUpdated = await credit.update(newCredit);
 
     return creditUpdated;
+  }
+
+  async getAllByCurrentMonth() {
+    const currentDay = new Date();
+    const firstDayCurrentMonth = new Date(currentDay.getFullYear(), currentDay.getMonth(), 1);
+
+    const where = {
+      date: {
+        [Sequelize.Op.and]: {
+          [Sequelize.Op.gte]: firstDayCurrentMonth,
+          [Sequelize.Op.lte]: currentDay,
+        },
+      },
+    };
+
+    const credits = await Credit.findAll({ where, order });
+
+    return credits;
+  }
+
+  async getAllRepeat() {
+    const where = {
+      repeat: true,
+    };
+
+    const credits = await Credit.findAll({ where, order });
+
+    return credits;
   }
 }
 
