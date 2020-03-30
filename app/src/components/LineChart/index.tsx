@@ -4,13 +4,10 @@ import HighchartsReact from 'highcharts-react-official';
 import api from '../../services/api';
 
 import { lineChartConfig } from '../../config/highcharts';
-import { toLocaleDateString, currentDateFormat, dateThreeMonthBefore } from '../../utils/date';
+import { currentDateFormat, dateThreeMonthBefore } from '../../utils/date';
+import { formatToChartDateObject } from '../../utils/format';
 import { TransactionInterface } from '../../interfaces/transaction';
-import { LineChartInterface } from '../../interfaces/charts';
-
-interface SumInterface {
-  [key: string]: number | undefined;
-}
+import { LineChartInterface, KeyValueNumberInterface } from '../../interfaces/charts';
 
 const LineChart: React.FC = () => {
   let debitsFormatted: LineChartInterface[];
@@ -20,19 +17,9 @@ const LineChart: React.FC = () => {
 
   const [chartOptions, setChartOptions] = useState<any>();
 
-  const formatToChartObject = (transactions: SumInterface) => (
-    Object.entries(transactions).map((itemArr) => {
-      const date = toLocaleDateString(new Date(itemArr[0]));
-
-      return {
-        y: itemArr[1],
-        name: date,
-      };
-  }));
-
   const formatTransactions = () => {
-    const totalDebits: SumInterface = { };
-    const totalCredits: SumInterface = { };
+    const totalDebits: KeyValueNumberInterface = { };
+    const totalCredits: KeyValueNumberInterface = { };
 
     debits.forEach((debit) => {
       totalDebits[debit.date] = debit.value;
@@ -42,8 +29,8 @@ const LineChart: React.FC = () => {
       totalCredits[credit.date] = credit.value;
     });
 
-    debitsFormatted = formatToChartObject(totalDebits);
-    creditsFormatted = formatToChartObject(totalCredits);
+    debitsFormatted = formatToChartDateObject(totalDebits);
+    creditsFormatted = formatToChartDateObject(totalCredits);
 
     setChartOptions(lineChartConfig(creditsFormatted, debitsFormatted));
   };
@@ -55,8 +42,8 @@ const LineChart: React.FC = () => {
     const { data: debitData } = await api.get<TransactionInterface[]>('debits', { params: { startDate, endDate } });
     const { data: creditData } = await api.get<TransactionInterface[]>('credits', { params: { startDate, endDate } });
 
-    debits = debitData;
-    credits = creditData;
+    debits = debitData.reverse();
+    credits = creditData.reverse();
 
     formatTransactions();
   };
