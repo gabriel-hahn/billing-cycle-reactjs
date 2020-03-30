@@ -41,9 +41,6 @@ const BarChart: React.FC = () => {
     debits = debitData.reverse();
     credits = creditData.reverse();
 
-    console.log('debits: ', debits);
-    console.log('credits: ', credits);
-
     formatTransactions();
   };
 
