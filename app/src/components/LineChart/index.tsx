@@ -7,11 +7,11 @@ import { lineChartConfig } from '../../config/highcharts';
 import { currentDateFormat, dateThreeMonthBefore } from '../../utils/date';
 import { formatToChartDateObject } from '../../utils/format';
 import { TransactionInterface } from '../../interfaces/transaction';
-import { LineChartInterface, KeyValueNumberInterface } from '../../interfaces/charts';
+import { ChartInterface, KeyValueNumberInterface } from '../../interfaces/charts';
 
 const LineChart: React.FC = () => {
-  let debitsFormatted: LineChartInterface[];
-  let creditsFormatted: LineChartInterface[];
+  let debitsFormatted: ChartInterface[];
+  let creditsFormatted: ChartInterface[];
   let debits: TransactionInterface[];
   let credits: TransactionInterface[];
 

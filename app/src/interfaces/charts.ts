@@ -1,14 +1,4 @@
-export interface LineChartInterface {
-  y: number | undefined;
-  name: string;
-}
-
-export interface BarChartInterface {
-  y: number[] | undefined;
-  name: string;
-}
-
-export interface PieChartInterface {
+export interface ChartInterface {
   y: number | undefined;
   name: string;
 }

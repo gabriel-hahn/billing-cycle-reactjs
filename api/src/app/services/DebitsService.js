@@ -72,7 +72,7 @@ class DebitsService {
     return debitUpdated;
   }
 
-  async allByCurrentMonth() {
+  async getAllByCurrentMonth() {
     const currentDay = new Date();
     const firstDayCurrentMonth = new Date(currentDay.getFullYear(), currentDay.getMonth(), 1);
 
@@ -85,9 +85,19 @@ class DebitsService {
       },
     };
 
-    const debit = await Debit.findAll({ where, order });
+    const debits = await Debit.findAll({ where, order });
 
-    return debit;
+    return debits;
+  }
+
+  async getAllRepeat() {
+    const where = {
+      repeat: true,
+    };
+
+    const debits = await Debit.findAll({ where, order });
+
+    return debits;
   }
 }
 

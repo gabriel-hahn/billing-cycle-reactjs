@@ -61,8 +61,20 @@ class CreditsController {
     return res.json(credit);
   }
 
-  async allByCurrentMonth(req, res) {
-    const credits = await CreditsService.allByCurrentMonth();
+  async getAllByCurrentMonth(req, res) {
+    const credits = await CreditsService.getAllByCurrentMonth();
+
+    if (credits.error) {
+      const { status, message } = credits.error;
+
+      return res.status(status).json({ message });
+    }
+
+    return res.json(credits);
+  }
+
+  async getAllRepeat(req, res) {
+    const credits = await CreditsService.getAllRepeat();
 
     if (credits.error) {
       const { status, message } = credits.error;

@@ -72,7 +72,7 @@ class CreditsService {
     return creditUpdated;
   }
 
-  async allByCurrentMonth() {
+  async getAllByCurrentMonth() {
     const currentDay = new Date();
     const firstDayCurrentMonth = new Date(currentDay.getFullYear(), currentDay.getMonth(), 1);
 
@@ -85,9 +85,19 @@ class CreditsService {
       },
     };
 
-    const credit = await Credit.findAll({ where, order });
+    const credits = await Credit.findAll({ where, order });
 
-    return credit;
+    return credits;
+  }
+
+  async getAllRepeat() {
+    const where = {
+      repeat: true,
+    };
+
+    const credits = await Credit.findAll({ where, order });
+
+    return credits;
   }
 }
 

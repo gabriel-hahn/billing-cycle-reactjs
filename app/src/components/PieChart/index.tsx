@@ -5,11 +5,11 @@ import api from '../../services/api';
 
 import { pieChartConfig } from '../../config/highcharts';
 import { TransactionInterface } from '../../interfaces/transaction';
-import { PieChartInterface, KeyValueNumberInterface } from '../../interfaces/charts';
+import { ChartInterface, KeyValueNumberInterface } from '../../interfaces/charts';
 import { formatToChartStringObject } from '../../utils/format';
 
 const PieChart: React.FC = () => {
-  let debitsFormatted: PieChartInterface[];
+  let debitsFormatted: ChartInterface[];
   let debits: TransactionInterface[];
 
   const [chartOptions, setChartOptions] = useState<any>();
@@ -28,7 +28,7 @@ const PieChart: React.FC = () => {
   };
 
   const getAllDataByCurrentMonth = async () => {
-    const { data: debitData } = await api.get<TransactionInterface[]>('debit/allByCurrentMonth');
+    const { data: debitData } = await api.get<TransactionInterface[]>('debits/allByCurrentMonth');
 
     debits = debitData;
 
