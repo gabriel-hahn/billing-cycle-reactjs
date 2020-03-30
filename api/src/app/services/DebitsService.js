@@ -75,13 +75,17 @@ class DebitsService {
     const where = {
       date: {
         [Sequelize.Op.and]: {
-          [Sequelize.Op.gte]: currentDay,
-          [Sequelize.Op.lte]: firstDayCurrentMonth,
+          [Sequelize.Op.gte]: firstDayCurrentMonth,
+          [Sequelize.Op.lte]: currentDay,
         },
       },
     };
 
-    const debit = await Debit.findAll({ where });
+    const order = [
+      ['date', 'DESC'],
+    ];
+
+    const debit = await Debit.findAll({ where, order });
 
     return debit;
   }

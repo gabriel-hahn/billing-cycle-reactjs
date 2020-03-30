@@ -75,13 +75,17 @@ class CreditsService {
     const where = {
       date: {
         [Sequelize.Op.and]: {
-          [Sequelize.Op.gte]: currentDay,
-          [Sequelize.Op.lte]: firstDayCurrentMonth,
+          [Sequelize.Op.gte]: firstDayCurrentMonth,
+          [Sequelize.Op.lte]: currentDay,
         },
       },
     };
 
-    const credit = await Credit.findAll({ where });
+    const order = [
+      ['date', 'DESC'],
+    ];
+
+    const credit = await Credit.findAll({ where, order });
 
     return credit;
   }
