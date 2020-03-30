@@ -1,60 +1,79 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import api from '../../services/api';
 
 import { lineChartConfig } from '../../config/highcharts';
-import { toLocaleDateString } from '../../utils/date';
-import { StoreInterface } from '../../interfaces/store';
-import { TransactionType } from '../../interfaces/transaction';
+import { toLocaleDateString, currentDateFormat, dateThreeMonthBefore } from '../../utils/date';
+import { TransactionInterface } from '../../interfaces/transaction';
+import { LineChartInterface } from '../../interfaces/charts';
 
 interface SumInterface {
   [key: string]: number | undefined;
 }
 
 const LineChart: React.FC = () => {
-  const transactions = useSelector((state: StoreInterface) => state.transactions.data);
-  const debits = transactions.filter(transaction => (
-    transaction.category === TransactionType.DEBIT));
-  const credits = transactions.filter(transaction => (
-    transaction.category === TransactionType.CREDIT));
+  let debitsFormatted: LineChartInterface[];
+  let creditsFormatted: LineChartInterface[];
+  let debits: TransactionInterface[];
+  let credits: TransactionInterface[];
 
-  const totalDebits: SumInterface = { };
-  const totalCredits: SumInterface = { };
+  const [chartOptions, setChartOptions] = useState<any>();
 
-  debits.forEach((debit) => {
-    totalDebits[debit.date] = debit.value;
-  });
+  const formatToChartObject = (transactions: SumInterface) => (
+    Object.entries(transactions).map((itemArr) => {
+      const date = toLocaleDateString(new Date(itemArr[0]));
 
-  credits.forEach((credit) => {
-    totalCredits[credit.date] = credit.value;
-  });
+      return {
+        y: itemArr[1],
+        name: date,
+      };
+  }));
 
-  const debitsFormatted = Object.entries(totalDebits).map((itemArr) => {
-    const date = toLocaleDateString(new Date(itemArr[0]));
+  const formatTransactions = () => {
+    const totalDebits: SumInterface = { };
+    const totalCredits: SumInterface = { };
 
-    return {
-      y: itemArr[1],
-      name: date,
-    };
-  });
+    debits.forEach((debit) => {
+      totalDebits[debit.date] = debit.value;
+    });
 
-  const creditsFormatted = Object.entries(totalCredits).map((itemArr) => {
-    const date = toLocaleDateString(new Date(itemArr[0]));
+    credits.forEach((credit) => {
+      totalCredits[credit.date] = credit.value;
+    });
 
-    return {
-      y: itemArr[1],
-      name: date,
-    };
-  });
+    debitsFormatted = formatToChartObject(totalDebits);
+    creditsFormatted = formatToChartObject(totalCredits);
 
-  const charOptions = lineChartConfig(creditsFormatted, debitsFormatted);
+    setChartOptions(lineChartConfig(creditsFormatted, debitsFormatted));
+  };
+
+  const getAllByLastThreeMonths = async () => {
+    const startDate = dateThreeMonthBefore();
+    const endDate = currentDateFormat();
+
+    const { data: debitData } = await api.get<TransactionInterface[]>('debits', { params: { startDate, endDate } });
+    const { data: creditData } = await api.get<TransactionInterface[]>('credits', { params: { startDate, endDate } });
+
+    debits = debitData;
+    credits = creditData;
+
+    formatTransactions();
+  };
+
+  useEffect(() => {
+    getAllByLastThreeMonths();
+  }, []);
 
   return (
-    <HighchartsReact
-      highcharts={Highcharts}
-      options={charOptions}
-    />
+    <>
+      { chartOptions ? (
+        <HighchartsReact
+          highcharts={Highcharts}
+          options={chartOptions}
+        />
+    ) : <h3>Loading</h3> }
+    </>
   );
 };
 

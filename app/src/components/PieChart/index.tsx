@@ -1,22 +1,30 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import api from '../../services/api';
 
 import { pieChartConfig } from '../../config/highcharts';
-import { StoreInterface } from '../../interfaces/store';
-import { TransactionType } from '../../interfaces/transaction';
+import { TransactionInterface } from '../../interfaces/transaction';
 
 interface SumInterface {
   [key: string]: number | undefined;
 }
 
 const PieChart: React.FC = () => {
-  const transactions = useSelector((state: StoreInterface) => state.transactions.data);
-  const debits = transactions.filter(transaction => (
-    transaction.category === TransactionType.DEBIT));
-  const credits = transactions.filter(transaction => (
-    transaction.category === TransactionType.CREDIT));
+  let debits: TransactionInterface[];
+  let credits: TransactionInterface[];
+
+  const getAllDataByCurrentMonth = async () => {
+    const { data: debitData } = await api.get<TransactionInterface[]>('debit/allByCurrentMonth');
+    const { data: creditData } = await api.get<TransactionInterface[]>('credit/allByCurrentMonth');
+
+    debits = debitData;
+    credits = creditData;
+  };
+
+  useEffect(() => {
+    getAllDataByCurrentMonth();
+  }, []);
 
   const charOptions = pieChartConfig();
 

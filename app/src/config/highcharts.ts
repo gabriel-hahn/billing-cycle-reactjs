@@ -1,7 +1,8 @@
-// export const lineChartConfig = (
-//     creditsData: (number | undefined)[], debitsData: (number | undefined)[],
-//   ) => (
-export const lineChartConfig = (creditsData: any, debitsData: any) => (
+import { LineChartInterface } from '../interfaces/charts';
+
+export const lineChartConfig = (
+      creditsData: LineChartInterface[], debitsData: LineChartInterface[],
+    ) => (
   {
     title: {
       text: 'Credits and Debits',
