@@ -1,5 +1,9 @@
 const { Debit, User, Sequelize } = require('../../database/models');
 
+const order = [
+  ['date', 'DESC'],
+];
+
 class DebitsService {
   async index(startDate, endDate) {
     const newEndDate = new Date(endDate);
@@ -14,7 +18,7 @@ class DebitsService {
       },
     };
 
-    const debit = await Debit.findAll({ where });
+    const debit = await Debit.findAll({ where, order });
 
     return debit;
   }
@@ -80,10 +84,6 @@ class DebitsService {
         },
       },
     };
-
-    const order = [
-      ['date', 'DESC'],
-    ];
 
     const debit = await Debit.findAll({ where, order });
 

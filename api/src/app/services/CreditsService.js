@@ -1,5 +1,9 @@
 const { Credit, User, Sequelize } = require('../../database/models');
 
+const order = [
+  ['date', 'DESC'],
+];
+
 class CreditsService {
   async index(startDate, endDate) {
     const newEndDate = new Date(endDate);
@@ -14,7 +18,7 @@ class CreditsService {
       },
     };
 
-    const credit = await Credit.findAll({ where });
+    const credit = await Credit.findAll({ where, order });
 
     return credit;
   }
@@ -80,10 +84,6 @@ class CreditsService {
         },
       },
     };
-
-    const order = [
-      ['date', 'DESC'],
-    ];
 
     const credit = await Credit.findAll({ where, order });
 
