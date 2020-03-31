@@ -4,6 +4,7 @@ const authMiddleware = require('./middleware/auth');
 const SessionController = require('./controllers/SessionController');
 const DebitsController = require('./controllers/DebitsController');
 const CreditsController = require('./controllers/CreditsController');
+const TransactionsController = require('./controllers/TransactionsController');
 
 const router = routes.Router();
 
@@ -33,5 +34,7 @@ router.put('/credit', CreditsController.update);
 router.get('/credits/allByCurrentMonth', CreditsController.getAllByCurrentMonth);
 router.get('/credit/:id', CreditsController.show);
 router.delete('/credit/:id', CreditsController.destroy);
+
+router.get('/transactions/cashFlow', TransactionsController.cashFlow);
 
 module.exports = router;
