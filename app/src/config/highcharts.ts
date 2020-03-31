@@ -9,7 +9,7 @@ export const lineChartConfig = (
     },
 
     subtitle: {
-        text: 'Last 90 days',
+        text: 'Last 3 months',
     },
 
     colors: ['#1D84B5', '#4D7C8A', '#59C9A5', '#313B72', '#388659'],
@@ -119,13 +119,13 @@ export const barChartConfig = (transactionsData: ChartInterface[]) => (
     },
 
     title: {
-      text: 'Active credits and debits repeated',
+      text: 'Cash flow',
     },
 
     colors: ['#1D84B5', '#4D7C8A', '#59C9A5', '#313B72', '#388659'],
 
     subtitle: {
-      text: 'e.g. salary',
+      text: 'Last 3 months',
     },
 
     xAxis: {

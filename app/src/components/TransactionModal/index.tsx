@@ -13,13 +13,9 @@ import {
   FormContainer,
   InputValue,
   InputDate,
-  InputDateRepeat,
-  InputDescription,
-  InputQuantity,
-  InputCheckbox,
   SelectType,
+  InputDescription,
   InputContainer,
-  InputCheckboxText,
   ButtonsFormContainer,
 } from './styles';
 import { TransactionType, TransactionInterface } from '../../interfaces/transaction';
@@ -36,12 +32,9 @@ export interface StylesProps {
 
 const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose }) => {
   const [transaction, setTransaction] = useState<TransactionInterface>({
-    quantity: 1,
-    repeat: false,
     type: CreditType.Others,
     category: TransactionType.CREDIT,
     date: currentDateInputFormat(),
-    date_repeat: currentDateInputFormat(),
   });
 
   const transactionSelected = useSelector((store: StoreInterface) => (
@@ -52,12 +45,6 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
   useEffect(() => {
     if (transactionSelected) {
       transactionSelected.date = currentDateInputFormat(new Date(transactionSelected.date));
-
-      if (transactionSelected.date_repeat) {
-        transactionSelected.date_repeat = currentDateInputFormat(
-          new Date(transactionSelected.date_repeat),
-        );
-      }
 
       setTransaction(transactionSelected);
     }
@@ -102,7 +89,10 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
       <ModalContainer>
         <FormContainer>
           <InputValue value={transaction.value} onChange={handleTransactionChanged} required />
-          <InputDescription value={transaction.description} onChange={handleTransactionChanged} />
+          <InputDescription
+            value={transaction.description}
+            onChange={handleTransactionChanged}
+          />
           <SelectType value={transaction.type} onChange={handleTypeChanged}>
             { Object.entries(transaction.category === TransactionType.CREDIT
               ? CreditType : DebitType).map((type : [string, CreditType]) => (
@@ -111,20 +101,6 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
           </SelectType>
           <InputContainer>
             <InputDate value={transaction.date} onChange={handleTransactionChanged} required />
-            <InputQuantity
-              value={transaction.quantity}
-              onChange={handleTransactionChanged}
-              required
-            />
-          </InputContainer>
-          <InputContainer>
-            <InputCheckboxText>Repeat</InputCheckboxText>
-            <InputCheckbox onChange={handleTransactionChanged} />
-            <InputDateRepeat
-              disabled={!transaction.repeat}
-              value={transaction.date_repeat}
-              onChange={handleTransactionChanged}
-            />
           </InputContainer>
         </FormContainer>
         <ButtonsContainer>

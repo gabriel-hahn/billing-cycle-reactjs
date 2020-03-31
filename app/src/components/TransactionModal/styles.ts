@@ -47,32 +47,10 @@ export const InputValue = styled(Input).attrs({
   margin-left: 5px;
 `;
 
-export const InputQuantity = styled(Input).attrs({
-  placeholder: 'Quantity',
-  name: 'quantity',
-  type: 'number',
-})``;
-
-export const InputDateRepeat = styled(Input).attrs({
-  placeholder: 'Date',
-  name: 'date_repeat',
-  type: 'date',
-})``;
-
 export const InputDate = styled(Input).attrs({
   placeholder: 'Date',
   name: 'date',
   type: 'date',
-})``;
-
-export const InputCheckboxText = styled.p`
-  height: 50px;
-  font-size: 14px;
-`;
-
-export const InputCheckbox = styled(Input).attrs({
-  name: 'repeat',
-  type: 'checkbox',
 })``;
 
 export const InputDescription = styled(Input).attrs({

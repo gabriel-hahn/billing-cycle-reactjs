@@ -5,6 +5,10 @@ export interface TransactionsRangeDateInterface {
   endDate: string;
 }
 
+export interface CashFlowInterface {
+  [key: number]: number;
+}
+
 export interface TransactionsActionsInterface {
   type: string,
   payload: {
@@ -25,12 +29,9 @@ export interface TransactionInterface {
   id?: number;
   user_id?: number | null;
   value?: number;
-  quantity: number;
   date: string;
-  date_repeat?: string;
   type: CreditType | DebitType;
   category?: TransactionType;
-  repeat: boolean;
   description?: string;
   createdAt?: string;
   updatedAt?: string;

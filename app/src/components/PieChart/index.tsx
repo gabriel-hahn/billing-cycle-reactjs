@@ -6,7 +6,7 @@ import api from '../../services/api';
 import { pieChartConfig } from '../../config/highcharts';
 import { TransactionInterface } from '../../interfaces/transaction';
 import { ChartInterface, KeyValueNumberInterface } from '../../interfaces/charts';
-import { formatToChartStringObject } from '../../utils/format';
+import { formatToChartNumberObject } from '../../utils/format';
 
 const PieChart: React.FC = () => {
   let debitsFormatted: ChartInterface[];
@@ -22,7 +22,7 @@ const PieChart: React.FC = () => {
       totalDebits[debit.type] = debit.value ? (debit.value + sumValue) : 0;
     });
 
-    debitsFormatted = formatToChartStringObject(totalDebits);
+    debitsFormatted = formatToChartNumberObject(totalDebits);
 
     setChartOptions(pieChartConfig(debitsFormatted));
   };

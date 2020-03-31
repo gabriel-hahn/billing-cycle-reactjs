@@ -3,45 +3,34 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import api from '../../services/api';
 
-import { TransactionInterface } from '../../interfaces/transaction';
-import { ChartInterface, KeyValueNumberInterface } from '../../interfaces/charts';
+import { CashFlowInterface } from '../../interfaces/transaction';
+import { getMonthDescriptionByMonth } from '../../utils/date';
 import { barChartConfig } from '../../config/highcharts';
+import { KeyValueStringInterface, ChartInterface } from '../../interfaces/charts';
 import { formatToChartStringObject } from '../../utils/format';
 
 const BarChart: React.FC = () => {
-  let debitsFormatted: ChartInterface[];
-  let creditsFormatted: ChartInterface[];
-  let debits: TransactionInterface[];
-  let credits: TransactionInterface[];
-
+  let cashFlowFormatted: ChartInterface[];
   const [chartOptions, setChartOptions] = useState<any>();
 
-  const formatTransactions = () => {
-    const totalDebits: KeyValueNumberInterface = { };
-    const totalCredits: KeyValueNumberInterface = { };
+  const formatTransactions = (cashFlow: CashFlowInterface) => {
+    const flowData: KeyValueStringInterface = {};
 
-    debits.forEach((debit) => {
-      totalDebits[debit.description || 'No description'] = debit.value;
+    Object.entries(cashFlow).forEach((monthData) => {
+      const month = getMonthDescriptionByMonth(monthData[0]);
+
+      flowData[month] = monthData[1].toFixed(2);
     });
 
-    credits.forEach((credit) => {
-      totalCredits[credit.description || 'No description'] = credit.value;
-    });
+    cashFlowFormatted = formatToChartStringObject(flowData);
 
-    debitsFormatted = formatToChartStringObject(totalDebits);
-    creditsFormatted = formatToChartStringObject(totalCredits);
-
-    setChartOptions(barChartConfig([...creditsFormatted, ...debitsFormatted]));
+    setChartOptions(barChartConfig(cashFlowFormatted));
   };
 
   const getTransactions = async () => {
-    const { data: debitData } = await api.get<TransactionInterface[]>('debits/allRepeat');
-    const { data: creditData } = await api.get<TransactionInterface[]>('credits/allRepeat');
+    const { data: cashFlow } = await api.get<CashFlowInterface>('transactions/cashFlow');
 
-    debits = debitData.reverse();
-    credits = creditData.reverse();
-
-    formatTransactions();
+    formatTransactions(cashFlow);
   };
 
   useEffect(() => {

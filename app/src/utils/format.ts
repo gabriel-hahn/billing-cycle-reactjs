@@ -1,5 +1,5 @@
 import { toLocaleDateString } from './date';
-import { KeyValueNumberInterface } from '../interfaces/charts';
+import { KeyValueNumberInterface, KeyValueStringInterface } from '../interfaces/charts';
 
 export const formatToChartDateObject = (transactions: KeyValueNumberInterface) => (
   Object.entries(transactions).map((itemArr) => {
@@ -11,8 +11,14 @@ export const formatToChartDateObject = (transactions: KeyValueNumberInterface) =
     };
 }));
 
-export const formatToChartStringObject = (transactions: KeyValueNumberInterface) => (
+export const formatToChartNumberObject = (transactions: KeyValueNumberInterface) => (
   Object.entries(transactions).map(itemArr => ({
     y: itemArr[1],
+    name: itemArr[0],
+  })));
+
+export const formatToChartStringObject = (transactions: KeyValueStringInterface) => (
+  Object.entries(transactions).map(itemArr => ({
+    y: itemArr[1] ? +itemArr[1] : 0,
     name: itemArr[0],
   })));

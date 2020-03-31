@@ -43,4 +43,23 @@ export const dateOneMonthBeforeFormat = (): string => {
   return date.toLocaleDateString(LANGUAGE);
 };
 
+export const getMonthDescriptionByMonth = (month: string) => {
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+
+  return months[parseInt(month, 10)];
+};
+
 export const toLocaleDateString = (date: Date) => date.toLocaleDateString(LANGUAGE);

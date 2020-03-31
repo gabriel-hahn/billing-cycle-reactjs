@@ -34,17 +34,12 @@ export const INITIAL_STATE_FILLED: StoreInterface = {
     data: [
       {
         date: new Date().toString(),
-        quantity: 1,
-        repeat: false,
-        type: DebitType.Educations,
+        type: DebitType.Education,
         category: TransactionType.DEBIT,
         value: 100.00,
       },
       {
         date: new Date().toString(),
-        quantity: 5,
-        repeat: true,
-        date_repeat: new Date().toString(),
         category: TransactionType.CREDIT,
         type: CreditType.Income,
         value: 150.00,
