@@ -74,19 +74,6 @@ class DebitsController {
 
     return res.json(debits);
   }
-
-  async getAllRepeat(req, res) {
-    const { userid } = req.headers;
-    const debits = await DebitsService.getAllRepeat(userid);
-
-    if (debits.error) {
-      const { status, message } = debits.error;
-
-      return res.status(status).json({ message });
-    }
-
-    return res.json(debits);
-  }
 }
 
 module.exports = new DebitsController();

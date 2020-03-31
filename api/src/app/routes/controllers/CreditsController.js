@@ -74,19 +74,6 @@ class CreditsController {
 
     return res.json(credits);
   }
-
-  async getAllRepeat(req, res) {
-    const { userid } = req.headers;
-    const credits = await CreditsService.getAllRepeat(userid);
-
-    if (credits.error) {
-      const { status, message } = credits.error;
-
-      return res.status(status).json({ message });
-    }
-
-    return res.json(credits);
-  }
 }
 
 module.exports = new CreditsController();

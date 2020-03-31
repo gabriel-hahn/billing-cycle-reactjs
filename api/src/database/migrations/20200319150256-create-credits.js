@@ -41,20 +41,6 @@ module.exports = {
       allowNull: false,
       type: Sequelize.DOUBLE,
     },
-    quantity: {
-      allowNull: false,
-      type: Sequelize.INTEGER,
-      defaultValue: 1,
-    },
-    repeat: {
-      allowNull: false,
-      type: Sequelize.BOOLEAN,
-      defaultValue: false,
-    },
-    date_repeat: {
-      allowNull: true,
-      type: Sequelize.DATE,
-    },
     created_at: {
       allowNull: false,
       type: Sequelize.DATE,

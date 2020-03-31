@@ -4,9 +4,6 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING,
     date: DataTypes.DATE,
     value: DataTypes.DOUBLE,
-    quantity: DataTypes.INTEGER,
-    repeat: DataTypes.BOOLEAN,
-    date_repeat: DataTypes.DATE,
     type: DataTypes.STRING,
   }, {});
 

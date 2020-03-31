@@ -91,17 +91,6 @@ class CreditsService {
 
     return credits;
   }
-
-  async getAllRepeat(userId) {
-    const where = {
-      user_id: userId,
-      repeat: true,
-    };
-
-    const credits = await Credit.findAll({ where, order });
-
-    return credits;
-  }
 }
 
 module.exports = new CreditsService();

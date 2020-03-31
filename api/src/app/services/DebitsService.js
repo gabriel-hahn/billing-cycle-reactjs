@@ -91,17 +91,6 @@ class DebitsService {
 
     return debits;
   }
-
-  async getAllRepeat(userId) {
-    const where = {
-      user_id: userId,
-      repeat: true,
-    };
-
-    const debits = await Debit.findAll({ where, order });
-
-    return debits;
-  }
 }
 
 module.exports = new DebitsService();
