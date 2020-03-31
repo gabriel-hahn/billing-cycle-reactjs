@@ -16,6 +16,7 @@ import {
   SelectType,
   InputDescription,
   InputContainer,
+  ButtonActions,
   ButtonsFormContainer,
 } from './styles';
 import { TransactionType, TransactionInterface } from '../../interfaces/transaction';
@@ -28,12 +29,14 @@ interface TransactionModalPropsInterface {
 export interface StylesProps {
   transparent?: boolean;
   fullWidth?: boolean;
+  debit?: boolean;
+  credit?: boolean;
 }
 
 const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose }) => {
   const [transaction, setTransaction] = useState<TransactionInterface>({
     type: CreditType.Others,
-    category: TransactionType.CREDIT,
+    category: TransactionType.DEBIT,
     date: currentDateInputFormat(),
   });
 
@@ -93,23 +96,23 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
             value={transaction.description}
             onChange={handleTransactionChanged}
           />
-          <SelectType value={transaction.type} onChange={handleTypeChanged}>
-            { Object.entries(transaction.category === TransactionType.CREDIT
-              ? CreditType : DebitType).map((type : [string, CreditType]) => (
-                <option key={type[1]} value={type[1]}>{type[0]}</option>
-            )) }
-          </SelectType>
           <InputContainer>
+            <SelectType value={transaction.type} onChange={handleTypeChanged}>
+              { Object.entries(transaction.category === TransactionType.CREDIT
+                ? CreditType : DebitType).map((type : [string, CreditType]) => (
+                  <option key={type[1]} value={type[1]}>{type[0]}</option>
+              )) }
+            </SelectType>
             <InputDate value={transaction.date} onChange={handleTransactionChanged} required />
           </InputContainer>
         </FormContainer>
         <ButtonsContainer>
-          <Button onClick={handleCreditClick}>Credit</Button>
-          <Button onClick={handleDebitClick}>Debit</Button>
+          <Button debit onClick={handleDebitClick}>Debit</Button>
+          <Button credit onClick={handleCreditClick}>Credit</Button>
         </ButtonsContainer>
         <ButtonsFormContainer>
-          <Button fullWidth onClick={handleAddTransaction}>Add Transaction</Button>
-          <Button fullWidth transparent onClick={handleCloseModal}>Close</Button>
+          <ButtonActions onClick={handleAddTransaction}>Add Transaction</ButtonActions>
+          <ButtonActions transparent onClick={handleCloseModal}>Close</ButtonActions>
         </ButtonsFormContainer>
       </ModalContainer>
     </Container>
