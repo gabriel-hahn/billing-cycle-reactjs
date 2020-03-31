@@ -13,6 +13,7 @@ api.interceptors.request.use((config) => {
 
   if (data) {
     headers.Authorization = `Bearer ${data.token}`;
+    headers.UserId = data.id;
   }
 
   return { ...config, headers };
