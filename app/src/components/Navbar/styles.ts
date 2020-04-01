@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { StylesProps } from './index';
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -7,6 +9,7 @@ export const Container = styled.div`
   min-width: 200px;
   background: #2F4B53;
   color: #FFF;
+  box-shadow: 1px -5px 10px 3px rgba(0,0,0,0.3);
 `;
 
 export const PagesList = styled.ul`
@@ -17,6 +20,7 @@ export const Page = styled.li`
   height: 4em;
   border: 1px solid #263D44;
   transition: all 0.5s;
+  background: ${(props: StylesProps) => (props.selected ? '#273D44' : 'transparent')};
 
   &:hover {
     background: #273D44;

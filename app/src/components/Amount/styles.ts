@@ -20,9 +20,10 @@ export const Icon = styled.div`
 `;
 
 export const Value = styled.h2`
-  font-size: 2em;
-  font-weight: 300;
-  margin-right: 120px;
+  font-size: 2.5em;
+  font-weight: 100;
+  margin-right: 15%;
+  color: #2e2e2e;
 `;
 
 Icon.displayName = 'Icon';
