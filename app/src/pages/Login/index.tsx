@@ -1,7 +1,11 @@
 import React, { useState, useEffect, FormEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
+import Lottie, { Options } from 'react-lottie';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 
+import pigAnimation from '../../config/piggy-bank.json';
 import { Creators as UsersTypes } from '../../store/ducks/users';
 
 import {
@@ -9,13 +13,24 @@ import {
   FormContainer,
   FormInputs,
   AnimationContainer,
+  Animation,
   Title,
   Input,
   LoginButton,
   RegisterButton,
+  IconsContainer,
 } from './styles';
 import { UserInterface } from '../../interfaces/user';
 import { StoreInterface } from '../../interfaces/store';
+
+const defaultOptions: Options = {
+  loop: true,
+  autoplay: true,
+  animationData: pigAnimation,
+  rendererSettings: {
+    preserveAspectRatio: 'xMidYMid slice',
+  },
+};
 
 const Login: React.FC<RouteComponentProps> = ({ history }) => {
   const [name, setName] = useState<string>('');
@@ -63,14 +78,30 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
   return (
     <Container>
       <AnimationContainer>
-        Animation
+        <Animation>
+          <Lottie
+            options={defaultOptions}
+            height={400}
+            width={400}
+          />
+        </Animation>
       </AnimationContainer>
       <FormContainer onSubmit={handleFormSubit}>
-        <Title>Know where your money is</Title>
+        <Title>Welcome</Title>
         <FormInputs>
           {!isLogin && <Input value={name} onChange={handleNameChange} placeholder="Name" name="name" />}
-          <Input value={email} onChange={handleEmailChange} placeholder="E-mail" name="email" />
-          <Input value={password} onChange={handlePasswordChange} placeholder="Password" name="password" type="password" />
+          <div>
+            <IconsContainer>
+              <FontAwesomeIcon className="font-icon" icon={faUser} />
+            </IconsContainer>
+            <Input value={email} onChange={handleEmailChange} placeholder="E-mail" name="email" />
+          </div>
+          <div>
+            <IconsContainer>
+              <FontAwesomeIcon className="font-icon" icon={faLock} />
+            </IconsContainer>
+            <Input value={password} onChange={handlePasswordChange} placeholder="Password" name="password" type="password" />
+          </div>
           <LoginButton>{ isLogin ? 'Login' : 'Register' }</LoginButton>
         </FormInputs>
         <RegisterButton onClick={handleLoginChange}>{ isLogin ? 'Register' : 'Login' }</RegisterButton>

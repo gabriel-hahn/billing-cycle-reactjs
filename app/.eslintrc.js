@@ -35,6 +35,7 @@ module.exports = {
     "prefer-destructuring": ["error", {"object": true, "array": false}],
     'import/prefer-default-export': 'off',
     'import/no-cycle': 'off',
+    'import/extensions': 'off',
     'react/prop-types': 'off',
     'react/jsx-one-expression-per-line': 'off',
     '@typescript-eslint/camelcase': 'off',

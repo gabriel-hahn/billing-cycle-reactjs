@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
@@ -17,18 +17,38 @@ export const FormContainer = styled.div`
 export const AnimationContainer = styled.div`
   background: #4D7C8A;
   flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const UpAndDownAnimation = keyframes`
+  from {
+    top: -10px;
+  }
+  to {
+    top: 10px;
+  }
+`;
+
+export const Animation = styled.div`
+  position: relative;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-name: ${UpAndDownAnimation};
 `;
 
 export const Title = styled.h3`
   color: #4D7C8A;
-  font-size: 24px;
-  font-weight: normal;
+  font-size: 34px;
+  font-weight: 600;
   margin-bottom: 15px;
 `;
 
 export const Input = styled.input`
   margin: 5px;
-  padding: 15px;
+  padding: 15px 15px 15px 40px;
   width: 300px;
   border: 1px solid #4D7C8A;
   border-radius: 5px;
@@ -75,4 +95,10 @@ export const LoginButton = styled(sharedButtonStyle)`
 export const FormInputs = styled.form`
   display: flex;
   flex-direction: column;
+`;
+
+export const IconsContainer = styled.div`
+  position: absolute;
+  margin: 20px;
+  color: #4D7C8A;
 `;
