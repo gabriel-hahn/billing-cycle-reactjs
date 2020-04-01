@@ -23,6 +23,7 @@ import {
   ContainerTable,
   DateRangeContainer,
   ActionsButton,
+  DatePicker,
 } from './styles';
 
 const TransactionTable: React.FC = () => {
@@ -84,9 +85,10 @@ const TransactionTable: React.FC = () => {
         </div>
         <DateRangeContainer>
           <DateButton onClick={handleDatePickerToggle}>Choose</DateButton>
-          <DateRangePicker open={open} onChange={handleDatePickerChange} />
+          <DatePicker>
+            <DateRangePicker open={open} onChange={handleDatePickerChange} />
+          </DatePicker>
         </DateRangeContainer>
-        <p>{dateRange.startDate} - {dateRange.endDate}</p>
       </ContainerDate>
       <ContainerTable>
         <tbody>

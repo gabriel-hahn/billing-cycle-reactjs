@@ -11,6 +11,11 @@ export const DateRangeContainer = styled.div`
   height: 100%;
 `;
 
+export const DatePicker = styled.div`
+  position: absolute;
+  box-shadow: 1.5px 1.5px 10px 0 rgba(0,0,0,0.3);
+`;
+
 export const ContainerDate = styled.div`
   display: flex;
   margin-bottom: 5px;
