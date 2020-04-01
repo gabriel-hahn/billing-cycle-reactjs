@@ -2,7 +2,7 @@ import React, { useState, useEffect, FormEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Creators as TransactionsActions } from '../../store/ducks/transactions';
-import { currentDateInputFormat } from '../../utils/date';
+import { currentDateInputFormat, toBarFormat } from '../../utils/date';
 import { CreditType, DebitType } from '../../enums/transactions';
 
 import {
@@ -60,6 +60,10 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
   const handleAddTransaction = (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
+    const localeDate = toBarFormat(transaction.date);
+
+    transaction.date = new Date(localeDate).toISOString();
+
     dispatch(transaction.id
       ? TransactionsActions.updateTransactionRequest(transaction)
       : TransactionsActions.addTransactionRequest(transaction));
@@ -111,7 +115,7 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
           <Button credit onClick={handleCreditClick}>Credit</Button>
         </ButtonsContainer>
         <ButtonsFormContainer>
-          <ButtonActions onClick={handleAddTransaction}>Add Transaction</ButtonActions>
+          <ButtonActions onClick={handleAddTransaction}>{`${transaction.id ? 'Update' : 'Add'} Transaction`}</ButtonActions>
           <ButtonActions transparent onClick={handleCloseModal}>Close</ButtonActions>
         </ButtonsFormContainer>
       </ModalContainer>

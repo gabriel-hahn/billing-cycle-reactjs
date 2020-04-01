@@ -63,3 +63,9 @@ export const getMonthDescriptionByMonth = (month: string) => {
 };
 
 export const toLocaleDateString = (date: Date) => date.toLocaleDateString(LANGUAGE);
+
+export const toBarFormat = (date: string) => {
+  const arr = date.split('-');
+
+  return `${arr[1]}/${arr[2]}/${arr[0]}`;
+};

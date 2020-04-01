@@ -28,6 +28,7 @@ export const lineChartConfig = (
 
     chart: {
       height: '25%',
+      borderRadius: 5,
     },
 
     legend: {
@@ -56,7 +57,7 @@ export const lineChartConfig = (
     responsive: {
       rules: [{
         condition: {
-          maxWidth: 500,
+          maxWidth: '90vw',
         },
         chartOptions: {
           legend: {
@@ -77,6 +78,7 @@ export const pieChartConfig = (debitsData: ChartInterface[]) => (
       plotBorderWidth: null,
       plotShadow: false,
       type: 'pie',
+      borderRadius: 5,
     },
     colors: ['#1D84B5', '#4D7C8A', '#59C9A5', '#313B72', '#388659'],
     title: {
@@ -116,6 +118,7 @@ export const barChartConfig = (transactionsData: ChartInterface[]) => (
     chart: {
       inverted: true,
       polar: false,
+      borderRadius: 5,
     },
 
     title: {

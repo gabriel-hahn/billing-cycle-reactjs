@@ -1,13 +1,16 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  margin: 2em;
+  padding: 2em;
+  max-width: 90vw;
   flex: 1;
+  display: inline-block;
 `;
 
 export const BottomContainer = styled.div`
   display: flex;
+  flex: 1;
   margin: 2em 0;
   height: 300px;
-  max-width: 98%;
+  justify-content: space-between;
 `;
