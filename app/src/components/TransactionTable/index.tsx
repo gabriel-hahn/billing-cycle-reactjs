@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { DateRangePicker, DateRange } from '@matharumanpreet00/react-daterange-picker';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMoneyBillAlt, faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 import { Creators as TransactionsActions } from '../../store/ducks/transactions';
 import { TransactionInterface, TransactionsRangeDateInterface } from '../../interfaces/transaction';
@@ -181,8 +181,10 @@ const TransactionTable: React.FC = () => {
               <td>{transaction.category}</td>
               <td>{formatCurrency(transaction.value || 0)}</td>
               <td>
-                <ActionsButton onClick={() => handleEditItem(transaction)}>Edit</ActionsButton>
-                <ActionsButton onClick={() => handleDeleteItem(transaction)}>Delete</ActionsButton>
+                <ActionsButton>
+                  <FontAwesomeIcon onClick={() => handleEditItem(transaction)} icon={faPen} />
+                  <FontAwesomeIcon onClick={() => handleDeleteItem(transaction)} icon={faTrash} />
+                </ActionsButton>
               </td>
             </tr>
           )) }

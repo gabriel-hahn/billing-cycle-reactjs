@@ -46,7 +46,7 @@ export const PaginationButton = styled(OptionButton)`
 
 export const ContainerTable = styled.table`
   background: #FFF;
-  width: 73em;
+  width: 100%;
   border-radius: 5px;
   border-collapse: collapse;
   font-size: 1em;
@@ -56,6 +56,7 @@ export const ContainerTable = styled.table`
 
     td, th {
       font-size: 1em;
+      font-weight: 100;
       border: 1px solid #ddd;
       padding: 8px;
     }
@@ -76,13 +77,32 @@ export const ContainerTable = styled.table`
     tr:hover {
       background-color: rgba(77, 124, 138, 0.3);
     }
+
+    td:nth-of-type(1) {
+      width: 50%;
+    }
+
+    td:nth-of-type(2),
+    td:nth-of-type(3) {
+      width: 15%;
+    }
+
+    td:nth-of-type(4) {
+      width: 15%;
+    }
+
+    td:nth-of-type(5) {
+      width: 5%;
+    }
   }
 `;
 
-export const ActionsButton = styled.button`
-  height: 1.5em;
-  width: 5em;
+export const ActionsButton = styled.div`
+  height: 1.2em;
+  width: 2.6em;
   font-size: 14px;
-  background-color: #FFF;
-  color: #333;
+  color: #4D7C8A;
+  display: flex;
+  cursor: pointer;
+  justify-content: space-between;
 `;

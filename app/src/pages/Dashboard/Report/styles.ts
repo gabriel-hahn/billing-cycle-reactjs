@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  padding: 2em;
+  padding: 2.25em;
   max-width: 90vw;
   flex: 1;
   display: inline-block;

@@ -56,7 +56,7 @@ const Navbar: React.FC<NavbarPropsInterface> = ({ onLogout }) => {
         >
           <Link to="report">
             <FontAwesomeIcon icon={faChartLine} />
-            <p>Report</p>
+            <p>Reports</p>
           </Link>
         </Page>
       </PagesList>
