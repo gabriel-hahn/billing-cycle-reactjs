@@ -29,6 +29,7 @@ export const LOADING_DEFAULT: TransactionLoading = {
 const INITIAL_STATE: TransactionStateInterface = {
   data: [],
   error: null,
+  currentDateRange: null,
   transactionSelected: null,
   loading: LOADING_DEFAULT,
   modalOpen: false,
@@ -39,7 +40,12 @@ export default function Transactions(state = INITIAL_STATE, action: Transactions
 
   switch (action.type) {
     case Types.GET_TRANSACTIONS_REQUEST:
-      return { ...state, loading: { ...state.loading, allLoading: true }, error: null };
+      return {
+        ...state,
+        loading: { ...state.loading, allLoading: true },
+        currentDateRange: action.payload.range,
+        error: null,
+      };
     case Types.UPDATE_TRANSACTION_REQUEST:
       return { ...state, loading: { ...state.loading, editLoading: true }, error: null };
     case Types.ADD_TRANSACTION_REQUEST:

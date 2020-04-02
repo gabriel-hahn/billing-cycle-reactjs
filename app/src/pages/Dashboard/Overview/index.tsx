@@ -43,9 +43,9 @@ const Overview = () => {
   return (
     <Container>
       <AmountContainer>
-        <Amount value={totalCredits} color="#59C9A6" description="Credits" />
-        <Amount value={totalDebits} color="#4D7C8A" description="Debits" />
-        <Amount value={currentBalance} color="#1D84B5" description="Current balance" />
+        <Amount showDate value={totalCredits} color="#59C9A6" description="Credits" />
+        <Amount showDate value={totalDebits} color="#4D7C8A" description="Debits" />
+        <Amount showDate value={currentBalance} color="#1D84B5" description="Current balance" />
         <Amount value={totalTransactions} color="#4D7C8A" description="Total" />
       </AmountContainer>
       <TransactionsContainer>
