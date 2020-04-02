@@ -103,13 +103,46 @@ const TransactionTable: React.FC = () => {
     setCurrentPage(currentPage + 1);
   };
 
+  const handleDayFilter = () => {
+    const today = toLocaleDateString(new Date());
+
+    setDateRange({
+      startDate: today,
+      endDate: today,
+    });
+  };
+
+  const handleWeekFilter = () => {
+    const today = new Date();
+    const weekAgo = new Date();
+
+    weekAgo.setDate(today.getDate() - 7);
+
+    setDateRange({
+      startDate: toLocaleDateString(weekAgo),
+      endDate: toLocaleDateString(today),
+    });
+  };
+
+  const handleMonthFilter = () => {
+    const today = new Date();
+    const monthAgo = new Date();
+
+    monthAgo.setDate(today.getMonth() - 1);
+
+    setDateRange({
+      startDate: toLocaleDateString(monthAgo),
+      endDate: toLocaleDateString(today),
+    });
+  };
+
   return (
     <Container>
       <ContainerDate>
         <DateButtonsContainer>
-          <OptionButton>Day</OptionButton>
-          <OptionButton>Week</OptionButton>
-          <OptionButton>Month</OptionButton>
+          <OptionButton onClick={handleDayFilter}>Day</OptionButton>
+          <OptionButton onClick={handleWeekFilter}>Week</OptionButton>
+          <OptionButton onClick={handleMonthFilter}>Month</OptionButton>
           <OptionButton onClick={handleDatePickerToggle}>Choose</OptionButton>
           <DatePicker>
             <DateRangePicker open={open} onChange={handleDatePickerChange} />
