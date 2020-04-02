@@ -105,4 +105,9 @@ export const ActionsButton = styled.div`
   display: flex;
   cursor: pointer;
   justify-content: space-between;
+  transition: all 0.5s;
+
+  & > :hover {
+    color: #416975;
+  }
 `;
