@@ -4,6 +4,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import Lottie, { Options } from 'react-lottie';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock, faFont } from '@fortawesome/free-solid-svg-icons';
+import { RotateSpinner } from 'react-spinners-kit';
 
 import pigAnimation from '../../config/piggy-bank.json';
 import { Creators as UsersTypes } from '../../store/ducks/users';
@@ -110,7 +111,7 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
             <Input value={password} onChange={handlePasswordChange} placeholder="Password" name="password" type="password" />
           </div>
           <LoginButton>
-            { loading ? 'Loading' : (isLogin ? 'Login' : 'Register') }
+            { loading ? <RotateSpinner size={22} color="#FFF" /> : (isLogin ? 'Login' : 'Register') }
           </LoginButton>
         </FormInputs>
         <RegisterButton onClick={handleLoginChange}>{ isLogin ? 'Register' : 'Login' }</RegisterButton>

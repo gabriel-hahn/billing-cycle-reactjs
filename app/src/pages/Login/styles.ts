@@ -86,6 +86,9 @@ export const LoginButton = styled(sharedButtonStyle)`
   padding: 12px 115px;
   border-radius: 5px;
   transition: all 0.5s;
+  display: flex;
+  justify-content: center;
+  height: 45px;
 
   &:hover {
     background: #416975;
