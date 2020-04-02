@@ -2,7 +2,11 @@ import React from 'react';
 
 import { formatCurrency } from '../../utils/currency';
 
-import { Container, Description, Value } from './styles';
+import {
+  Container,
+  Description,
+  Value,
+} from './styles';
 
 export interface AmountPropsInterface {
   description?: string;
