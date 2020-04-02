@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import Lottie, { Options } from 'react-lottie';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faLock, faFont } from '@fortawesome/free-solid-svg-icons';
 
 import pigAnimation from '../../config/piggy-bank.json';
 import { Creators as UsersTypes } from '../../store/ducks/users';
@@ -39,7 +39,7 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
   const [isLogin, setIsLogin] = useState<boolean>(true);
 
   const dispatch = useDispatch();
-  const userState = useSelector((state: StoreInterface) => state.users.data);
+  const { data: userState, loading } = useSelector((state: StoreInterface) => state.users);
 
   useEffect(() => {
     if (userState && userState.token) {
@@ -60,7 +60,7 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
   };
 
   const handleNameChange = (e: FormEvent<HTMLInputElement>) => {
-    setName(e.currentTarget.value.trim());
+    setName(e.currentTarget.value);
   };
 
   const handleEmailChange = (e: FormEvent<HTMLInputElement>) => {
@@ -89,7 +89,14 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
       <FormContainer onSubmit={handleFormSubit}>
         <Title>Welcome</Title>
         <FormInputs>
-          {!isLogin && <Input value={name} onChange={handleNameChange} placeholder="Name" name="name" />}
+          {!isLogin && (
+            <div>
+              <IconsContainer>
+                <FontAwesomeIcon className="font-icon" icon={faFont} />
+              </IconsContainer>
+              <Input value={name} onChange={handleNameChange} placeholder="Name" name="name" />
+            </div>
+            )}
           <div>
             <IconsContainer>
               <FontAwesomeIcon className="font-icon" icon={faUser} />
@@ -102,7 +109,9 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
             </IconsContainer>
             <Input value={password} onChange={handlePasswordChange} placeholder="Password" name="password" type="password" />
           </div>
-          <LoginButton>{ isLogin ? 'Login' : 'Register' }</LoginButton>
+          <LoginButton>
+            { loading ? 'Loading' : (isLogin ? 'Login' : 'Register') }
+          </LoginButton>
         </FormInputs>
         <RegisterButton onClick={handleLoginChange}>{ isLogin ? 'Register' : 'Login' }</RegisterButton>
       </FormContainer>
