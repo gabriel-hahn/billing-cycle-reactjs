@@ -37,6 +37,7 @@ module.exports = {
     'import/no-cycle': 'off',
     'import/extensions': 'off',
     'react/prop-types': 'off',
+    'react/no-array-index-key': 'off',
     'react/jsx-one-expression-per-line': 'off',
     '@typescript-eslint/camelcase': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',

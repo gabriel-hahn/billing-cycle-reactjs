@@ -1,14 +1,10 @@
 import styled from 'styled-components';
 
+import { StylePropsInterface } from './index';
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-`;
-
-export const DateRangeContainer = styled.div`
-  z-index: 1;
-  right: 10px;
-  height: 100%;
 `;
 
 export const DatePicker = styled.div`
@@ -18,11 +14,16 @@ export const DatePicker = styled.div`
 
 export const ContainerDate = styled.div`
   display: flex;
+  justify-content: space-between;
   margin-bottom: 5px;
   height: 1.8em;
 `;
 
-export const DateButton = styled.button`
+export const DateButtonsContainer = styled.div`
+
+`;
+
+export const OptionButton = styled.button`
   background: #4D7C8A;
   color: #FFF;
   border-radius: 5px;
@@ -35,6 +36,12 @@ export const DateButton = styled.button`
   &:hover {
     background: #416975;
   }
+`;
+
+export const PaginationButton = styled(OptionButton)`
+  width: 6em;
+  background: ${(props: StylePropsInterface) => (props.disabled ? '#C1CFD3' : '#4D7C8A')};
+  pointer-events: ${(props: StylePropsInterface) => (props.disabled ? 'none' : 'all')};
 `;
 
 export const ContainerTable = styled.table`

@@ -19,26 +19,44 @@ import {
 import {
   Container,
   ContainerDate,
-  DateButton,
+  OptionButton,
   ContainerTable,
-  DateRangeContainer,
+  PaginationButton,
   ActionsButton,
   DatePicker,
+  DateButtonsContainer,
 } from './styles';
+
+export interface StylePropsInterface {
+  disabled?: boolean;
+}
+
+const TRANSACTIONS_PAGE = 10;
 
 const TransactionTable: React.FC = () => {
   const [open, setOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
   const [transactions, setTransactions] = useState<TransactionInterface[]>([]);
   const [dateRange, setDateRange] = useState<TransactionsRangeDateInterface>({
     startDate: dateOneMonthBeforeFormat(),
     endDate: currentDateFormat(),
   });
 
-  const transactionsList = useSelector((state: StoreInterface) => (state.transactions.data));
+  const allTransactions = useSelector((state: StoreInterface) => (state.transactions.data));
   const dispatch = useDispatch();
+
+  const pagination = (allTransactions.length / TRANSACTIONS_PAGE);
+  const needsPagination = pagination % 1 !== 0 && pagination > 1;
 
   const handleUpdateRange = () => {
     dispatch(TransactionsActions.getTransactionsRequest(dateRange.startDate, dateRange.endDate));
+  };
+
+  const setCurrentTransactionsListByPage = () => {
+    const pageConst = currentPage * TRANSACTIONS_PAGE;
+    const transactionsList = allTransactions.slice(pageConst, pageConst + TRANSACTIONS_PAGE);
+
+    setTransactions(transactionsList);
   };
 
   useEffect(() => {
@@ -46,8 +64,8 @@ const TransactionTable: React.FC = () => {
   }, [dateRange]);
 
   useEffect(() => {
-    setTransactions(transactionsList);
-  }, [transactionsList]);
+    setCurrentTransactionsListByPage();
+  }, [allTransactions, currentPage]);
 
   const handleDatePickerChange = (date: DateRange) => {
     const startDate = date.startDate
@@ -75,20 +93,42 @@ const TransactionTable: React.FC = () => {
     dispatch(TransactionsActions.deleteTransactionRequest(transaction));
   };
 
+  const handlePreviousPageClick = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
+  const handleNextPageClick = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
   return (
     <Container>
       <ContainerDate>
-        <div>
-          <DateButton>Day</DateButton>
-          <DateButton>Week</DateButton>
-          <DateButton>Month</DateButton>
-        </div>
-        <DateRangeContainer>
-          <DateButton onClick={handleDatePickerToggle}>Choose</DateButton>
+        <DateButtonsContainer>
+          <OptionButton>Day</OptionButton>
+          <OptionButton>Week</OptionButton>
+          <OptionButton>Month</OptionButton>
+          <OptionButton onClick={handleDatePickerToggle}>Choose</OptionButton>
           <DatePicker>
             <DateRangePicker open={open} onChange={handleDatePickerChange} />
           </DatePicker>
-        </DateRangeContainer>
+        </DateButtonsContainer>
+        { needsPagination && (
+          <div>
+            <PaginationButton
+              disabled={currentPage === 0}
+              onClick={handlePreviousPageClick}
+            >
+              <p>Previous</p>
+            </PaginationButton>
+            <PaginationButton
+              disabled={Math.ceil(currentPage + 1) === Math.ceil(pagination)}
+              onClick={handleNextPageClick}
+            >
+              <p>Next</p>
+            </PaginationButton>
+          </div>
+        ) }
       </ContainerDate>
       <ContainerTable>
         <tbody>
@@ -99,8 +139,8 @@ const TransactionTable: React.FC = () => {
             <th>Value (R$)</th>
             <th />
           </tr>
-          { transactions.map(transaction => (
-            <tr key={transaction.id}>
+          { transactions.map((transaction, index) => (
+            <tr key={index}>
               <td>{transaction.description}</td>
               <td>{toLocaleDateString(new Date(transaction.date))}</td>
               <td>{transaction.category}</td>
