@@ -9,8 +9,12 @@ export const Container = styled.div`
 
 export const BottomContainer = styled.div`
   display: flex;
+  justify-content: space-between;
   flex: 1;
   margin: 2em 0;
   height: 300px;
-  justify-content: space-between;
+
+  & > :last-child {
+    margin-left: 2em;
+  }
 `;
