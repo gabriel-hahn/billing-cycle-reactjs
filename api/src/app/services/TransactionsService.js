@@ -36,6 +36,28 @@ class TransactionsService {
 
     return cashFlow;
   }
+
+  async completeCashFlow(userId) {
+    const where = {
+      user_id: userId,
+    };
+
+    const totalDebit = await Debit.findOne({
+      attributes: [
+        [Sequelize.fn('SUM', Sequelize.col('value')), 'total'],
+      ],
+      where,
+    });
+
+    const totalCredit = await Credit.findOne({
+      attributes: [
+        [Sequelize.fn('SUM', Sequelize.col('value')), 'total'],
+      ],
+      where,
+    });
+
+    return { debit: totalDebit.dataValues.total, credit: totalCredit.dataValues.total };
+  }
 }
 
 module.exports = new TransactionsService();

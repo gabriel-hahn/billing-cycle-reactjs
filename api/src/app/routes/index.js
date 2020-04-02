@@ -36,5 +36,6 @@ router.get('/credit/:id', CreditsController.show);
 router.delete('/credit/:id', CreditsController.destroy);
 
 router.get('/transactions/cashFlow', TransactionsController.cashFlow);
+router.get('/transactions/completeCashFlow', TransactionsController.completeCashFlow);
 
 module.exports = router;
