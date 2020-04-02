@@ -128,7 +128,7 @@ const TransactionTable: React.FC = () => {
     const today = new Date();
     const monthAgo = new Date();
 
-    monthAgo.setDate(today.getMonth() - 1);
+    monthAgo.setMonth(today.getMonth() - 1);
 
     setDateRange({
       startDate: toLocaleDateString(monthAgo),
