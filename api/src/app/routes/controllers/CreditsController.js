@@ -3,8 +3,9 @@ const CreditsService = require('../../services/CreditsService');
 class CreditsController {
   async index(req, res) {
     const { startDate, endDate } = req.query;
+    const { userid } = req.headers;
 
-    const credits = await CreditsService.index(startDate, endDate);
+    const credits = await CreditsService.index(startDate, endDate, userid);
 
     return res.json(credits);
   }
@@ -62,19 +63,8 @@ class CreditsController {
   }
 
   async getAllByCurrentMonth(req, res) {
-    const credits = await CreditsService.getAllByCurrentMonth();
-
-    if (credits.error) {
-      const { status, message } = credits.error;
-
-      return res.status(status).json({ message });
-    }
-
-    return res.json(credits);
-  }
-
-  async getAllRepeat(req, res) {
-    const credits = await CreditsService.getAllRepeat();
+    const { userid } = req.headers;
+    const credits = await CreditsService.getAllByCurrentMonth(userid);
 
     if (credits.error) {
       const { status, message } = credits.error;

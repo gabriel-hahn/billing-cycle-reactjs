@@ -3,8 +3,9 @@ const DebitsService = require('../../services/DebitsService');
 class DebitsController {
   async index(req, res) {
     const { startDate, endDate } = req.query;
+    const { userid } = req.headers;
 
-    const debits = await DebitsService.index(startDate, endDate);
+    const debits = await DebitsService.index(startDate, endDate, userid);
 
     return res.json(debits);
   }
@@ -62,19 +63,8 @@ class DebitsController {
   }
 
   async getAllByCurrentMonth(req, res) {
-    const debits = await DebitsService.getAllByCurrentMonth();
-
-    if (debits.error) {
-      const { status, message } = debits.error;
-
-      return res.status(status).json({ message });
-    }
-
-    return res.json(debits);
-  }
-
-  async getAllRepeat(req, res) {
-    const debits = await DebitsService.getAllRepeat();
+    const { userid } = req.headers;
+    const debits = await DebitsService.getAllByCurrentMonth(userid);
 
     if (debits.error) {
       const { status, message } = debits.error;

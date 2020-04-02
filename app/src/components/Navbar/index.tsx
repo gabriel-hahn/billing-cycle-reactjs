@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -14,11 +14,22 @@ import {
 
 import { Creators as UsersTypes } from '../../store/ducks/users';
 
+enum PageType {
+  REPORT = 'report',
+  OVERVIEW = 'overview',
+}
+
 export interface NavbarPropsInterface {
   onLogout: () => void;
 }
 
+export interface StylesProps {
+  selected: boolean;
+}
+
 const Navbar: React.FC<NavbarPropsInterface> = ({ onLogout }) => {
+  const [selected, setSelected] = useState<PageType>(PageType.OVERVIEW);
+
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -30,16 +41,22 @@ const Navbar: React.FC<NavbarPropsInterface> = ({ onLogout }) => {
   return (
     <Container>
       <PagesList>
-        <Page>
+        <Page
+          selected={selected === PageType.OVERVIEW}
+          onClick={() => setSelected(PageType.OVERVIEW)}
+        >
           <Link to="overview">
             <FontAwesomeIcon icon={faBookOpen} />
             <p>Overview</p>
           </Link>
         </Page>
-        <Page>
+        <Page
+          selected={selected === PageType.REPORT}
+          onClick={() => setSelected(PageType.REPORT)}
+        >
           <Link to="report">
             <FontAwesomeIcon icon={faChartLine} />
-            <p>Report</p>
+            <p>Reports</p>
           </Link>
         </Page>
       </PagesList>

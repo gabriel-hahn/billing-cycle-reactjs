@@ -2,7 +2,7 @@ import React, { useState, useEffect, FormEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Creators as TransactionsActions } from '../../store/ducks/transactions';
-import { currentDateInputFormat } from '../../utils/date';
+import { currentDateInputFormat, toBarFormat } from '../../utils/date';
 import { CreditType, DebitType } from '../../enums/transactions';
 
 import {
@@ -13,13 +13,10 @@ import {
   FormContainer,
   InputValue,
   InputDate,
-  InputDateRepeat,
-  InputDescription,
-  InputQuantity,
-  InputCheckbox,
   SelectType,
+  InputDescription,
   InputContainer,
-  InputCheckboxText,
+  ButtonActions,
   ButtonsFormContainer,
 } from './styles';
 import { TransactionType, TransactionInterface } from '../../interfaces/transaction';
@@ -32,16 +29,15 @@ interface TransactionModalPropsInterface {
 export interface StylesProps {
   transparent?: boolean;
   fullWidth?: boolean;
+  debit?: boolean;
+  credit?: boolean;
 }
 
 const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose }) => {
   const [transaction, setTransaction] = useState<TransactionInterface>({
-    quantity: 1,
-    repeat: false,
     type: CreditType.Others,
-    category: TransactionType.CREDIT,
+    category: TransactionType.DEBIT,
     date: currentDateInputFormat(),
-    date_repeat: currentDateInputFormat(),
   });
 
   const transactionSelected = useSelector((store: StoreInterface) => (
@@ -53,12 +49,6 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
     if (transactionSelected) {
       transactionSelected.date = currentDateInputFormat(new Date(transactionSelected.date));
 
-      if (transactionSelected.date_repeat) {
-        transactionSelected.date_repeat = currentDateInputFormat(
-          new Date(transactionSelected.date_repeat),
-        );
-      }
-
       setTransaction(transactionSelected);
     }
   }, [transactionSelected]);
@@ -69,6 +59,10 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
 
   const handleAddTransaction = (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
+
+    const localeDate = toBarFormat(transaction.date);
+
+    transaction.date = new Date(localeDate).toISOString();
 
     dispatch(transaction.id
       ? TransactionsActions.updateTransactionRequest(transaction)
@@ -102,38 +96,27 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
       <ModalContainer>
         <FormContainer>
           <InputValue value={transaction.value} onChange={handleTransactionChanged} required />
-          <InputDescription value={transaction.description} onChange={handleTransactionChanged} />
-          <SelectType value={transaction.type} onChange={handleTypeChanged}>
-            { Object.entries(transaction.category === TransactionType.CREDIT
-              ? CreditType : DebitType).map((type : [string, CreditType]) => (
-                <option key={type[1]} value={type[1]}>{type[0]}</option>
-            )) }
-          </SelectType>
+          <InputDescription
+            value={transaction.description}
+            onChange={handleTransactionChanged}
+          />
           <InputContainer>
+            <SelectType value={transaction.type} onChange={handleTypeChanged}>
+              { Object.entries(transaction.category === TransactionType.CREDIT
+                ? CreditType : DebitType).map((type : [string, CreditType]) => (
+                  <option key={type[1]} value={type[1]}>{type[0]}</option>
+              )) }
+            </SelectType>
             <InputDate value={transaction.date} onChange={handleTransactionChanged} required />
-            <InputQuantity
-              value={transaction.quantity}
-              onChange={handleTransactionChanged}
-              required
-            />
-          </InputContainer>
-          <InputContainer>
-            <InputCheckboxText>Repeat</InputCheckboxText>
-            <InputCheckbox onChange={handleTransactionChanged} />
-            <InputDateRepeat
-              disabled={!transaction.repeat}
-              value={transaction.date_repeat}
-              onChange={handleTransactionChanged}
-            />
           </InputContainer>
         </FormContainer>
         <ButtonsContainer>
-          <Button onClick={handleCreditClick}>Credit</Button>
-          <Button onClick={handleDebitClick}>Debit</Button>
+          <Button debit onClick={handleDebitClick}>Debit</Button>
+          <Button credit onClick={handleCreditClick}>Credit</Button>
         </ButtonsContainer>
         <ButtonsFormContainer>
-          <Button fullWidth onClick={handleAddTransaction}>Add Transaction</Button>
-          <Button fullWidth transparent onClick={handleCloseModal}>Close</Button>
+          <ButtonActions onClick={handleAddTransaction}>{`${transaction.id ? 'Update' : 'Add'} Transaction`}</ButtonActions>
+          <ButtonActions transparent onClick={handleCloseModal}>Close</ButtonActions>
         </ButtonsFormContainer>
       </ModalContainer>
     </Container>

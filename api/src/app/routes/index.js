@@ -4,6 +4,7 @@ const authMiddleware = require('./middleware/auth');
 const SessionController = require('./controllers/SessionController');
 const DebitsController = require('./controllers/DebitsController');
 const CreditsController = require('./controllers/CreditsController');
+const TransactionsController = require('./controllers/TransactionsController');
 
 const router = routes.Router();
 
@@ -24,7 +25,6 @@ router.get('/debits', DebitsController.index);
 router.post('/debit', DebitsController.store);
 router.put('/debit', DebitsController.update);
 router.get('/debits/allByCurrentMonth', DebitsController.getAllByCurrentMonth);
-router.get('/debits/allRepeat', DebitsController.getAllRepeat);
 router.get('/debit/:id', DebitsController.show);
 router.delete('/debit/:id', DebitsController.destroy);
 
@@ -32,8 +32,10 @@ router.get('/credits', CreditsController.index);
 router.post('/credit', CreditsController.store);
 router.put('/credit', CreditsController.update);
 router.get('/credits/allByCurrentMonth', CreditsController.getAllByCurrentMonth);
-router.get('/credits/allRepeat', CreditsController.getAllRepeat);
 router.get('/credit/:id', CreditsController.show);
 router.delete('/credit/:id', CreditsController.destroy);
+
+router.get('/transactions/cashFlow', TransactionsController.cashFlow);
+router.get('/transactions/completeCashFlow', TransactionsController.completeCashFlow);
 
 module.exports = router;

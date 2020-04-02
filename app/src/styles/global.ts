@@ -8,10 +8,12 @@ export default createGlobalStyle`
     margin: 0;
     outline: 0;
     box-sizing: border-box;
+    overflow: hidden;
   }
 
   body {
     color: #000;
+    /* font-size: 62.5%; */
     font-family: Arial, Helvetica, sans-serif;
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;

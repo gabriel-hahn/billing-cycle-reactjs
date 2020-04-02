@@ -10,7 +10,7 @@ export enum DebitType {
   Food = 'FOOD',
   Leisure = 'LEISURE',
   Services = 'SERVICES',
-  Educations = 'EDUCATIONS',
+  Education = 'EDUCATION',
   Others = 'OTHERS',
   Electronics = 'ELECTRONICS',
   Health = 'HEALTH',

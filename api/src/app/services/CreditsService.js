@@ -5,11 +5,12 @@ const order = [
 ];
 
 class CreditsService {
-  async index(startDate, endDate) {
+  async index(startDate, endDate, userId) {
     const newEndDate = new Date(endDate);
     newEndDate.setDate(newEndDate.getDate() + 1);
 
     const where = {
+      user_id: userId,
       date: {
         [Sequelize.Op.and]: {
           [Sequelize.Op.gte]: startDate,
@@ -72,27 +73,18 @@ class CreditsService {
     return creditUpdated;
   }
 
-  async getAllByCurrentMonth() {
+  async getAllByCurrentMonth(userId) {
     const currentDay = new Date();
     const firstDayCurrentMonth = new Date(currentDay.getFullYear(), currentDay.getMonth(), 1);
 
     const where = {
+      user_id: userId,
       date: {
         [Sequelize.Op.and]: {
           [Sequelize.Op.gte]: firstDayCurrentMonth,
           [Sequelize.Op.lte]: currentDay,
         },
       },
-    };
-
-    const credits = await Credit.findAll({ where, order });
-
-    return credits;
-  }
-
-  async getAllRepeat() {
-    const where = {
-      repeat: true,
     };
 
     const credits = await Credit.findAll({ where, order });

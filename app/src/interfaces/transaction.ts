@@ -5,12 +5,17 @@ export interface TransactionsRangeDateInterface {
   endDate: string;
 }
 
+export interface CashFlowInterface {
+  [key: number]: number;
+}
+
 export interface TransactionsActionsInterface {
   type: string,
   payload: {
     category?: TransactionType,
     transactions: TransactionInterface[],
     transaction?: TransactionInterface,
+    dateRange?: TransactionsRangeDateInterface,
     error?: string,
     range?: TransactionsRangeDateInterface,
   },
@@ -25,12 +30,9 @@ export interface TransactionInterface {
   id?: number;
   user_id?: number | null;
   value?: number;
-  quantity: number;
   date: string;
-  date_repeat?: string;
   type: CreditType | DebitType;
   category?: TransactionType;
-  repeat: boolean;
   description?: string;
   createdAt?: string;
   updatedAt?: string;
@@ -45,6 +47,7 @@ export interface TransactionLoading {
 
 export interface TransactionStateInterface {
   transactionSelected?: TransactionInterface | null,
+  currentDateRange?: TransactionsRangeDateInterface | null,
   data: TransactionInterface[];
   loading: TransactionLoading;
   modalOpen: boolean;

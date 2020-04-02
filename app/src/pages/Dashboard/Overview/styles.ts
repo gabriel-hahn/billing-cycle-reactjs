@@ -11,5 +11,5 @@ export const AmountContainer = styled.div`
 `;
 
 export const TransactionsContainer = styled.div`
-  margin: 1em 2em;
+  margin: 1em 2.25em;
 `;

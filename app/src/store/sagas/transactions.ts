@@ -63,7 +63,7 @@ export function* addTransaction({ payload: { transaction } }: TransactionsAction
 
       const { data } = yield call(api.post, path, addData);
 
-      data.type = transaction.category;
+      data.category = transaction.category;
 
       yield put(TransactionsActions.addTransactionSuccess(data));
     }
@@ -107,7 +107,7 @@ export function* updateTransaction({ payload: { transaction } }: TransactionsAct
       const path = transaction.category === TransactionType.CREDIT ? CREDIT_PATH : DEBIT_PATH;
       const { data } = yield call(api.put, path, transaction);
 
-      data.type = transaction.category;
+      data.category = transaction.category;
 
       yield put(TransactionsActions.updateTransactionSuccess(data));
     }

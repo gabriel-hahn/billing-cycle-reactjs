@@ -32,11 +32,15 @@ module.exports = {
     'import/extensions': [
       'error', 'never'
     ],
+    "prefer-destructuring": ["error", {"object": true, "array": false}],
     'import/prefer-default-export': 'off',
     'import/no-cycle': 'off',
     'react/prop-types': 'off',
-    'react/jsx-one-expression-per-line': 'off',
+    'import/extensions': 'off',
+    'no-nested-ternary': 'off',
+    'react/no-array-index-key': 'off',
     '@typescript-eslint/camelcase': 'off',
+    'react/jsx-one-expression-per-line': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-member-accessibility': 'off'
   },
