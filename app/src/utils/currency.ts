@@ -4,5 +4,5 @@ export const formatCurrencyWithType = (currency: number): string => (
 export const formatCurrency = (currency: number): string => {
   const currencyFixed = formatCurrencyWithType(currency);
 
-  return currencyFixed.substr(2, currencyFixed.length - 2);
+  return currencyFixed.replace('R$', '');
 };

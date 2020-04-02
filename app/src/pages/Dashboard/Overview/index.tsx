@@ -20,11 +20,15 @@ const Overview = () => {
       .filter((transaction: TransactionInterface) => transaction.category === TransactionType.DEBIT)
       .reduce((total, debit) => total + (debit.value || 0), 0)));
 
+  const currentBalance = totalCredits - totalDebits;
+
   return (
     <Container>
       <AmountContainer>
-        <Amount value={totalCredits} incoming />
-        <Amount value={totalDebits} />
+        <Amount value={totalCredits} color="#59C9A6" description="Credits" />
+        <Amount value={totalDebits} color="#4D7C8A" description="Debits" />
+        <Amount value={currentBalance} color="#1D84B5" description="Current balance" />
+        <Amount value={currentBalance} color="#4D7C8A" description="Since beginning" />
       </AmountContainer>
       <TransactionsContainer>
         <TransactionTable />

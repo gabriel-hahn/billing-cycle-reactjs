@@ -4,27 +4,27 @@ import { AmountPropsInterface } from './index';
 
 export const Container = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  position: relative;
   height: 18vh;
   width: 35em;
   border-radius: 5px;
   margin: 0.6em 1.3em;
-  background: ${(props: AmountPropsInterface) => (props.incoming ? 'rgba(89, 201, 165, 0.75)' : 'rgba(77, 124, 138, 0.3)')};
+  background: #FFF;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: ${(props: AmountPropsInterface) => (props.color)};
 `;
 
-export const Icon = styled.div`
-  color: rgba(255, 255, 255, 0.2);
-  font-size: 5.5em;
-  margin-left: 40px;
+export const Description = styled.p`
+  position: absolute;
+  top: 10px;
+  left: 10px;
 `;
 
 export const Value = styled.h2`
-  font-size: 2.5em;
+  font-size: 2.4em;
   font-weight: 100;
-  margin-right: 15%;
-  color: #2e2e2e;
 `;
 
-Icon.displayName = 'Icon';
 Value.displayName = 'Value';
