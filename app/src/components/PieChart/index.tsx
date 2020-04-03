@@ -6,7 +6,7 @@ import api from '../../services/api';
 import { pieChartConfig } from '../../config/highcharts';
 import { TransactionInterface } from '../../interfaces/transaction';
 import { ChartInterface, KeyValueNumberInterface } from '../../interfaces/charts';
-import { formatToChartNumberObject } from '../../utils/format';
+import { formatToChartNumberObject, capitalize } from '../../utils/format';
 
 const PieChart: React.FC = () => {
   let debitsFormatted: ChartInterface[];
@@ -19,7 +19,8 @@ const PieChart: React.FC = () => {
 
     debits.forEach((debit) => {
       const sumValue = totalDebits[debit.type] || 0;
-      totalDebits[debit.type] = debit.value ? (debit.value + sumValue) : 0;
+
+      totalDebits[capitalize(debit.type)] = debit.value ? (debit.value + sumValue) : 0;
     });
 
     debitsFormatted = formatToChartNumberObject(totalDebits);

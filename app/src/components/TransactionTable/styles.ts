@@ -20,8 +20,8 @@ export const ContainerDate = styled.div`
   height: 1.8em;
 `;
 
-export const DateButtonsContainer = styled.div`
-
+export const CategoryHead = styled.th`
+  text-align: end !important;
 `;
 
 export const OptionButton = styled.button`
@@ -80,7 +80,7 @@ export const ContainerTable = styled.table`
     }
 
     td:nth-of-type(1) {
-      width: 50%;
+      width: 60%;
     }
 
     td:nth-of-type(2),
@@ -88,13 +88,19 @@ export const ContainerTable = styled.table`
       width: 15%;
     }
 
-    td:nth-of-type(4) {
-      width: 15%;
-    }
-
+    td:nth-of-type(4),
     td:nth-of-type(5) {
       width: 5%;
     }
+  }
+`;
+
+export const CategoryColumn = styled.td`
+  text-align: center;
+
+  & > * {
+    font-size: 16px;
+    color: ${(props: StylePropsInterface) => (props.credit ? `${globalVariables.mainGreen}` : `${globalVariables.ligthPink}`)};
   }
 `;
 

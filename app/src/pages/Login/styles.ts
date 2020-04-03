@@ -44,7 +44,7 @@ export const Animation = styled.div`
 export const Title = styled.h3`
   color: ${globalVariables.mainBlue};
   font-size: 34px;
-  font-weight: 600;
+  font-weight: 100;
   margin-bottom: 15px;
 `;
 

@@ -26,8 +26,6 @@ export const ModalContainer = styled.div`
 
 export const InputContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  padding: 5px;
   overflow: hidden;
 `;
 
@@ -50,7 +48,9 @@ export const InputDate = styled(Input).attrs({
   placeholder: 'Date',
   name: 'date',
   type: 'date',
-})``;
+})`
+  width: 50%;
+`;
 
 export const InputDescription = styled(Input).attrs({
   placeholder: 'Description',
@@ -103,7 +103,7 @@ export const Button = styled.button.attrs({
   font-size: 16px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-  background: ${(props: StylesProps) => (props.selected && props.debit ? `${globalVariables.mainGreen}` : (props.selected && props.credit ? `${globalVariables.ligthPink}` : `${globalVariables.white}`))};
+  background: ${(props: StylesProps) => (props.selected && props.debit ? `${globalVariables.ligthPink}` : (props.selected && props.credit ? `${globalVariables.mainGreen}` : `${globalVariables.white}`))};
   color: ${(props: StylesProps) => (props.selected ? `${globalVariables.white}` : `${globalVariables.mainBlue}`)};
   transition: all 0.3s;
 `;
