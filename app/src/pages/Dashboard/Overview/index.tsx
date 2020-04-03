@@ -45,7 +45,7 @@ const Overview = () => {
     <Container>
       <AmountContainer>
         <Amount showDate value={totalCredits} color={globalVariables.mainGreen} description="Credits" />
-        <Amount showDate value={totalDebits} color={globalVariables.ligthPink} description="Debits" />
+        <Amount showDate value={totalDebits} color={globalVariables.mainPink} description="Debits" />
         <Amount showDate value={currentBalance} color={globalVariables.mainBlue} description="Current balance" />
         <Amount value={totalTransactions} color={globalVariables.mainBlue} description="Total" />
       </AmountContainer>

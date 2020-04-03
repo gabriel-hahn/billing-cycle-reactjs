@@ -16,8 +16,7 @@ export const lineChartConfig = (
     colors: [
       globalVariables.mainBlue,
       globalVariables.mainGreen,
-      globalVariables.ligthPink,
-      globalVariables.ligthBlue,
+      globalVariables.mainPink,
     ],
 
     yAxis: {
@@ -89,8 +88,7 @@ export const pieChartConfig = (debitsData: ChartInterface[]) => (
     colors: [
       globalVariables.mainBlue,
       globalVariables.mainGreen,
-      globalVariables.ligthPink,
-      globalVariables.ligthBlue,
+      globalVariables.mainPink,
     ],
     title: {
       text: 'Debits',
@@ -139,8 +137,7 @@ export const barChartConfig = (transactionsData: ChartInterface[]) => (
     colors: [
       globalVariables.mainBlue,
       globalVariables.mainGreen,
-      globalVariables.ligthPink,
-      globalVariables.ligthBlue,
+      globalVariables.mainPink,
     ],
 
     subtitle: {

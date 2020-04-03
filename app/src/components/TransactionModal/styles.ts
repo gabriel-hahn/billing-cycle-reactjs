@@ -103,7 +103,7 @@ export const Button = styled.button.attrs({
   font-size: 16px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-  background: ${(props: StylesProps) => (props.selected && props.debit ? `${globalVariables.ligthPink}` : (props.selected && props.credit ? `${globalVariables.mainGreen}` : `${globalVariables.white}`))};
+  background: ${(props: StylesProps) => (props.selected && props.debit ? `${globalVariables.mainPink}` : (props.selected && props.credit ? `${globalVariables.mainGreen}` : `${globalVariables.white}`))};
   color: ${(props: StylesProps) => (props.selected ? `${globalVariables.white}` : `${globalVariables.mainBlue}`)};
   transition: all 0.3s;
 `;

@@ -34,7 +34,7 @@ export const Page = styled.li`
     text-decoration: none;
     transition: all 0.3s;
     color: ${(props: StylesProps) => (props.selected ? `${globalVariables.white}` : `${globalVariables.navbarIcon}`)};
-    border-left: ${(props: StylesProps) => (props.selected ? `2px solid ${globalVariables.ligthBlue}` : 'none')};
+    border-left: ${(props: StylesProps) => (props.selected ? `2px solid ${globalVariables.mainGreen}` : 'none')};
 
     &:hover {
       color: ${globalVariables.white};

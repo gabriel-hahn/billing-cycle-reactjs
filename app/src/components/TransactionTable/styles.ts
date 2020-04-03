@@ -100,7 +100,7 @@ export const CategoryColumn = styled.td`
 
   & > * {
     font-size: 16px;
-    color: ${(props: StylePropsInterface) => (props.credit ? `${globalVariables.mainGreen}` : `${globalVariables.ligthPink}`)};
+    color: ${(props: StylePropsInterface) => (props.credit ? `${globalVariables.mainGreen}` : `${globalVariables.mainBlueLigthHover}`)};
   }
 `;
 

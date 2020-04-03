@@ -18,6 +18,7 @@ export const globalVariables = {
   ligthBlueHover: '#4398d9',
 
   mainPink: '#d43763',
+  mainPinkHover: '#b02c51',
   ligthPink: '#a669a2',
   ligthPinkHover: '#82527f',
 

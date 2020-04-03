@@ -13,7 +13,7 @@ export const AddTransactionContainer = styled.div`
   position: absolute;
   right: 2em;
   bottom: 2em;
-  background: ${globalVariables.ligthBlue};
+  background: ${globalVariables.mainGreen};
   height: 70px;
   width: 70px;
   border-radius: 50%;
@@ -25,7 +25,7 @@ export const AddTransactionContainer = styled.div`
   transition: all 0.3s;
 
   &:hover {
-    background: ${globalVariables.ligthBlueHover};
+    background: ${globalVariables.mainGreenHover};
     margin-bottom: 3px;
   }
 `;
