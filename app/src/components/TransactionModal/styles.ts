@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { globalVariables } from '../../styles/variables';
 import { StylesProps } from './index';
 
 export const Container = styled.form`
@@ -16,7 +17,7 @@ export const Container = styled.form`
 export const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background: #FFF;
+  background: ${globalVariables.white};
   height: 320px;
   width: 280px;
   padding: 10px;
@@ -34,14 +35,13 @@ export const Input = styled.input`
   height: 50px;
   border: 0;
   outline: 0;
-  border-bottom: 1px solid #4D7C8A;
+  border-bottom: 0.2px solid ${globalVariables.mediumGrey};
   font-size: 14px;
 `;
 
 export const InputValue = styled(Input).attrs({
-  placeholder: 'Value',
+  placeholder: '0,00',
   name: 'value',
-  type: 'number',
 })`
   margin-left: 5px;
 `;
@@ -84,10 +84,15 @@ export const ButtonActions = styled.button.attrs({
   height: 2em;
   width: inherit;
   margin-bottom: 5px;
-  background: ${(props: StylesProps) => (props.transparent ? '#FFF' : '#1D84B5')};
-  color: ${(props: StylesProps) => (props.transparent ? '#1D84B5' : '#FFF')};
+  background: ${(props: StylesProps) => (props.transparent ? `${globalVariables.white}` : `${globalVariables.mainBlue}`)};
+  color: ${(props: StylesProps) => (props.transparent ? `${globalVariables.mainBlue}` : `${globalVariables.white}`)};
   font-size: 16px;
   border-radius: 5px;
+  transition: all 0.3s;
+
+  &:hover {
+    background: ${(props: StylesProps) => (props.transparent ? `${globalVariables.white}` : `${globalVariables.mainBlueHover}`)};
+  }
 `;
 
 export const Button = styled.button.attrs({
@@ -96,9 +101,11 @@ export const Button = styled.button.attrs({
   height: 2em;
   width: 125px;
   font-size: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-  background: ${(props: StylesProps) => (props.credit ? '#96d2ba' : '#c4cfd3')};
-  color: #333;
+  background: ${(props: StylesProps) => (props.selected && props.debit ? `${globalVariables.mainGreen}` : (props.selected && props.credit ? `${globalVariables.ligthPink}` : `${globalVariables.white}`))};
+  color: ${(props: StylesProps) => (props.selected ? `${globalVariables.white}` : `${globalVariables.mainBlue}`)};
+  transition: all 0.3s;
 `;
 
 export const SelectType = styled.select.attrs({

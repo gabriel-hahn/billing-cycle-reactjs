@@ -5,6 +5,7 @@ export const globalVariables = {
   mainBlueLigth: '#8d94a8',
   mainBlueLigthHover: '#747a8a',
   mainGreen: '#67b1bd',
+  mainGreenHover: '#5797a1',
 
   ligthGrey: '#eff1f9',
   mediumGrey: '#828ba3',
@@ -18,6 +19,7 @@ export const globalVariables = {
 
   mainPink: '#d43763',
   ligthPink: '#a669a2',
+  ligthPinkHover: '#82527f',
 
   navbarIcon: '#979ebb',
 };

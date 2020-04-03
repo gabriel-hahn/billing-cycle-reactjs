@@ -19,7 +19,7 @@ export const PagesList = styled.ul`
 export const Page = styled.li`
   height: 4em;
   border: 1px solid ${globalVariables.mainBlueHover};
-  transition: all 0.5s;
+  transition: all 0.3s;
   background: ${(props: StylesProps) => (props.selected ? `${globalVariables.mainBlueHover}` : 'transparent')};
 
   &:hover {
@@ -32,7 +32,7 @@ export const Page = styled.li`
     justify-content: space-between;
     align-items: center;
     text-decoration: none;
-    transition: all 0.5s;
+    transition: all 0.3s;
     color: ${(props: StylesProps) => (props.selected ? `${globalVariables.white}` : `${globalVariables.navbarIcon}`)};
     border-left: ${(props: StylesProps) => (props.selected ? `2px solid ${globalVariables.ligthBlue}` : 'none')};
 
@@ -60,7 +60,7 @@ export const Logout = styled.button`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: all 0.5s;
+  transition: all 0.3s;
 
   &:hover {
     background: ${globalVariables.mainBlueHover};

@@ -28,11 +28,12 @@ export const OptionButton = styled.button`
   background: ${globalVariables.darkGrey};
   color: ${globalVariables.white};
   border-radius: 5px;
+  border: none;
   width: 5em;
   height: 100%;
   font-size: 1em;
   margin-right: 5px;
-  transition: all 0.5s;
+  transition: all 0.3s;
 
   &:hover {
     background: ${globalVariables.darkGreyHover};
@@ -105,7 +106,7 @@ export const ActionsButton = styled.div`
   display: flex;
   cursor: pointer;
   justify-content: space-between;
-  transition: all 0.5s;
+  transition: all 0.3s;
 
   & > :hover {
     color: ${globalVariables.mainBlueLigthHover};

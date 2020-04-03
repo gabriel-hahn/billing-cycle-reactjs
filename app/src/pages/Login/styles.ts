@@ -75,7 +75,7 @@ export const RegisterButton = styled(sharedButtonStyle)`
   color: ${globalVariables.mainBlue};
   padding: 12px 115px;
   border: none;
-  transition: all 0.5s;
+  transition: all 0.3s;
 
   &:hover {
     color: ${globalVariables.mainBlueHover};
@@ -87,7 +87,7 @@ export const LoginButton = styled(sharedButtonStyle)`
   color: ${globalVariables.white};
   padding: 12px 115px;
   border-radius: 5px;
-  transition: all 0.5s;
+  transition: all 0.3s;
   display: flex;
   justify-content: center;
   height: 45px;
