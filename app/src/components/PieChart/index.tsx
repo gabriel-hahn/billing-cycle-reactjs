@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import { RotateSpinner } from 'react-spinners-kit';
 import api from '../../services/api';
 
 import { pieChartConfig } from '../../config/highcharts';
 import { TransactionInterface } from '../../interfaces/transaction';
 import { ChartInterface, KeyValueNumberInterface } from '../../interfaces/charts';
 import { formatToChartNumberObject, capitalize } from '../../utils/format';
+import { globalVariables } from '../../styles/variables';
+
+import { Loading } from './styles';
 
 const PieChart: React.FC = () => {
   let debitsFormatted: ChartInterface[];
@@ -47,7 +51,11 @@ const PieChart: React.FC = () => {
           highcharts={Highcharts}
           options={chartOptions}
         />
-    ) : <h3>Loading</h3> }
+    ) : (
+      <Loading>
+        <RotateSpinner size={30} color={globalVariables.mainBlue} />
+      </Loading>
+      ) }
     </>
   );
 };
