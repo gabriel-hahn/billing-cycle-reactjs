@@ -1,18 +1,16 @@
 # Billing Cycle Application
 
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/gabriel-hahn/billing-cycle-reactjs/pulls) [![Bugs](https://img.shields.io/github/issues/gabriel-hahn/billing-cycle-reactjs/bug.svg)](https://github.com/gabriel-hahn/billing-cycle-reactjs/issues?utf8=?&q=is%3Aissue+is%3Aopen+label%3Abug) [![The MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](http://opensource.org/licenses/MIT)
+
 Billing Cycle application, developed to manage the money of users and showing the balance about deposit and withdrawal cash :globe_with_meridians: :moneybag:
 
 ### Colors:
 
-#313B72 - Deep Koamaru
-
-#1D84B5 - Cyan Cornflower Blue
-
-#59C9A5 - Medium Aquamarine
-
-#388659 - Sea Green
-
-#4D7C8A - Teal Blue
+- ![#eff1f9](https://placehold.it/15/eff1f9/000000?text=+) `#eff1f9`
+- ![#383f53](https://placehold.it/15/383f53/000000?text=+) `#383f53`
+- ![#67b1bd](https://placehold.it/15/67b1bd/000000?text=+) `#67b1bd`
+- ![#d43763](https://placehold.it/15/d43763/000000?text=+) `#d43763`
+- ![#4aa7ee](https://placehold.it/15/4aa7ee/000000?text=+) `#4aa7ee`
 
 ## Contributing
 
