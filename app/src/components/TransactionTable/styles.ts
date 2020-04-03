@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { globalVariables } from '../../styles/variables';
 import { StylePropsInterface } from './index';
 
 export const Container = styled.div`
@@ -24,8 +25,8 @@ export const DateButtonsContainer = styled.div`
 `;
 
 export const OptionButton = styled.button`
-  background: #4D7C8A;
-  color: #FFF;
+  background: ${globalVariables.darkGrey};
+  color: ${globalVariables.white};
   border-radius: 5px;
   width: 5em;
   height: 100%;
@@ -34,18 +35,18 @@ export const OptionButton = styled.button`
   transition: all 0.5s;
 
   &:hover {
-    background: #416975;
+    background: ${globalVariables.darkGreyHover};
   }
 `;
 
 export const PaginationButton = styled(OptionButton)`
   width: 6em;
-  background: ${(props: StylePropsInterface) => (props.disabled ? '#C1CFD3' : '#4D7C8A')};
+  background: ${(props: StylePropsInterface) => (props.disabled ? `${globalVariables.darkGrey}` : `${globalVariables.darkGrey}`)};
   pointer-events: ${(props: StylePropsInterface) => (props.disabled ? 'none' : 'all')};
 `;
 
 export const ContainerTable = styled.table`
-  background: #FFF;
+  background: ${globalVariables.white};
   width: 100%;
   border-radius: 5px;
   border-collapse: collapse;
@@ -59,23 +60,22 @@ export const ContainerTable = styled.table`
       font-weight: 100;
       border: 1px solid #ddd;
       padding: 8px;
+      color: #171717;
+      height: 12px;
     }
 
     th {
-      padding-top: 12px;
-      padding-bottom: 12px;
-      max-height: 12px;
       text-align: left;
-      background-color: #4D7C8A;
+      background-color: ${globalVariables.darkGrey};
       color: white;
     }
 
     tr:nth-child(even){
-      background-color: #f2f2f2;
+      background-color: ${globalVariables.ligthGrey};
     }
 
     tr:hover {
-      background-color: rgba(77, 124, 138, 0.3);
+      background-color: #dbdbdb;
     }
 
     td:nth-of-type(1) {
@@ -101,13 +101,13 @@ export const ActionsButton = styled.div`
   height: 1.2em;
   width: 2.6em;
   font-size: 14px;
-  color: #4D7C8A;
+  color: ${globalVariables.mainBlueLigth};
   display: flex;
   cursor: pointer;
   justify-content: space-between;
   transition: all 0.5s;
 
   & > :hover {
-    color: #416975;
+    color: ${globalVariables.mainBlueLigthHover};
   }
 `;

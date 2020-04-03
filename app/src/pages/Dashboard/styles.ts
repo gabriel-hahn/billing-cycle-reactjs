@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
+import { globalVariables } from '../../styles/variables';
+
 export const Container = styled.div`
   display: flex;
   height: 100vh;
-  background: #F4F4F4;
+  background: ${globalVariables.ligthGrey};
   position: relative;
 `;
 
@@ -11,7 +13,7 @@ export const AddTransactionContainer = styled.div`
   position: absolute;
   right: 2em;
   bottom: 2em;
-  background: #1D84B5;
+  background: ${globalVariables.ligthBlue};
   height: 70px;
   width: 70px;
   border-radius: 50%;
@@ -20,11 +22,11 @@ export const AddTransactionContainer = styled.div`
   align-items: center;
   cursor: pointer;
   box-shadow: 1.5px 1.5px 10px 0 rgba(0,0,0,0.3);
-  transition: all 0.5s;
+  transition: all 0.3s;
 
   &:hover {
-    background: #17729C;
-    margin-bottom: 4px;
+    background: ${globalVariables.ligthBlueHover};
+    margin-bottom: 3px;
   }
 `;
 
@@ -32,7 +34,7 @@ export const PlusText = styled.p`
   &::before {
     content: "+";
     font-size: 40px;
-    color: #FFF;
+    color: ${globalVariables.white};
   }
 `;
 

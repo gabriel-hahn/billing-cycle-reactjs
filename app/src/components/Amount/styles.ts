@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { globalVariables } from '../../styles/variables';
 import { AmountPropsInterface } from './index';
 
 export const Container = styled.div`
@@ -12,7 +13,7 @@ export const Container = styled.div`
   width: 35em;
   border-radius: 5px;
   margin: 0.6em 1.3em;
-  background: #FFF;
+  background: ${globalVariables.white};
   border: 1px solid rgba(0, 0, 0, 0.1);
   color: ${(props: AmountPropsInterface) => (props.color)};
 `;

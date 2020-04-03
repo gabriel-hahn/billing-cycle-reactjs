@@ -1,12 +1,14 @@
 import styled, { keyframes } from 'styled-components';
 
+import { globalVariables } from '../../styles/variables';
+
 export const Container = styled.div`
   display: flex;
   height: 100%;
 `;
 
 export const FormContainer = styled.div`
-  background: #FFF;
+  background: ${globalVariables.white};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,7 +17,7 @@ export const FormContainer = styled.div`
 `;
 
 export const AnimationContainer = styled.div`
-  background: #4D7C8A;
+  background: ${globalVariables.mainBlue};
   flex: 1;
   display: flex;
   justify-content: center;
@@ -40,7 +42,7 @@ export const Animation = styled.div`
 `;
 
 export const Title = styled.h3`
-  color: #4D7C8A;
+  color: ${globalVariables.mainBlue};
   font-size: 34px;
   font-weight: 600;
   margin-bottom: 15px;
@@ -50,12 +52,12 @@ export const Input = styled.input`
   margin: 5px;
   padding: 15px 15px 15px 40px;
   width: 300px;
-  border: 1px solid #4D7C8A;
+  border: 1px solid ${globalVariables.mainBlue};
   border-radius: 5px;
   font-size: 14px;
 
   &::-webkit-input-placeholder {
-    color: #4D7C8A;
+    color: ${globalVariables.mainBlue};
     font-size: 14px;
   }
 `;
@@ -69,20 +71,20 @@ const sharedButtonStyle = styled.button`
 `;
 
 export const RegisterButton = styled(sharedButtonStyle)`
-  background: #FFF;
-  color: #4D7C8A;
+  background: ${globalVariables.white};
+  color: ${globalVariables.mainBlue};
   padding: 12px 115px;
   border: none;
   transition: all 0.5s;
 
   &:hover {
-    color: #416975;
+    color: ${globalVariables.mainBlueHover};
   }
 `;
 
 export const LoginButton = styled(sharedButtonStyle)`
-  background: #4D7C8A;
-  color: #FFF;
+  background: ${globalVariables.mainBlue};
+  color: ${globalVariables.white};
   padding: 12px 115px;
   border-radius: 5px;
   transition: all 0.5s;
@@ -91,7 +93,7 @@ export const LoginButton = styled(sharedButtonStyle)`
   height: 45px;
 
   &:hover {
-    background: #416975;
+    background: ${globalVariables.mainBlueHover};
   }
 `;
 
@@ -103,5 +105,5 @@ export const FormInputs = styled.form`
 export const IconsContainer = styled.div`
   position: absolute;
   margin: 20px;
-  color: #4D7C8A;
+  color: ${globalVariables.mainBlue};
 `;

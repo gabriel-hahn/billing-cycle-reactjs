@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import api from '../../../services/api';
 
 import { StoreInterface } from '../../../interfaces/store';
+import { globalVariables } from '../../../styles/variables';
 
 import Amount from '../../../components/Amount';
 import TransactionTable from '../../../components/TransactionTable';
@@ -43,10 +44,10 @@ const Overview = () => {
   return (
     <Container>
       <AmountContainer>
-        <Amount showDate value={totalCredits} color="#59C9A6" description="Credits" />
-        <Amount showDate value={totalDebits} color="#4D7C8A" description="Debits" />
-        <Amount showDate value={currentBalance} color="#1D84B5" description="Current balance" />
-        <Amount value={totalTransactions} color="#4D7C8A" description="Total" />
+        <Amount showDate value={totalCredits} color={globalVariables.mainGreen} description="Credits" />
+        <Amount showDate value={totalDebits} color={globalVariables.ligthPink} description="Debits" />
+        <Amount showDate value={currentBalance} color={globalVariables.mainBlue} description="Current balance" />
+        <Amount value={totalTransactions} color={globalVariables.mainBlue} description="Total" />
       </AmountContainer>
       <TransactionsContainer>
         <TransactionTable />

@@ -1,4 +1,5 @@
 import { ChartInterface } from '../interfaces/charts';
+import { globalVariables } from '../styles/variables';
 
 export const lineChartConfig = (
       creditsData: ChartInterface[], debitsData: ChartInterface[],
@@ -12,7 +13,12 @@ export const lineChartConfig = (
         text: 'Last 3 months',
     },
 
-    colors: ['#1D84B5', '#4D7C8A', '#59C9A5', '#313B72', '#388659'],
+    colors: [
+      globalVariables.mainBlue,
+      globalVariables.mainGreen,
+      globalVariables.ligthPink,
+      globalVariables.ligthBlue,
+    ],
 
     yAxis: {
       title: {
@@ -80,7 +86,12 @@ export const pieChartConfig = (debitsData: ChartInterface[]) => (
       type: 'pie',
       borderRadius: 5,
     },
-    colors: ['#1D84B5', '#4D7C8A', '#59C9A5', '#313B72', '#388659'],
+    colors: [
+      globalVariables.mainBlue,
+      globalVariables.mainGreen,
+      globalVariables.ligthPink,
+      globalVariables.ligthBlue,
+    ],
     title: {
       text: 'Debits',
     },
@@ -125,7 +136,12 @@ export const barChartConfig = (transactionsData: ChartInterface[]) => (
       text: 'Cash flow',
     },
 
-    colors: ['#1D84B5', '#4D7C8A', '#59C9A5', '#313B72', '#388659'],
+    colors: [
+      globalVariables.mainBlue,
+      globalVariables.mainGreen,
+      globalVariables.ligthPink,
+      globalVariables.ligthBlue,
+    ],
 
     subtitle: {
       text: 'Last 3 months',
