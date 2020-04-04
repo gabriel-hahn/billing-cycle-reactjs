@@ -7,9 +7,11 @@ import { faBookOpen, faChartLine, faSignOutAlt } from '@fortawesome/free-solid-s
 
 import {
   Container,
-  PagesList,
   Page,
   Logout,
+  PagesList,
+  SandwichIconContainer,
+  SmallNavBarContainer,
 } from './styles';
 
 import { Creators as UsersTypes } from '../../store/ducks/users';
@@ -24,10 +26,12 @@ export interface NavbarPropsInterface {
 }
 
 export interface StylesProps {
-  selected: boolean;
+  selected?: boolean;
+  sandwichClicked?: boolean;
 }
 
 const Navbar: React.FC<NavbarPropsInterface> = ({ onLogout }) => {
+  const [sandwichClicked, setSandwichClicked] = useState<boolean>(true);
   const [selected, setSelected] = useState<PageType>(PageType.OVERVIEW);
 
   const dispatch = useDispatch();
@@ -38,8 +42,19 @@ const Navbar: React.FC<NavbarPropsInterface> = ({ onLogout }) => {
     onLogout();
   };
 
+  const toggleSandwichMenu = () => {
+    setSandwichClicked(!sandwichClicked);
+  };
+
   return (
     <Container>
+      <SmallNavBarContainer onClick={toggleSandwichMenu}>
+        <SandwichIconContainer sandwichClicked={sandwichClicked}>
+          <span />
+          <span />
+          <span />
+        </SandwichIconContainer>
+      </SmallNavBarContainer>
       <PagesList>
         <Page
           selected={selected === PageType.OVERVIEW}
