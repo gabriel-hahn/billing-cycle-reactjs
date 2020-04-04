@@ -1,11 +1,16 @@
 import styled from 'styled-components';
 
-import { globalVariables } from '../../styles/variables';
+import { globalVariables, device } from '../../styles/variables';
 import { StylePropsInterface } from './index';
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+
+  @media ${device.mobileG} {
+    width: 15em;
+    height: 33vh;
+  }
 `;
 
 export const DatePicker = styled.div`
@@ -18,6 +23,10 @@ export const ContainerDate = styled.div`
   justify-content: space-between;
   margin-bottom: 5px;
   height: 1.8em;
+
+  @media ${device.laptop} {
+    margin-bottom: unset;
+  }
 `;
 
 export const CategoryHead = styled.th`
@@ -37,6 +46,16 @@ export const OptionButton = styled.button`
 
   &:hover {
     background: ${globalVariables.darkGreyHover};
+  }
+
+  @media ${device.laptop} {
+    height: 80%;
+    font-size: 0.9em;
+  }
+
+  @media ${device.tabletG} {
+    height: 70%;
+    font-size: 0.8em;
   }
 `;
 
@@ -63,6 +82,20 @@ export const ContainerTable = styled.table`
       padding: 8px;
       color: #171717;
       height: 12px;
+
+      @media ${device.laptopL} {
+        padding: 7px;
+      }
+
+      @media ${device.laptop} {
+        padding: 6px;
+        font-size: 0.8em;
+      }
+
+      @media ${device.tabletG} {
+        padding: 5.2px;
+        font-size: 0.65em;
+      }
     }
 
     th {

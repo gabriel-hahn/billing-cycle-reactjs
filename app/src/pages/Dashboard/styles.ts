@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { globalVariables } from '../../styles/variables';
+import { globalVariables, device } from '../../styles/variables';
 
 export const Container = styled.div`
   display: flex;
@@ -28,6 +28,24 @@ export const AddTransactionContainer = styled.div`
     background: ${globalVariables.mainGreenHover};
     margin-bottom: 3px;
   }
+
+  @media ${device.laptop} {
+    height: 60px;
+    width: 60px;
+  }
+
+  @media ${device.tabletG} {
+    height: 50px;
+    width: 50px;
+  }
+
+  @media ${device.mobileG} {
+    height: 40px;
+    width: 40px;
+
+    right: 1.5em;
+    bottom: 1.5em;
+  }
 `;
 
 export const PlusText = styled.p`
@@ -35,6 +53,14 @@ export const PlusText = styled.p`
     content: "+";
     font-size: 40px;
     color: ${globalVariables.white};
+
+    @media ${device.mobileG} {
+      font-size: 35px;
+    }
+
+    @media ${device.mobileG} {
+      font-size: 30px;
+    }
   }
 `;
 

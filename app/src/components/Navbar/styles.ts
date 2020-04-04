@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { globalVariables } from '../../styles/variables';
+import { globalVariables, device } from '../../styles/variables';
 import { StylesProps } from './index';
 
 export const Container = styled.div`
@@ -9,7 +9,11 @@ export const Container = styled.div`
   justify-content: space-between;
   min-width: 200px;
   background: ${globalVariables.mainBlue};
-  color: ${globalVariables.white}
+  color: ${globalVariables.white};
+
+  @media ${device.laptop} {
+    min-width: 150px;
+  }
 `;
 
 export const PagesList = styled.ul`
@@ -43,6 +47,15 @@ export const Page = styled.li`
     p {
       font-size: 1.2em;
       margin-right: 35px;
+
+      @media ${device.laptop} {
+        font-size: 1em;
+        margin-right: 20px;
+      }
+
+      @media ${device.tablet} {
+        font-size: 0.85em;
+      }
     }
 
     svg {
@@ -70,6 +83,15 @@ export const Logout = styled.button`
   p {
     font-size: 1.9em;
     margin-right: 35px;
+
+    @media ${device.laptop} {
+      font-size: 1.6em;
+      margin-right: 20px;
+    }
+
+    @media ${device.tablet} {
+      font-size: 1.4em;
+    }
   }
 
   svg {
