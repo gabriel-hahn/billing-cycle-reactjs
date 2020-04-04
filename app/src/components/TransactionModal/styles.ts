@@ -114,9 +114,9 @@ export const SelectType = styled.select.attrs({
   height: 50px;
   flex: 1;
   margin-right: 10px;
-  background: #FFF;
+  background: ${globalVariables.white};
   border: 0;
   outline: 0;
-  border-bottom: 1px solid #4D7C8A;
+  border-bottom: 1px solid ${globalVariables.mainGreen};
   font-size: 14px;
 `;
