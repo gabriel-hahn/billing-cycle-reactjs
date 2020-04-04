@@ -8,7 +8,7 @@ export const Container = styled.div`
   flex-direction: column;
 
   @media ${device.mobileG} {
-    width: 15em;
+    width: 20em;
     height: 33vh;
   }
 `;
@@ -26,6 +26,10 @@ export const ContainerDate = styled.div`
 
   @media ${device.laptop} {
     margin-bottom: unset;
+  }
+
+  @media ${device.mobileG} {
+    display: none;
   }
 `;
 
@@ -71,6 +75,10 @@ export const ContainerTable = styled.table`
   border-radius: 5px;
   border-collapse: collapse;
   font-size: 1em;
+
+  @media ${device.mobileG} {
+    margin-bottom: 2em;
+  }
 
   tbody {
     max-height: 45vh;

@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
+import { device } from './variables';
 import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
 
 export default createGlobalStyle`
@@ -9,6 +10,10 @@ export default createGlobalStyle`
     outline: 0;
     box-sizing: border-box;
     overflow: hidden;
+
+    @media ${device.mobileLM} {
+      overflow-y: visible;
+    }
   }
 
   body {

@@ -7,6 +7,10 @@ export const Container = styled.div`
   height: 100vh;
   background: ${globalVariables.ligthGrey};
   position: relative;
+
+  @media ${device.mobileG} {
+    height: 55em;
+  }
 `;
 
 export const AddTransactionContainer = styled.div`
@@ -35,16 +39,18 @@ export const AddTransactionContainer = styled.div`
   }
 
   @media ${device.tabletG} {
-    height: 50px;
-    width: 50px;
+    height: 55px;
+    width: 55px;
   }
 
   @media ${device.mobileG} {
-    height: 40px;
-    width: 40px;
+    height: 50px;
+    width: 50px;
 
-    right: 1.5em;
-    bottom: 1.5em;
+    right: 0.9em;
+    bottom: 0.9em;
+
+    position: fixed;
   }
 `;
 

@@ -14,6 +14,10 @@ export const Container = styled.div`
   @media ${device.laptop} {
     min-width: 150px;
   }
+
+  @media ${device.mobileM} {
+    opacity: 0;
+  }
 `;
 
 export const PagesList = styled.ul`

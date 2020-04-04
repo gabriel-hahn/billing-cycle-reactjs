@@ -26,8 +26,12 @@ export const Container = styled.div`
   }
 
   @media ${device.mobileG} {
-    width: 15em;
-    height: 33vh;
+    width: 22em;
+    height: 22vh;
+  }
+
+  @media ${device.mobileLL} {
+    width: 13em;
   }
 `;
 
@@ -76,12 +80,8 @@ export const Value = styled.h2`
     font-size: 1.2em;
   }
 
-  @media ${device.tablet} {
-    font-size: 1.1em;
-  }
-
   @media ${device.mobileG} {
-    font-size: 1.2em;
+    font-size: 1.8em;
     margin-top: 14px;
   }
 `;
