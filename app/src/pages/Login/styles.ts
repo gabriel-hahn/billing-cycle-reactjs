@@ -1,10 +1,16 @@
 import styled, { keyframes } from 'styled-components';
 
-import { globalVariables } from '../../styles/variables';
+import { globalVariables, device } from '../../styles/variables';
 
 export const Container = styled.div`
   display: flex;
   height: 100%;
+
+  @media ${device.mobileL} {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const FormContainer = styled.div`
@@ -14,6 +20,10 @@ export const FormContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex: 1;
+
+  @media ${device.mobileL} {
+    flex: none;
+  }
 `;
 
 export const AnimationContainer = styled.div`
@@ -22,6 +32,17 @@ export const AnimationContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media ${device.mobileL} {
+    flex: none;
+    justify-content: center;
+    align-items: flex-end;
+    background: ${globalVariables.white};
+  }
+
+  @media ${device.mobileL} {
+    margin-bottom: 20px;
+  }
 `;
 
 const UpAndDownAnimation = keyframes`
@@ -39,6 +60,16 @@ export const Animation = styled.div`
   animation-iteration-count: infinite;
   animation-direction: alternate;
   animation-name: ${UpAndDownAnimation};
+  height: auto;
+  width: 55%;
+
+  @media ${device.tabletG} {
+    width: 65%;
+  }
+
+  @media ${device.mobileL} {
+    width: 55%;
+  }
 `;
 
 export const Title = styled.h3`
@@ -46,6 +77,14 @@ export const Title = styled.h3`
   font-size: 34px;
   font-weight: 100;
   margin-bottom: 15px;
+
+  @media ${device.tablet} {
+    font-size: 30px;
+  }
+
+  @media ${device.mobileL} {
+    display: none;
+  }
 `;
 
 export const Input = styled.input`
@@ -60,6 +99,16 @@ export const Input = styled.input`
     color: ${globalVariables.mainBlue};
     font-size: 14px;
   }
+
+  @media ${device.tablet} {
+    font-size: 12px;
+    width: 220px;
+    padding: 12px 12px 12px 40px;
+
+    &::-webkit-input-placeholder {
+      font-size: 12px;
+    }
+  }
 `;
 
 const sharedButtonStyle = styled.button`
@@ -68,6 +117,13 @@ const sharedButtonStyle = styled.button`
   display: inline-block;
   max-width: 300px;
   margin: 5px;
+
+  @media ${device.tablet} {
+    max-width: 220px;
+    font-size: 12px;
+    padding: 5px 0;
+    height: 40px;
+  }
 `;
 
 export const RegisterButton = styled(sharedButtonStyle)`
@@ -79,6 +135,10 @@ export const RegisterButton = styled(sharedButtonStyle)`
 
   &:hover {
     color: ${globalVariables.mainBlueHover};
+  }
+
+  @media ${device.mobileL} {
+    height: unset;
   }
 `;
 
@@ -100,10 +160,18 @@ export const LoginButton = styled(sharedButtonStyle)`
 export const FormInputs = styled.form`
   display: flex;
   flex-direction: column;
+
+  @media ${device.tablet} {
+    width: 230px;
+  }
 `;
 
 export const IconsContainer = styled.div`
   position: absolute;
   margin: 20px;
   color: ${globalVariables.mainBlue};
+
+  @media ${device.tablet} {
+    margin: 16.5px;
+  }
 `;
