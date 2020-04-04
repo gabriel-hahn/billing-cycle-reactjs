@@ -103,7 +103,7 @@ export const Input = styled.input`
   @media ${device.tablet} {
     font-size: 12px;
     width: 220px;
-    padding: 12px 12px 12px 40px;
+    padding: 10px 10px 10px 40px;
 
     &::-webkit-input-placeholder {
       font-size: 12px;
