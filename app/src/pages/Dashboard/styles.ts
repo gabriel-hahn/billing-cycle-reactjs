@@ -27,6 +27,7 @@ export const AddTransactionContainer = styled.div`
   cursor: pointer;
   box-shadow: 1.5px 1.5px 10px 0 rgba(0,0,0,0.3);
   transition: all 0.3s;
+  z-index: 2;
 
   &:hover {
     background: ${globalVariables.mainGreenHover};

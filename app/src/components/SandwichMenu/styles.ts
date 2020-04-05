@@ -46,6 +46,7 @@ export const SmallNavBarContainer = styled.div`
   border-radius: 50%;
   background: ${globalVariables.mainBlue};
   box-shadow: 1.5px 1.5px 10px 0 rgba(0,0,0,0.3);
+  z-index: 2;
 
   @media ${device.mobileM} {
     display: flex;

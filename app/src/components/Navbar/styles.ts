@@ -1,7 +1,16 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import { globalVariables, device } from '../../styles/variables';
 import { StylesProps } from './index';
+
+const fadeFromSide = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
 
 export const Container = styled.div`
   display: flex;
@@ -17,6 +26,11 @@ export const Container = styled.div`
 
   @media ${device.mobileM} {
     display: ${(props: StylesProps) => (props.sandwichMenuSelected ? 'flex' : 'none')};
+    width: 60px;
+    min-width: 60px;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation: ${fadeFromSide} 0.3s;
   }
 `;
 
