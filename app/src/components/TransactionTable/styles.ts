@@ -10,6 +10,9 @@ export const Container = styled.div`
   @media ${device.mobileG} {
     width: 20em;
     height: 33vh;
+    margin: 0 0.8em;
+    display: flex;
+    align-items: center;
   }
 `;
 
@@ -77,7 +80,7 @@ export const ContainerTable = styled.table`
   font-size: 1em;
 
   @media ${device.mobileG} {
-    margin-bottom: 2em;
+    display: none;
   }
 
   tbody {
@@ -158,4 +161,53 @@ export const ActionsButton = styled.div`
   & > :hover {
     color: ${globalVariables.mainBlueLigthHover};
   }
+`;
+
+export const SmallTableContainer = styled.div`
+  background-color: ${globalVariables.white};
+  width: 13em;
+  border-radius: 5px;
+  border: 1px solid rgba(0,0,0,0.1);
+  display: none;
+  margin: 0 0.8em 1em;
+
+  @media ${device.mobileG} {
+    display: block;
+  }
+`;
+
+export const SmallTableText = styled.p`
+  font-size: 14px;
+  margin: 10px;
+  height: 20px;
+  text-align: center;
+  color: #3e3e3e;
+`;
+
+export const SmallTableItemContainer = styled.div`
+  margin-left: 5px;
+`;
+
+export const SmallTableItem = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 0 8px 10px 8px;
+`;
+
+export const SmallTableDescription = styled.p`
+  color: ${globalVariables.fontGrayColor};
+  font-size: 14px;;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 120px;
+`;
+
+export const SmallTableDate = styled.p`
+  color: ${globalVariables.fontGrayColor};
+  font-size: 10px;
+`;
+
+export const SmallTableCurrency = styled.p`
+  color: ${globalVariables.fontGrayColor};
+  font-size: 12px;
 `;

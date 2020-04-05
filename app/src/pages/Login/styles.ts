@@ -32,6 +32,7 @@ export const AnimationContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-y: hidden;
 
   @media ${device.mobileL} {
     flex: none;

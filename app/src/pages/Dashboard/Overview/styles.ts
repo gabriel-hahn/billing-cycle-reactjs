@@ -23,6 +23,8 @@ export const TransactionsContainer = styled.div`
   margin: 1em 2.25em;
 
   @media ${device.mobileG} {
-    margin: 0em 2.25em 2em 2.25em;
+    margin: 0 0.7em 2em;
+    display: flex;
+    overflow-y: hidden;
   }
 `;

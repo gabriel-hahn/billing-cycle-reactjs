@@ -26,7 +26,7 @@ export const Container = styled.div`
   }
 
   @media ${device.mobileG} {
-    width: 22em;
+    width: 30em;
     height: 22vh;
   }
 

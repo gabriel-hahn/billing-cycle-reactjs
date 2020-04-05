@@ -33,6 +33,13 @@ import {
   DatePicker,
   CategoryColumn,
   CategoryHead,
+  SmallTableContainer,
+  SmallTableItem,
+  SmallTableText,
+  SmallTableCurrency,
+  SmallTableDate,
+  SmallTableItemContainer,
+  SmallTableDescription,
 } from './styles';
 
 export interface StylePropsInterface {
@@ -202,6 +209,20 @@ const TransactionTable: React.FC = () => {
           )) }
         </tbody>
       </ContainerTable>
+      <SmallTableContainer>
+        <SmallTableText>Last transactions</SmallTableText>
+        <SmallTableItemContainer>
+          { transactions.map((transaction, index) => (
+            <SmallTableItem key={index}>
+              <div>
+                <SmallTableDescription>{transaction.description}</SmallTableDescription>
+                <SmallTableDate>{toLocaleDateString(new Date(transaction.date))}</SmallTableDate>
+              </div>
+              <SmallTableCurrency>{formatCurrency(transaction.value || 0)}</SmallTableCurrency>
+            </SmallTableItem>
+          )) }
+        </SmallTableItemContainer>
+      </SmallTableContainer>
     </Container>
   );
 };
