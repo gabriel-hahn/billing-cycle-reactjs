@@ -38,7 +38,15 @@ class SessionController {
   }
 
   async resetSuccess(req, res) {
+    const user = await SessionService.updateUserPassword(req.body);
 
+    if (user.error) {
+      const { status, message } = user.error;
+
+      return res.status(status).json({ message });
+    }
+
+    return res.json(user);
   }
 }
 
