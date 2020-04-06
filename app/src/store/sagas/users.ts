@@ -80,3 +80,32 @@ export function* logout() {
     }));
   }
 }
+
+export function* resetPasswordRequest({ payload }: UserActionInterface) {
+  try {
+    const { email, password, tempToken } = payload.user;
+
+    const { data } = yield call(api.post, '/resetSuccess', { email, password, tempToken });
+
+    const user: UserInterface = {
+      name: data.user.name,
+      email: data.user.email,
+      id: data.user.id,
+      token: data.token,
+    };
+
+    localStorage.setItem('@bc:user', JSON.stringify(user));
+
+    yield put(UsersActions.loginSuccess(user));
+  } catch (err) {
+    yield put(UsersActions.loginError('Error on reset password'));
+    yield put(toastrActions.add({
+      type: 'error',
+      title: 'Password reset failed',
+      message: err.response.data.message,
+      options: {
+        timeOut: 4000,
+      },
+    }));
+  }
+}

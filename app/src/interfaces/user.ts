@@ -4,6 +4,7 @@ export interface UserInterface {
   email: string;
   password?: string;
   token?: string;
+  tempToken?: string | undefined;
 }
 
 export interface UserActionInterface {
