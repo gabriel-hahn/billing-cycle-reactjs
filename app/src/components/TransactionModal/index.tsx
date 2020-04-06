@@ -31,6 +31,7 @@ export interface StylesProps {
   fullWidth?: boolean;
   debit?: boolean;
   credit?: boolean;
+  selected?: boolean;
 }
 
 const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose }) => {
@@ -111,8 +112,20 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
           </InputContainer>
         </FormContainer>
         <ButtonsContainer>
-          <Button debit onClick={handleDebitClick}>Debit</Button>
-          <Button credit onClick={handleCreditClick}>Credit</Button>
+          <Button
+            selected={transaction.category === TransactionType.DEBIT}
+            onClick={handleDebitClick}
+            debit
+          >
+            Debit
+          </Button>
+          <Button
+            selected={transaction.category === TransactionType.CREDIT}
+            onClick={handleCreditClick}
+            credit
+          >
+            Credit
+          </Button>
         </ButtonsContainer>
         <ButtonsFormContainer>
           <ButtonActions onClick={handleAddTransaction}>{`${transaction.id ? 'Update' : 'Add'} Transaction`}</ButtonActions>

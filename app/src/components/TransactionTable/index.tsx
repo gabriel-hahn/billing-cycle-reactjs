@@ -2,10 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { DateRangePicker, DateRange } from '@matharumanpreet00/react-daterange-picker';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPen,
+  faTrash,
+  faHandHoldingUsd,
+  faReceipt,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { Creators as TransactionsActions } from '../../store/ducks/transactions';
-import { TransactionInterface, TransactionsRangeDateInterface } from '../../interfaces/transaction';
+import { TransactionInterface, TransactionsRangeDateInterface, TransactionType } from '../../interfaces/transaction';
 import { StoreInterface } from '../../interfaces/store';
 
 import {
@@ -26,11 +31,20 @@ import {
   PaginationButton,
   ActionsButton,
   DatePicker,
-  DateButtonsContainer,
+  CategoryColumn,
+  CategoryHead,
+  SmallTableContainer,
+  SmallTableItem,
+  SmallTableText,
+  SmallTableCurrency,
+  SmallTableDate,
+  SmallTableItemContainer,
+  SmallTableDescription,
 } from './styles';
 
 export interface StylePropsInterface {
   disabled?: boolean;
+  credit?: boolean;
 }
 
 const TRANSACTIONS_PAGE = 10;
@@ -139,7 +153,7 @@ const TransactionTable: React.FC = () => {
   return (
     <Container>
       <ContainerDate>
-        <DateButtonsContainer>
+        <div>
           <OptionButton onClick={handleDayFilter}>Day</OptionButton>
           <OptionButton onClick={handleWeekFilter}>Week</OptionButton>
           <OptionButton onClick={handleMonthFilter}>Month</OptionButton>
@@ -147,7 +161,7 @@ const TransactionTable: React.FC = () => {
           <DatePicker>
             <DateRangePicker open={open} onChange={handleDatePickerChange} />
           </DatePicker>
-        </DateButtonsContainer>
+        </div>
         { needsPagination && (
           <div>
             <PaginationButton
@@ -170,16 +184,21 @@ const TransactionTable: React.FC = () => {
           <tr>
             <th>Description</th>
             <th>Date</th>
+            <CategoryHead>Value (R$)</CategoryHead>
             <th>Category</th>
-            <th>Value (R$)</th>
             <th />
           </tr>
           { transactions.map((transaction, index) => (
             <tr key={index}>
               <td>{transaction.description}</td>
               <td>{toLocaleDateString(new Date(transaction.date))}</td>
-              <td>{transaction.category}</td>
-              <td>{formatCurrency(transaction.value || 0)}</td>
+              <td align="right">{formatCurrency(transaction.value || 0)}</td>
+              <CategoryColumn credit={transaction.category === TransactionType.CREDIT}>
+                { transaction.category === TransactionType.CREDIT ? (
+                  <FontAwesomeIcon title="Credit" icon={faHandHoldingUsd} />) : (
+                    <FontAwesomeIcon title="Debit" icon={faReceipt} />)
+                }
+              </CategoryColumn>
               <td>
                 <ActionsButton>
                   <FontAwesomeIcon onClick={() => handleEditItem(transaction)} icon={faPen} />
@@ -190,6 +209,20 @@ const TransactionTable: React.FC = () => {
           )) }
         </tbody>
       </ContainerTable>
+      <SmallTableContainer>
+        <SmallTableText>Last transactions</SmallTableText>
+        <SmallTableItemContainer>
+          { transactions.map((transaction, index) => (
+            <SmallTableItem key={index}>
+              <div>
+                <SmallTableDescription>{transaction.description}</SmallTableDescription>
+                <SmallTableDate>{toLocaleDateString(new Date(transaction.date))}</SmallTableDate>
+              </div>
+              <SmallTableCurrency>{formatCurrency(transaction.value || 0)}</SmallTableCurrency>
+            </SmallTableItem>
+          )) }
+        </SmallTableItemContainer>
+      </SmallTableContainer>
     </Container>
   );
 };

@@ -22,3 +22,10 @@ export const formatToChartStringObject = (transactions: KeyValueStringInterface)
     y: itemArr[1] ? +itemArr[1] : 0,
     name: itemArr[0],
   })));
+
+export const capitalize = (str: string) => {
+  const firstLetter = str.toLowerCase().charAt(0).toUpperCase();
+  const strCapitalized = str.toLowerCase().slice(1);
+
+  return firstLetter.concat(strCapitalized);
+}

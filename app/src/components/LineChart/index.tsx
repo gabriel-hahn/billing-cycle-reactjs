@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import { RotateSpinner } from 'react-spinners-kit';
 import api from '../../services/api';
 
 import { lineChartConfig } from '../../config/highcharts';
@@ -8,6 +9,9 @@ import { currentDateFormat, dateThreeMonthBefore } from '../../utils/date';
 import { formatToChartDateObject } from '../../utils/format';
 import { TransactionInterface } from '../../interfaces/transaction';
 import { ChartInterface, KeyValueNumberInterface } from '../../interfaces/charts';
+import { globalVariables } from '../../styles/variables';
+
+import { Loading } from './styles';
 
 const LineChart: React.FC = () => {
   let debitsFormatted: ChartInterface[];
@@ -59,7 +63,11 @@ const LineChart: React.FC = () => {
           highcharts={Highcharts}
           options={chartOptions}
         />
-    ) : <h3>Loading</h3> }
+    ) : (
+      <Loading>
+        <RotateSpinner size={30} color={globalVariables.mainBlue} />
+      </Loading>
+      ) }
     </>
   );
 };

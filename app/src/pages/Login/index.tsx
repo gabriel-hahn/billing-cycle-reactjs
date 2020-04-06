@@ -82,8 +82,6 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
         <Animation>
           <Lottie
             options={defaultOptions}
-            height={400}
-            width={400}
           />
         </Animation>
       </AnimationContainer>

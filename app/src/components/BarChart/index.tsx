@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import { RotateSpinner } from 'react-spinners-kit';
 import api from '../../services/api';
 
 import { CashFlowInterface } from '../../interfaces/transaction';
@@ -8,6 +9,9 @@ import { getMonthDescriptionByMonth } from '../../utils/date';
 import { barChartConfig } from '../../config/highcharts';
 import { KeyValueStringInterface, ChartInterface } from '../../interfaces/charts';
 import { formatToChartStringObject } from '../../utils/format';
+import { globalVariables } from '../../styles/variables';
+
+import { Loading } from './styles';
 
 const BarChart: React.FC = () => {
   let cashFlowFormatted: ChartInterface[];
@@ -44,7 +48,11 @@ const BarChart: React.FC = () => {
           highcharts={Highcharts}
           options={chartOptions}
         />
-    ) : <h3>Loading</h3> }
+    ) : (
+      <Loading>
+        <RotateSpinner size={30} color={globalVariables.mainBlue} />
+      </Loading>
+      ) }
     </>
   );
 };

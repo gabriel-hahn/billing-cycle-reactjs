@@ -1,25 +1,49 @@
 import styled, { keyframes } from 'styled-components';
 
+import { globalVariables, device } from '../../styles/variables';
+
 export const Container = styled.div`
   display: flex;
   height: 100%;
+
+  @media ${device.mobileL} {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const FormContainer = styled.div`
-  background: #FFF;
+  background: ${globalVariables.white};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   flex: 1;
+
+  @media ${device.mobileL} {
+    flex: none;
+  }
 `;
 
 export const AnimationContainer = styled.div`
-  background: #4D7C8A;
+  background: ${globalVariables.mainBlue};
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-y: hidden;
+
+  @media ${device.mobileL} {
+    flex: none;
+    justify-content: center;
+    align-items: flex-end;
+    background: ${globalVariables.white};
+  }
+
+  @media ${device.mobileL} {
+    margin-bottom: 20px;
+  }
 `;
 
 const UpAndDownAnimation = keyframes`
@@ -37,26 +61,54 @@ export const Animation = styled.div`
   animation-iteration-count: infinite;
   animation-direction: alternate;
   animation-name: ${UpAndDownAnimation};
+  height: auto;
+  width: 55%;
+
+  @media ${device.tabletG} {
+    width: 65%;
+  }
+
+  @media ${device.mobileL} {
+    width: 55%;
+  }
 `;
 
 export const Title = styled.h3`
-  color: #4D7C8A;
+  color: ${globalVariables.mainBlue};
   font-size: 34px;
-  font-weight: 600;
+  font-weight: 100;
   margin-bottom: 15px;
+
+  @media ${device.tablet} {
+    font-size: 30px;
+  }
+
+  @media ${device.mobileL} {
+    display: none;
+  }
 `;
 
 export const Input = styled.input`
   margin: 5px;
   padding: 15px 15px 15px 40px;
   width: 300px;
-  border: 1px solid #4D7C8A;
+  border: 1px solid ${globalVariables.mainBlue};
   border-radius: 5px;
   font-size: 14px;
 
   &::-webkit-input-placeholder {
-    color: #4D7C8A;
+    color: ${globalVariables.mainBlue};
     font-size: 14px;
+  }
+
+  @media ${device.tablet} {
+    font-size: 12px;
+    width: 220px;
+    padding: 10px 10px 10px 40px;
+
+    &::-webkit-input-placeholder {
+      font-size: 12px;
+    }
   }
 `;
 
@@ -66,42 +118,61 @@ const sharedButtonStyle = styled.button`
   display: inline-block;
   max-width: 300px;
   margin: 5px;
+
+  @media ${device.tablet} {
+    max-width: 220px;
+    font-size: 12px;
+    padding: 5px 0;
+    height: 40px;
+  }
 `;
 
 export const RegisterButton = styled(sharedButtonStyle)`
-  background: #FFF;
-  color: #4D7C8A;
+  background: ${globalVariables.white};
+  color: ${globalVariables.mainBlue};
   padding: 12px 115px;
   border: none;
-  transition: all 0.5s;
+  transition: all 0.3s;
 
   &:hover {
-    color: #416975;
+    color: ${globalVariables.mainBlueHover};
+  }
+
+  @media ${device.mobileL} {
+    height: unset;
   }
 `;
 
 export const LoginButton = styled(sharedButtonStyle)`
-  background: #4D7C8A;
-  color: #FFF;
+  background: ${globalVariables.mainBlue};
+  color: ${globalVariables.white};
   padding: 12px 115px;
   border-radius: 5px;
-  transition: all 0.5s;
+  transition: all 0.3s;
   display: flex;
   justify-content: center;
   height: 45px;
 
   &:hover {
-    background: #416975;
+    background: ${globalVariables.mainBlueHover};
   }
 `;
 
 export const FormInputs = styled.form`
   display: flex;
   flex-direction: column;
+
+  @media ${device.tablet} {
+    width: 230px;
+  }
 `;
 
 export const IconsContainer = styled.div`
   position: absolute;
   margin: 20px;
-  color: #4D7C8A;
+  color: ${globalVariables.mainBlue};
+
+  @media ${device.tablet} {
+    margin: 16.5px;
+  }
 `;
