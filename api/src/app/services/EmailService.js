@@ -13,7 +13,7 @@ class EmailService {
 
       <p>Hi! To reset the password of your ConMoney account, please access the following link and set the new password:</p>
 
-      <a href="${process.env.APP_DOMAIN}/reset/${newHash}">Create a new password</a>
+      <a href="${process.env.APP_DOMAIN}/reset-password/${newHash}">Create a new password</a>
 
       <br />
 

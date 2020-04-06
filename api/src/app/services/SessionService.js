@@ -60,7 +60,7 @@ class SessionService {
 
     await user.save();
 
-    return { status: 200, message: 'Password changed successfully' };
+    return { user, token: user.generateToken() };
   }
 }
 
