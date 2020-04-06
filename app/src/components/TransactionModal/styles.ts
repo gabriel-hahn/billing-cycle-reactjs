@@ -6,7 +6,7 @@ import { StylesProps } from './index';
 export const Container = styled.form`
   position: absolute;
   background: rgba(0, 0, 0, 0.55);
-  height: 100vh;
+  height: 100%;
   width: 100%;
   z-index: 2;
   display: flex;

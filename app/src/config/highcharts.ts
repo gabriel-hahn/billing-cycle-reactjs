@@ -32,7 +32,6 @@ export const lineChartConfig = (
     },
 
     chart: {
-      height: '25%',
       borderRadius: 5,
     },
 
