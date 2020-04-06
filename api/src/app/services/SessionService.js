@@ -1,3 +1,4 @@
+const EmailService = require('./EmailService');
 const { User } = require('../../database/models');
 
 class SessionService {
@@ -25,6 +26,23 @@ class SessionService {
     }
 
     return { user, token: user.generateToken() };
+  }
+
+  async resetPasswordRequest({ email }) {
+    const user = await User.findOne({ where: { email } });
+
+    if (!user) {
+      return { error: { status: 404, message: 'User not found' } };
+    }
+
+    const randomPassword = Math.random().toString(36).substring(2);
+    user.password = randomPassword;
+
+    await user.save();
+
+    await EmailService.sendResetPassword(email, randomPassword);
+
+    return { status: 200, message: 'Please, check your email and set a new password for your account' };
   }
 }
 
