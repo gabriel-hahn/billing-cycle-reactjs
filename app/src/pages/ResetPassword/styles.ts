@@ -20,7 +20,6 @@ export const FormContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex: 1;
-  position: relative;
 
   @media ${device.mobileL} {
     flex: none;
@@ -89,16 +88,6 @@ export const Title = styled.h3`
   }
 `;
 
-export const ResetTitle = styled.h3`
-  color: ${globalVariables.mainBlue};
-  font-size: 18px;
-  font-weight: 100;
-
-  @media ${device.tablet} {
-    font-size: 22px;
-  }
-`;
-
 export const Input = styled.input`
   margin: 5px;
   padding: 15px 15px 15px 40px;
@@ -138,28 +127,10 @@ const sharedButtonStyle = styled.button`
   }
 `;
 
-export const RegisterButton = styled(sharedButtonStyle)`
-  background: ${globalVariables.white};
-  color: ${globalVariables.mainBlue};
-  padding: 8px 115px;
-  border: none;
-  transition: all 0.3s;
-  margin: 0;
-  font-size: 12px;
-
-  &:hover {
-    color: ${globalVariables.mainBlueHover};
-  }
-
-  @media ${device.mobileL} {
-    height: unset;
-  }
-`;
-
 export const LoginButton = styled(sharedButtonStyle)`
   background: ${globalVariables.mainBlue};
   color: ${globalVariables.white};
-  padding: 12px 115px;
+  padding: 12px 15px;
   border-radius: 5px;
   transition: all 0.3s;
   display: flex;
@@ -187,25 +158,5 @@ export const IconsContainer = styled.div`
 
   @media ${device.tablet} {
     margin: 16.5px;
-  }
-`;
-
-export const ForgotButton = styled(sharedButtonStyle)`
-  background: ${globalVariables.white};
-  color: ${globalVariables.mainBlue};
-  padding: 8px 15px;
-  border: none;
-  transition: all 0.3s;
-  margin: 0;
-  position: absolute;
-  bottom: 20px;
-  text-transform: unset;
-
-  &:hover {
-    color: ${globalVariables.mainBlueHover};
-  }
-
-  @media ${device.mobileL} {
-    height: unset;
   }
 `;

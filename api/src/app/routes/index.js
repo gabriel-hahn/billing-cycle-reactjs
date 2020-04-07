@@ -15,6 +15,9 @@ router.get('/healthycheck', (req, res) => {
 router.post('/user', SessionController.create);
 router.post('/sessions', SessionController.store);
 
+router.post('/reset', SessionController.resetPassword);
+router.post('/resetSuccess', SessionController.resetSuccess);
+
 router.use(authMiddleware);
 
 router.get('/overview', (req, res) => {

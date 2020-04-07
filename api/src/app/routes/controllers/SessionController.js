@@ -24,6 +24,30 @@ class SessionController {
 
     return res.json(user);
   }
+
+  async resetPassword(req, res) {
+    const user = await SessionService.resetPasswordRequest(req.body);
+
+    if (user.error) {
+      const { status, message } = user.error;
+
+      return res.status(status).json({ message });
+    }
+
+    return res.json(user);
+  }
+
+  async resetSuccess(req, res) {
+    const user = await SessionService.updateUserPassword(req.body);
+
+    if (user.error) {
+      const { status, message } = user.error;
+
+      return res.status(status).json({ message });
+    }
+
+    return res.json(user);
+  }
 }
 
 module.exports = new SessionController();

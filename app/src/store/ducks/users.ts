@@ -1,4 +1,8 @@
-import { UserStateInterface, UserInterface, UserActionInterface } from '../../interfaces/user';
+import {
+  UserStateInterface,
+  UserInterface,
+  UserActionInterface,
+} from '../../interfaces/user';
 
 export const Types = {
   REGISTER_REQUEST: '@users/REGISTER_REQUEST',
@@ -7,6 +11,7 @@ export const Types = {
   LOGIN_ERROR: '@users/LOGIN_ERROR',
   LOGOUT_REQUEST: '@users/LOGOUT_REQUEST',
   LOGOUT_SUCCESS: '@users/LOGOUT_SUCCESS',
+  RESET_PASSWORD_REQUEST: '@users/RESET_PASSWORD_REQUEST',
 };
 
 const userDataParser = (): UserInterface | null => {
@@ -25,6 +30,7 @@ export default function Users(state = INITIAL_STATE, action: UserActionInterface
   switch (action.type) {
     case Types.LOGIN_REQUEST:
     case Types.REGISTER_REQUEST:
+    case Types.RESET_PASSWORD_REQUEST:
       return { ...state, loading: true, error: null };
     case Types.LOGIN_SUCCESS:
       return {
@@ -45,6 +51,10 @@ export default function Users(state = INITIAL_STATE, action: UserActionInterface
 export const Creators = {
   loginRequest: (user: UserInterface) => ({
     type: Types.LOGIN_REQUEST,
+    payload: { user },
+  }),
+  resetPasswordRequest: (user: UserInterface) => ({
+    type: Types.RESET_PASSWORD_REQUEST,
     payload: { user },
   }),
   registerRequest: (user: UserInterface) => ({ type: Types.REGISTER_REQUEST, payload: { user } }),
