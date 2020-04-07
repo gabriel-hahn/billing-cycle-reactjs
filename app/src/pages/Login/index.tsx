@@ -5,6 +5,7 @@ import Lottie, { Options } from 'react-lottie';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock, faFont } from '@fortawesome/free-solid-svg-icons';
 import { RotateSpinner } from 'react-spinners-kit';
+import api from '../../services/api';
 
 import pigAnimation from '../../config/piggy-bank.json';
 import { Creators as UsersTypes } from '../../store/ducks/users';
@@ -20,6 +21,8 @@ import {
   LoginButton,
   RegisterButton,
   IconsContainer,
+  ForgotButton,
+  ResetTitle,
 } from './styles';
 import { UserInterface } from '../../interfaces/user';
 import { StoreInterface } from '../../interfaces/store';
@@ -38,6 +41,8 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [isLogin, setIsLogin] = useState<boolean>(true);
+  const [isForgotPassword, setIsForgotPassword] = useState<boolean>(false);
+  const [isForgotRequest, setIsForgotRequest] = useState<boolean>(false);
 
   const dispatch = useDispatch();
   const { data: userState, loading } = useSelector((state: StoreInterface) => state.users);
@@ -51,13 +56,17 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
   const handleFormSubit = (e: FormEvent<HTMLDivElement>) => {
     e.preventDefault();
 
-    const user: UserInterface = {
-      email,
-      password,
-      name,
-    };
+    if (isForgotPassword) {
+      setIsForgotRequest(true);
 
-    dispatch(isLogin ? UsersTypes.loginRequest(user) : UsersTypes.registerRequest(user));
+      api.post('/reset', { email });
+    } else {
+      const user: UserInterface = { email, password, name };
+
+      dispatch(isLogin
+        ? UsersTypes.loginRequest(user)
+        : UsersTypes.registerRequest(user));
+    }
   };
 
   const handleNameChange = (e: FormEvent<HTMLInputElement>) => {
@@ -74,6 +83,12 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
 
   const handleLoginChange = () => {
     setIsLogin(!isLogin);
+    setIsForgotPassword(false);
+  };
+
+  const handleForgotPassword = () => {
+    setIsForgotPassword(!isForgotPassword);
+    setIsLogin(isForgotPassword);
   };
 
   return (
@@ -86,9 +101,12 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
         </Animation>
       </AnimationContainer>
       <FormContainer onSubmit={handleFormSubit}>
-        <Title>Welcome</Title>
+        <Title>{isLogin || !isForgotPassword ? 'Welcome' : 'Password reset' }</Title>
+        { isForgotRequest && !loading && (
+          <ResetTitle>Please, check your e-mail and set the new password.</ResetTitle>
+        ) }
         <FormInputs>
-          {!isLogin && (
+          {!isLogin && !isForgotPassword && !isForgotRequest && (
             <div>
               <IconsContainer>
                 <FontAwesomeIcon className="font-icon" icon={faFont} />
@@ -96,23 +114,34 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
               <Input value={name} onChange={handleNameChange} placeholder="Name" name="name" />
             </div>
             )}
-          <div>
-            <IconsContainer>
-              <FontAwesomeIcon className="font-icon" icon={faUser} />
-            </IconsContainer>
-            <Input value={email} onChange={handleEmailChange} placeholder="E-mail" name="email" />
-          </div>
-          <div>
-            <IconsContainer>
-              <FontAwesomeIcon className="font-icon" icon={faLock} />
-            </IconsContainer>
-            <Input value={password} onChange={handlePasswordChange} placeholder="Password" name="password" type="password" />
-          </div>
-          <LoginButton>
-            { loading ? <RotateSpinner size={22} color="#FFF" /> : (isLogin ? 'Login' : 'Register') }
-          </LoginButton>
+          { !isForgotRequest && (
+            <div>
+              <IconsContainer>
+                <FontAwesomeIcon className="font-icon" icon={faUser} />
+              </IconsContainer>
+              <Input value={email} onChange={handleEmailChange} placeholder="E-mail" name="email" />
+            </div>
+          )}
+          { !isForgotPassword && !isForgotRequest && (
+            <div>
+              <IconsContainer>
+                <FontAwesomeIcon className="font-icon" icon={faLock} />
+              </IconsContainer>
+              <Input value={password} onChange={handlePasswordChange} placeholder="Password" name="password" type="password" />
+            </div>
+          )}
+          { !isForgotRequest && (
+            <LoginButton>
+              { loading ? <RotateSpinner size={22} color="#FFF" /> : (isLogin ? 'Login' : (isForgotPassword ? 'Reset' : 'Register')) }
+            </LoginButton>
+          ) }
         </FormInputs>
-        <RegisterButton onClick={handleLoginChange}>{ isLogin ? 'Register' : 'Login' }</RegisterButton>
+        { !isForgotRequest && (
+          <>
+            <RegisterButton onClick={handleLoginChange}>{ isLogin ? 'Register' : 'Login' }</RegisterButton>
+            <ForgotButton onClick={handleForgotPassword}>Forgot password?</ForgotButton>
+          </>
+        )}
       </FormContainer>
     </Container>
   );
