@@ -89,6 +89,7 @@ export const ButtonActions = styled.button.attrs({
   font-size: 16px;
   border-radius: 5px;
   transition: all 0.3s;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 
   &:hover {
     background: ${(props: StylesProps) => (props.transparent ? `${globalVariables.white}` : `${globalVariables.mainBlueHover}`)};
