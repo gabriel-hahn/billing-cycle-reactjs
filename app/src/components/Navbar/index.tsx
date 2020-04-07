@@ -3,7 +3,12 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBookOpen, faChartLine, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import {
+  faBookOpen,
+  faChartLine,
+  faSignOutAlt,
+  faCog,
+} from '@fortawesome/free-solid-svg-icons';
 
 import {
   Container,
@@ -19,6 +24,7 @@ import SandwichMenu from '../SandwichMenu';
 enum PageType {
   REPORT = 'report',
   OVERVIEW = 'overview',
+  SETTINGS = 'settings',
 }
 
 export interface NavbarPropsInterface {
@@ -67,6 +73,15 @@ const Navbar: React.FC<NavbarPropsInterface> = ({ onLogout }) => {
             <Link to="report">
               <FontAwesomeIcon icon={faChartLine} />
               <p>Reports</p>
+            </Link>
+          </Page>
+          <Page
+            selected={selected === PageType.SETTINGS}
+            onClick={() => setSelected(PageType.SETTINGS)}
+          >
+            <Link to="settings">
+              <FontAwesomeIcon icon={faCog} />
+              <p>Settings</p>
             </Link>
           </Page>
         </PagesList>
