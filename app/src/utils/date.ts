@@ -1,11 +1,11 @@
-import store from '../store';
+import { getSettings } from './settings';
 
 const MONTH = 30;
 const THREE_MONTHS = 90;
 const offset = new Date().getTimezoneOffset();
 
 export const getLanguageState = () => {
-  const { dateFormat } = store.getState().settings.data;
+  const { dateFormat } = getSettings();
 
   return dateFormat;
 };

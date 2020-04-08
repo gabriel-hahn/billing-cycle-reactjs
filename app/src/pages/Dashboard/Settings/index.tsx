@@ -1,10 +1,8 @@
 import React, { useEffect, useState, FormEvent } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 
-import { Creators as SettingsActions } from '../../../store/ducks/settings';
-import { StoreInterface } from '../../../interfaces/store';
-import { CurrencyType, DateFormatType } from '../../../enums/settings';
 import { SettingInterface } from '../../../interfaces/settings';
+import { CurrencyType, DateFormatType } from '../../../enums/settings';
+import { getSettings, saveSettings } from '../../../utils/settings';
 
 import {
   Container,
@@ -15,24 +13,22 @@ import {
 } from './styles';
 
 const Settings = () => {
-  const dispatch = useDispatch();
-  const { data: settingsData } = useSelector((state: StoreInterface) => state.settings);
+  const settings = getSettings();
 
-  const [currency, setCurrency] = useState<CurrencyType>(settingsData.currency);
-  const [dateFormat, setDateFormat] = useState<DateFormatType>(settingsData.dateFormat);
+  const [currency, setCurrency] = useState<CurrencyType>(settings.currency);
+  const [dateFormat, setDateFormat] = useState<DateFormatType>(settings.dateFormat);
 
   const handleSettingsAutoSave = () => {
     const newSettings: SettingInterface = {
-      id: settingsData.id,
-      dateFormat: dateFormat || DateFormatType.EN,
-      currency: currency || CurrencyType.DOLAR,
+      dateFormat,
+      currency,
     };
 
-    dispatch(SettingsActions.settingsUpdateRequest(newSettings));
+    saveSettings(newSettings);
   };
 
   useEffect(() => {
-    if ((settingsData.currency !== currency) || (settingsData.dateFormat !== dateFormat)) {
+    if ((settings.currency !== currency) || (settings.dateFormat !== dateFormat)) {
       handleSettingsAutoSave();
     }
   }, [currency, dateFormat]);
