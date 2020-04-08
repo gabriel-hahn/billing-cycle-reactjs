@@ -1,8 +1,16 @@
-const LANGUAGE = 'en-EN';
+import store from '../store';
+import { DateFormatType } from '../enums/settings';
+
 const MONTH = 30;
 const THREE_MONTHS = 90;
 
 const offset = new Date().getTimezoneOffset();
+
+export const getLanguageState = () => {
+  const languageDateFormat: DateFormatType = store.getState().settings.data.dateFormat;
+
+  return languageDateFormat;
+};
 
 export const currentDateInputFormat = (date?: Date) => {
   let dateFormat = date;
@@ -16,7 +24,12 @@ export const currentDateInputFormat = (date?: Date) => {
   return dateFormat.toISOString().split('T')[0];
 };
 
-export const currentDateFormat = (): string => new Date().toLocaleDateString(LANGUAGE);
+export const currentDateFormat = () => {
+  const date = new Date().toLocaleDateString(getLanguageState());
+
+  return date;
+};
+
 export const currentDate = (): Date => new Date();
 
 export const dateOneMonthBefore = (): Date => {
@@ -40,7 +53,7 @@ export const dateOneMonthBeforeFormat = (): string => {
 
   date.setDate(date.getDate() - MONTH);
 
-  return date.toLocaleDateString(LANGUAGE);
+  return date.toLocaleDateString(getLanguageState());
 };
 
 export const getMonthDescriptionByMonth = (month: string) => {
@@ -62,7 +75,7 @@ export const getMonthDescriptionByMonth = (month: string) => {
   return months[parseInt(month, 10)];
 };
 
-export const toLocaleDateString = (date: Date) => date.toLocaleDateString(LANGUAGE);
+export const toLocaleDateString = (date: Date) => date.toLocaleDateString(getLanguageState());
 
 export const toBarFormat = (date: string) => {
   const arr = date.split('-');

@@ -5,6 +5,6 @@ export enum CurrencyType {
 }
 
 export enum DateFormatType {
-  EN = 'mm/dd/YYYY',
-  PT = 'dd/mm/YYYY',
+  EN = 'EN',
+  PT = 'PT',
 }

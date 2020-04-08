@@ -28,4 +28,4 @@ export const capitalize = (str: string) => {
   const strCapitalized = str.toLowerCase().slice(1);
 
   return firstLetter.concat(strCapitalized);
-}
+};

@@ -33,7 +33,7 @@ export default function Settings(state = INITIAL_STATE, action: SettingActionInt
         ...state,
         loading: false,
         error: null,
-        data: action.payload.setting,
+        data: { ...action.payload.setting },
       };
     case Types.SETTINGS_ERROR:
       return { ...state, loading: false, error: action.payload.error };
@@ -43,10 +43,7 @@ export default function Settings(state = INITIAL_STATE, action: SettingActionInt
 }
 
 export const Creators = {
-  settingsRequest: (setting: SettingInterface) => ({
-    type: Types.SETTINGS_REQUEST,
-    payload: { setting },
-  }),
+  settingsRequest: () => ({ type: Types.SETTINGS_REQUEST }),
   settingsUpdateRequest: (setting: SettingInterface) => ({
     type: Types.SETTINGS_UPDATE_REQUEST,
     payload: { setting },
