@@ -4,6 +4,7 @@ const authMiddleware = require('./middleware/auth');
 const SessionController = require('./controllers/SessionController');
 const DebitsController = require('./controllers/DebitsController');
 const CreditsController = require('./controllers/CreditsController');
+const SettingsController = require('./controllers/SettingsController');
 const TransactionsController = require('./controllers/TransactionsController');
 
 const router = routes.Router();
@@ -40,5 +41,8 @@ router.delete('/credit/:id', CreditsController.destroy);
 
 router.get('/transactions/cashFlow', TransactionsController.cashFlow);
 router.get('/transactions/completeCashFlow', TransactionsController.completeCashFlow);
+
+router.get('/settings', SettingsController.show);
+router.put('/settings', SettingsController.update);
 
 module.exports = router;
