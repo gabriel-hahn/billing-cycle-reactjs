@@ -16,7 +16,8 @@ class SettingsController {
   }
 
   async update(req, res) {
-    const settings = await SettingsService.update(req.body);
+    const { userid } = req.headers;
+    const settings = await SettingsService.update(req.body, userid);
 
     if (settings.error) {
       const { status, message } = settings.error;

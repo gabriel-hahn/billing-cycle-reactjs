@@ -10,21 +10,25 @@ class DebitsService {
 
     const setting = await Setting.findOne({ where });
 
-    if (!setting) {
-      return { error: { status: 404, message: 'Settings not found!' } };
-    }
-
-    return setting;
+    return !setting ? [] : setting;
   }
 
-  async update(newSetting) {
-    const setting = await Setting.findByPk(newSetting.id);
+  async update(newSetting, userId) {
+    const newSettings = { ...newSetting, user_id: userId, date_format: newSetting.dateFormat };
+
+    if (!newSettings.id) {
+      const savedSettings = await Setting.create(newSettings);
+
+      return savedSettings;
+    }
+
+    const setting = await Setting.findByPk(newSettings.id);
 
     if (!setting) {
       return { error: { status: 404, message: 'Settings does not exist!' } };
     }
 
-    const settingsUpdated = await setting.update(newSetting);
+    const settingsUpdated = await setting.update(newSettings);
 
     return settingsUpdated;
   }
