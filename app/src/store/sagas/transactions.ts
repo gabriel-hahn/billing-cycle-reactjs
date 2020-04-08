@@ -17,6 +17,7 @@ export function* loadAllByDate({ payload: { range, category } }: TransactionsAct
   try {
     const startDate = range ? range.startDate : dateOneMonthBeforeFormat();
     const endDate = range ? range.endDate : currentDateFormat();
+
     let transactions: TransactionInterface[] = [];
 
     if (category) {

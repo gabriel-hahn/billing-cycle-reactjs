@@ -3,13 +3,14 @@ import { useSelector } from 'react-redux';
 import { RotateSpinner } from 'react-spinners-kit';
 
 import { formatCurrency } from '../../utils/currency';
+import { toLocaleDateString } from '../../utils/date';
 import { globalVariables } from '../../styles/variables';
 
 import {
   Container,
   Description,
   Value,
-  Date,
+  DateItem,
 } from './styles';
 import { StoreInterface } from '../../interfaces/store';
 
@@ -29,6 +30,8 @@ const Amount: React.FC<AmountPropsInterface> = ({
   showDate,
 }) => {
   const dateRange = useSelector((state: StoreInterface) => state.transactions.currentDateRange);
+  const startDate = dateRange ? toLocaleDateString(new Date(dateRange.startDate)) : null;
+  const endDate = dateRange ? toLocaleDateString(new Date(dateRange.endDate)) : null;
 
   return (
     <Container value={value} color={color}>
@@ -43,9 +46,9 @@ const Amount: React.FC<AmountPropsInterface> = ({
             {formatCurrency(value)}
           </Value>
           { showDate && dateRange && (
-            <Date>
-              {dateRange.startDate} - {dateRange.endDate}
-            </Date>
+            <DateItem>
+              {startDate} - {endDate}
+            </DateItem>
           ) }
         </>
       )}

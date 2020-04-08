@@ -35,7 +35,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Date = styled.p`
+export const DateItem = styled.p`
   font-size: 12px;
 
   @media ${device.laptopM} {

@@ -16,14 +16,14 @@ import {
 
 const Settings = () => {
   const dispatch = useDispatch();
-  const settings = useSelector((state: StoreInterface) => state.settings);
+  const { data: settingsData } = useSelector((state: StoreInterface) => state.settings);
 
-  const [currency, setCurrency] = useState<CurrencyType>(settings.data.currency);
-  const [dateFormat, setDateFormat] = useState<DateFormatType>(settings.data.dateFormat);
+  const [currency, setCurrency] = useState<CurrencyType>(settingsData.currency);
+  const [dateFormat, setDateFormat] = useState<DateFormatType>(settingsData.dateFormat);
 
   const handleSettingsAutoSave = () => {
     const newSettings: SettingInterface = {
-      id: settings.data.id,
+      id: settingsData.id,
       dateFormat: dateFormat || DateFormatType.EN,
       currency: currency || CurrencyType.DOLAR,
     };
@@ -32,7 +32,7 @@ const Settings = () => {
   };
 
   useEffect(() => {
-    if ((settings.data.currency !== currency) || (settings.data.dateFormat !== dateFormat)) {
+    if ((settingsData.currency !== currency) || (settingsData.dateFormat !== dateFormat)) {
       handleSettingsAutoSave();
     }
   }, [currency, dateFormat]);

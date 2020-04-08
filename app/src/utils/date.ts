@@ -1,16 +1,16 @@
 import store from '../store';
-import { DateFormatType } from '../enums/settings';
 
 const MONTH = 30;
 const THREE_MONTHS = 90;
-
 const offset = new Date().getTimezoneOffset();
 
 export const getLanguageState = () => {
-  const languageDateFormat: DateFormatType = store.getState().settings.data.dateFormat;
+  const { dateFormat } = store.getState().settings.data;
 
-  return languageDateFormat;
+  return dateFormat;
 };
+
+export const toLocaleDateString = (date: Date) => date.toLocaleDateString(getLanguageState());
 
 export const currentDateInputFormat = (date?: Date) => {
   let dateFormat = date;
@@ -29,8 +29,6 @@ export const currentDateFormat = () => {
 
   return date;
 };
-
-export const currentDate = (): Date => new Date();
 
 export const dateOneMonthBefore = (): Date => {
   const date = new Date();
@@ -74,8 +72,6 @@ export const getMonthDescriptionByMonth = (month: string) => {
 
   return months[parseInt(month, 10)];
 };
-
-export const toLocaleDateString = (date: Date) => date.toLocaleDateString(getLanguageState());
 
 export const toBarFormat = (date: string) => {
   const arr = date.split('-');
