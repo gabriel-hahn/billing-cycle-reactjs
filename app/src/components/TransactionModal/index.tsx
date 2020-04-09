@@ -42,7 +42,6 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
     category: TransactionType.DEBIT,
     date: currentDateInputFormat(),
   });
-
   const [money, setMoney] = useState<string>('');
 
   const transactionSelected = useSelector((store: StoreInterface) => (
@@ -54,6 +53,7 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
     if (transactionSelected) {
       transactionSelected.date = currentDateInputFormat(new Date(transactionSelected.date));
 
+      setMoney(transactionSelected.value ? formatCurrencyForInputs(transactionSelected.value.toString()) : '');
       setTransaction(transactionSelected);
     }
   }, [transactionSelected]);
