@@ -160,3 +160,7 @@ export const IconsContainer = styled.div`
     margin: 16.5px;
   }
 `;
+
+AnimationContainer.displayName = 'AnimationContainer';
+LoginButton.displayName = 'LoginButton';
+Input.displayName = 'Input';

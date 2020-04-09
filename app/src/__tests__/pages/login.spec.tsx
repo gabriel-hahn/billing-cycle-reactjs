@@ -31,7 +31,7 @@ describe('Login Page', () => {
       expect(wrapper.find('form').length).toEqual(1);
     });
 
-    it('Should render 1 DisplayButton', () => {
+    it('Should render 1 RegisterButton', () => {
       expect(wrapper.find('RegisterButton').length).toEqual(1);
     });
 
