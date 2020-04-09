@@ -27,8 +27,8 @@ describe('Overview Page', () => {
       expect(wrapper.exists());
     });
 
-    it('Should render 2 Amounts', () => {
-      expect(wrapper.find(Amount).length).toEqual(2);
+    it('Should render 4 Amounts', () => {
+      expect(wrapper.find(Amount).length).toEqual(4);
     });
 
     it('Should render 1 TransactionTable', () => {

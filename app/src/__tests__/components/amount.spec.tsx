@@ -1,27 +1,40 @@
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
+import { Provider } from 'react-redux';
+import createStore from 'redux-mock-store';
+import { mount, ReactWrapper } from 'enzyme';
 
+import { INITIAL_STATE } from '../utils/state';
 import Amount, { AmountPropsInterface } from '../../components/Amount';
 
 const props: AmountPropsInterface = {
   value: 123.50,
-  incoming: true,
+  color: '#333',
+  description: 'Description for test',
+  loading: false,
+  showDate: true,
 };
 
-let wrapper: ShallowWrapper;
+const mockStore = createStore();
+const store = mockStore(INITIAL_STATE);
+
+let wrapper: ReactWrapper;
 
 beforeEach(() => {
-  wrapper = shallow(<Amount {...props} />).dive();
+  wrapper = mount(
+    <Provider store={store}>
+      <Amount {...props} />
+    </Provider>,
+  );
 });
 
-describe('Amount component', () => {
+fdescribe('Amount component', () => {
   describe('Smoke tests', () => {
     it('Should render the amount component correctly', () => {
       expect(wrapper.exists());
     });
 
-    it('Should render 1 Icon', () => {
-      expect(wrapper.find('Icon').length).toEqual(1);
+    it('Should render 1 description', () => {
+      expect(wrapper.find('Description').length).toEqual(1);
     });
 
     it('Should render 1 Value', () => {

@@ -214,3 +214,5 @@ export const ForgotButton = styled(sharedButtonStyle)`
     height: unset;
   }
 `;
+
+RegisterButton.displayName = 'RegisterButton';

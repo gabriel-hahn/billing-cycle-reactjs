@@ -31,8 +31,8 @@ describe('Login Page', () => {
       expect(wrapper.find('form').length).toEqual(1);
     });
 
-    it('Should render 2 buttons - Login and Register', () => {
-      expect(wrapper.find('button').length).toEqual(2);
+    it('Should render 1 DisplayButton', () => {
+      expect(wrapper.find('RegisterButton').length).toEqual(1);
     });
 
     it('Should not show name field when is login', () => {
@@ -42,7 +42,7 @@ describe('Login Page', () => {
 
   describe('Event tests', () => {
     it('Should show name field when click on "Register" button', async () => {
-      const registerButton = wrapper.find('button').last();
+      const registerButton = wrapper.find('RegisterButton').last();
       await wrapperUpdateFunction(registerButton.props().onClick, wrapper);
 
       expect(wrapper.find('input[name="name"]').length).toEqual(1);

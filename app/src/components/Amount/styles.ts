@@ -87,3 +87,4 @@ export const Value = styled.h2`
 `;
 
 Value.displayName = 'Value';
+Description.displayName = 'Description';
