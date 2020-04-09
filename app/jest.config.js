@@ -1,10 +1,4 @@
 module.exports = {
-  roots: [
-    '<rootDir>/src/components',
-    '<rootDir>/src/pages',
-    '<rootDir>/src/store',
-    '<rootDir>/src/utils',
-  ],
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },

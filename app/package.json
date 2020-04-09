@@ -60,6 +60,15 @@
     "test": "react-scripts test --testPathIgnorePatterns=src/__tests__/utils",
     "eject": "react-scripts eject"
   },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/components/**/*.tsx",
+      "src/pages/**/**/*.tsx",
+      "src/store/**/*.ts",
+      "!src/store/**/index.ts",
+      "!src/store/index.ts"
+    ]
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
