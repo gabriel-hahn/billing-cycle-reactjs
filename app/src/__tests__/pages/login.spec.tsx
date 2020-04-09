@@ -41,11 +41,37 @@ describe('Login Page', () => {
   });
 
   describe('Event tests', () => {
-    it('Should show name field when click on "Register" button', async () => {
+    it('Should show name, email and password fields when click on "Register" button', async () => {
       const registerButton = wrapper.find('RegisterButton').last();
       await wrapperUpdateFunction(registerButton.props().onClick, wrapper);
 
+      expect(wrapper.find('Input').length).toEqual(3);
       expect(wrapper.find('input[name="name"]').length).toEqual(1);
+      expect(wrapper.find('input[name="email"]').length).toEqual(1);
+      expect(wrapper.find('input[name="password"]').length).toEqual(1);
+    });
+
+    it('Should show only email field when click on "Forgot password" button', async () => {
+      const forgotPasswordButton = wrapper.find('ForgotButton').last();
+      await wrapperUpdateFunction(forgotPasswordButton.props().onClick, wrapper);
+
+      expect(wrapper.find('Input').length).toEqual(1);
+      expect(wrapper.find('input[name="email"]').length).toEqual(1);
+      expect(wrapper.find('input[name="name"]').length).toEqual(0);
+      expect(wrapper.find('input[name="password"]').length).toEqual(0);
+    });
+
+    it('Should show only name and email fields when click on "Login" button - Which in this case will be the register button itself', async () => {
+      const forgotPasswordButton = wrapper.find('ForgotButton').last();
+      await wrapperUpdateFunction(forgotPasswordButton.props().onClick, wrapper);
+
+      const loginButton = wrapper.find('RegisterButton').last();
+      await wrapperUpdateFunction(loginButton.props().onClick, wrapper);
+
+      expect(wrapper.find('Input').length).toEqual(2);
+      expect(wrapper.find('input[name="email"]').length).toEqual(1);
+      expect(wrapper.find('input[name="password"]').length).toEqual(1);
+      expect(wrapper.find('input[name="name"]').length).toEqual(0);
     });
   });
 });

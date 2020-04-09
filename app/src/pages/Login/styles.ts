@@ -216,3 +216,5 @@ export const ForgotButton = styled(sharedButtonStyle)`
 `;
 
 RegisterButton.displayName = 'RegisterButton';
+ForgotButton.displayName = 'ForgotButton';
+Input.displayName = 'Input';
