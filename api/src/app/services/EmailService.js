@@ -1,4 +1,4 @@
-const emailTransporter = require('../../config/email');
+const EmailTransporter = require('../../config/email');
 
 const mailData = {
   from: 'no-reply.conmoneymail@gmail.com',
@@ -20,7 +20,7 @@ class EmailService {
       <small>If you have some problems, please contact conmoneymail@gmail.com. Thanks for using ConMoney</small>
     `;
 
-    await emailTransporter.sendMail(mailData);
+    await EmailTransporter.sendMail(mailData);
   }
 }
 
