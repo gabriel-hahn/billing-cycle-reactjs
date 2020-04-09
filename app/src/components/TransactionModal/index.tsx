@@ -33,6 +33,7 @@ export interface StylesProps {
   debit?: boolean;
   credit?: boolean;
   selected?: boolean;
+  disabled?: boolean;
 }
 
 const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose }) => {
@@ -138,7 +139,7 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
           </Button>
         </ButtonsContainer>
         <ButtonsFormContainer>
-          <ButtonActions onClick={handleAddTransaction}>{`${transaction.id ? 'Update' : 'Add'} Transaction`}</ButtonActions>
+          <ButtonActions disabled={(!transaction.date || !money)} onClick={handleAddTransaction}>{`${transaction.id ? 'Update' : 'Add'} Transaction`}</ButtonActions>
           <ButtonActions transparent onClick={handleCloseModal}>Close</ButtonActions>
         </ButtonsFormContainer>
       </ModalContainer>
