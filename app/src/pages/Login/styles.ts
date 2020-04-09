@@ -2,6 +2,10 @@ import styled, { keyframes } from 'styled-components';
 
 import { globalVariables, device } from '../../styles/variables';
 
+interface PropsInterface {
+  disabled?: boolean;
+}
+
 export const Container = styled.div`
   display: flex;
   height: 100%;
@@ -157,7 +161,8 @@ export const RegisterButton = styled(sharedButtonStyle)`
 `;
 
 export const LoginButton = styled(sharedButtonStyle)`
-  background: ${globalVariables.mainBlue};
+  background: ${(props: PropsInterface) => (props.disabled ? `${globalVariables.mainBlueLigth}` : `${globalVariables.mainBlue}`)};
+  pointer-events: ${(props: PropsInterface) => (props.disabled ? 'none' : 'all')};
   color: ${globalVariables.white};
   padding: 12px 115px;
   border-radius: 5px;
