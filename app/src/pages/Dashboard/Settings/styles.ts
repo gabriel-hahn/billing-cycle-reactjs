@@ -40,3 +40,7 @@ export const Select = styled.select`
   border-bottom: 1px solid ${globalVariables.mainGreen};
   font-size: 14px;
 `;
+
+SelectItem.displayName = 'SelectItem';
+SelectTitle.displayName = 'SelectTitle';
+Select.displayName = 'Select';
