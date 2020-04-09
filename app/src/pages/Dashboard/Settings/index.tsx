@@ -52,7 +52,7 @@ const Settings = () => {
           <SelectTitle>Currency</SelectTitle>
           <Select value={currency} onChange={handleCurrencyChanged}>
             { Object.entries(CurrencyType).map((type : [string, CurrencyType]) => (
-              <option key={type[0]} value={type[0]}>{type[1]} - {type[0]}</option>
+              <option key={type[0]} value={type[1]}>{type[1]} - {type[0]}</option>
             )) }
           </Select>
         </SelectItem>
@@ -60,7 +60,7 @@ const Settings = () => {
           <SelectTitle>Date format</SelectTitle>
           <Select value={dateFormat} onChange={handleDateFormatChanged}>
             { Object.entries(DateFormatType).map((type : [string, DateFormatType]) => (
-              <option key={type[0]} value={type[1]}>{type[0]}</option>
+              <option key={type[0]} value={type[0]}>{type[0]}</option>
             )) }
           </Select>
         </SelectItem>
