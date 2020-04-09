@@ -2,11 +2,13 @@ import { call, put, select } from 'redux-saga/effects';
 import { actions as toastrActions } from 'react-redux-toastr';
 import api from '../../services/api';
 
-import { dateOneMonthBeforeFormat, currentDateFormat } from '../../utils/date';
+import { getSettings } from '../../utils/settings';
+import { dateOneMonthBeforeFormat, currentDateFormat, formatFromPtToEn } from '../../utils/date';
 import { TransactionsActionsInterface, TransactionInterface, TransactionType } from '../../interfaces/transaction';
 
 import { Creators as TransactionsActions } from '../ducks/transactions';
 import { StoreInterface } from '../../interfaces/store';
+import { DateFormatType } from '../../enums/settings';
 
 const CREDITS_PATH = '/credits';
 const CREDIT_PATH = '/credit';
@@ -15,10 +17,16 @@ const DEBIT_PATH = '/debit';
 
 export function* loadAllByDate({ payload: { range, category } }: TransactionsActionsInterface) {
   try {
-    const startDate = range ? range.startDate : dateOneMonthBeforeFormat();
-    const endDate = range ? range.endDate : currentDateFormat();
+    const { dateFormat } = getSettings();
 
+    let endDate = range ? range.endDate : currentDateFormat();
+    let startDate = range ? range.startDate : dateOneMonthBeforeFormat();
     let transactions: TransactionInterface[] = [];
+
+    if (dateFormat === DateFormatType.PT) {
+      endDate = formatFromPtToEn(endDate);
+      startDate = formatFromPtToEn(startDate);
+    }
 
     if (category) {
       const path = category === TransactionType.CREDIT ? CREDITS_PATH : DEBITS_PATH;

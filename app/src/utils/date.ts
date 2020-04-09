@@ -78,3 +78,14 @@ export const toBarFormat = (date: string) => {
 
   return `${arr[1]}/${arr[2]}/${arr[0]}`;
 };
+
+export const formatFromPtToEn = (dateStr: string): string => {
+  const dateArr = dateStr.split('/');
+  const regexRemoveInitialZeros = /^(0+)/g;
+
+  const day = dateArr[0].replace(regexRemoveInitialZeros, '');
+  const month = dateArr[1].replace(regexRemoveInitialZeros, '');
+  const year = dateArr[2];
+
+  return `${month}/${day}/${year}`;
+};

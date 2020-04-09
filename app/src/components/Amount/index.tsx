@@ -31,8 +31,6 @@ const Amount: React.FC<AmountPropsInterface> = ({
   showDate,
 }) => {
   const dateRange = useSelector((state: StoreInterface) => state.transactions.currentDateRange);
-  const startDate = dateRange ? toLocaleDateString(new Date(dateRange.startDate)) : null;
-  const endDate = dateRange ? toLocaleDateString(new Date(dateRange.endDate)) : null;
   const currencyFormat = getSettings().currency;
 
   return (
@@ -49,7 +47,7 @@ const Amount: React.FC<AmountPropsInterface> = ({
           </Value>
           { showDate && dateRange && (
             <DateItem>
-              {startDate} - {endDate}
+              {dateRange.startDate} - {dateRange.endDate}
             </DateItem>
           ) }
         </>
