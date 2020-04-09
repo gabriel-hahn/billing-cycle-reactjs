@@ -1,5 +1,3 @@
-import store from '../store';
-
 export const formatCurrencyWithType = (currency: number): string => (
   Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(currency));
 

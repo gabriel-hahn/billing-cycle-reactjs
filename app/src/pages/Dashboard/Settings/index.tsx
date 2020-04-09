@@ -60,7 +60,7 @@ const Settings = () => {
           <SelectTitle>Date format</SelectTitle>
           <Select value={dateFormat} onChange={handleDateFormatChanged}>
             { Object.entries(DateFormatType).map((type : [string, DateFormatType]) => (
-              <option key={type[0]} value={type[0]}>{type[0]}</option>
+              <option key={type[0]} value={type[1]}>{type[0]}</option>
             )) }
           </Select>
         </SelectItem>
