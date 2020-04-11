@@ -1,21 +1,21 @@
 import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 
-import BarChart from '../../components/BarChart';
+import PieChart from '../../components/PieChart';
 
 let wrapper: ShallowWrapper;
 
 beforeEach(() => {
-  wrapper = shallow(<BarChart />);
+  wrapper = shallow(<PieChart />);
 });
 
 afterEach(() => {
   wrapper.unmount();
 });
 
-describe('Barchart component', () => {
+describe('PieChart component', () => {
   describe('Smoke tests', () => {
-    it('Should render the BarChart component correctly', () => {
+    it('Should render the PieChart component correctly', () => {
       expect(wrapper.exists());
     });
 

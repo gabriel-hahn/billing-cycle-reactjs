@@ -1,21 +1,21 @@
 import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 
-import BarChart from '../../components/BarChart';
+import LineChart from '../../components/LineChart';
 
 let wrapper: ShallowWrapper;
 
 beforeEach(() => {
-  wrapper = shallow(<BarChart />);
+  wrapper = shallow(<LineChart />);
 });
 
 afterEach(() => {
   wrapper.unmount();
 });
 
-describe('Barchart component', () => {
+describe('LineChart component', () => {
   describe('Smoke tests', () => {
-    it('Should render the BarChart component correctly', () => {
+    it('Should render the LineChart component correctly', () => {
       expect(wrapper.exists());
     });
 
