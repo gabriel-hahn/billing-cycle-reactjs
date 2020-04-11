@@ -23,7 +23,7 @@ import {
 import { TransactionType, TransactionInterface } from '../../interfaces/transaction';
 import { StoreInterface } from '../../interfaces/store';
 
-interface TransactionModalPropsInterface {
+export interface TransactionModalPropsInterface {
   onClose: () => void;
 }
 

@@ -65,6 +65,7 @@
       "src/components/**/*.tsx",
       "src/pages/**/**/*.tsx",
       "src/store/**/*.ts",
+      "src/utils/*.ts",
       "!src/store/**/index.ts",
       "!src/store/index.ts"
     ]

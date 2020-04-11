@@ -122,3 +122,9 @@ export const SelectType = styled.select.attrs({
   border-bottom: 1px solid ${globalVariables.mainGreen};
   font-size: 14px;
 `;
+
+InputValue.displayName = 'InputValue';
+InputDescription.displayName = 'InputDescription';
+SelectType.displayName = 'SelectType';
+FormContainer.displayName = 'FormContainer';
+ButtonsContainer.displayName = 'ButtonsContainer';

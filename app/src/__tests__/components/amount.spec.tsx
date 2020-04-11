@@ -31,7 +31,7 @@ afterEach(() => {
   wrapper.unmount();
 });
 
-fdescribe('Amount component', () => {
+describe('Amount component', () => {
   describe('Smoke tests', () => {
     it('Should render the amount component correctly', () => {
       expect(wrapper.exists());
