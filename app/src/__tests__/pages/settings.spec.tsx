@@ -19,6 +19,10 @@ beforeEach(() => {
   );
 });
 
+afterEach(() => {
+  wrapper.unmount();
+});
+
 describe('Settings Page', () => {
   describe('Smoke tests', () => {
     it('Should render the settings page correctly', () => {

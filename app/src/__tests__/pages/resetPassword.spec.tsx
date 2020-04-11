@@ -28,6 +28,10 @@ beforeEach(() => {
   );
 });
 
+afterEach(() => {
+  wrapper.unmount();
+});
+
 describe('ResetPassword Page', () => {
   describe('Smoke tests', () => {
     it('Should render the reset page page correctly', () => {

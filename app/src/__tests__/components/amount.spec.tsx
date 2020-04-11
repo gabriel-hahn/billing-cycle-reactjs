@@ -27,6 +27,10 @@ beforeEach(() => {
   );
 });
 
+afterEach(() => {
+  wrapper.unmount();
+});
+
 fdescribe('Amount component', () => {
   describe('Smoke tests', () => {
     it('Should render the amount component correctly', () => {

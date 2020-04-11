@@ -21,6 +21,10 @@ beforeEach(() => {
   );
 });
 
+afterEach(() => {
+  wrapper.unmount();
+});
+
 describe('Overview Page', () => {
   describe('Smoke tests', () => {
     it('Should render the Overview page correctly', () => {

@@ -25,6 +25,10 @@ beforeEach(() => {
   );
 });
 
+afterEach(() => {
+  wrapper.unmount();
+});
+
 describe('Navbar component', () => {
   describe('Smoke tests', () => {
     it('Should render the navbar component correctly', () => {

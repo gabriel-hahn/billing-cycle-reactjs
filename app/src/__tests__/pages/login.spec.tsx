@@ -21,6 +21,10 @@ beforeEach(() => {
   );
 });
 
+afterEach(() => {
+  wrapper.unmount();
+});
+
 describe('Login Page', () => {
   describe('Smoke tests', () => {
     it('Should render the login page correctly', () => {

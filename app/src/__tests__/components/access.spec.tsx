@@ -70,6 +70,13 @@ beforeEach(() => {
   );
 });
 
+afterEach(() => {
+  wrapperPrivate.unmount();
+  wrapperPrivateEmptyStore.unmount();
+  wrapperPublic.unmount();
+  wrapperPublicEmptyStore.unmount();
+});
+
 describe('Access Private Component', () => {
   describe('Smoke tests', () => {
     it('Should render the private component correctly', () => {
