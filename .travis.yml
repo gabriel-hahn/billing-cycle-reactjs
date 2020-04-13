@@ -3,8 +3,8 @@ node_js:
   - "10.16.0"
 cache:
   directories:
-    "api/node_modules"
-    "app/node_modules"
+    - "/api/node_modules"
+    - "/app/node_modules"
 
 script:
   - cd api && npm run build
