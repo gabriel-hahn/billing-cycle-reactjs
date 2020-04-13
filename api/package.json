@@ -1,7 +1,6 @@
 {
   "name": "billing-cycle-api",
   "version": "0.1.0",
-  "private": true,
   "main": "src/app.js",
   "scripts": {
     "start": "nodemon src/server.js --ignore __tests__",
