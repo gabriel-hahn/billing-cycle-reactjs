@@ -6,7 +6,8 @@
     "start": "nodemon src/server.js --ignore __tests__",
     "build": "rimraf dist/ && rimraf coverage/ && ./node_modules/.bin/babel ./ --out-dir dist/ --ignore ./node_modules --copy-files",
     "test": "./node_modules/.bin/jest",
-    "test:watch": "./node_modules/.bin/jest --watchAll"
+    "test:watch": "./node_modules/.bin/jest --watchAll",
+    "rimraf": "./node_modules/rimraf/bin.js"
   },
   "keywords": [],
   "author": "Gabriel Hahn Schaeffer <gabriel_hahn@hotmail.com>",
