@@ -8,7 +8,7 @@ cache:
 
 before_install:
   - cd api && npm install
-  - cd app && yarn
+  - cd .. && cd app && yarn
 
 script:
   - cd api && npm run build
