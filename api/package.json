@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "main": "src/app.js",
   "scripts": {
-    "start": "nodemon src/server.js --ignore __tests__",
+    "start": "node src/server.js --ignore __tests__",
+    "start:dev": "nodemon src/server.js --ignore __tests__",
     "build": "rm -rf dist/ && rm -rf coverage/ && ./node_modules/.bin/babel ./ --out-dir dist/ --ignore ./node_modules --copy-files",
     "test": "./node_modules/.bin/jest"
   },
