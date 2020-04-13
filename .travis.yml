@@ -3,8 +3,12 @@ node_js:
   - "10.16.0"
 cache:
   directories:
-    - "/api/node_modules"
-    - "/app/node_modules"
+    - /api/node_modules
+    - /app/node_modules
+
+before_install:
+  - cd api && npm install
+  - cd app && yarn
 
 script:
   - cd api && npm run build
