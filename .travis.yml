@@ -18,6 +18,6 @@ branches:
   only:
     - master
 
-after_install:
+after_success:
   - npm run test
   - cd .. && cd app && yarn test
