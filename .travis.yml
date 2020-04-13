@@ -11,9 +11,13 @@ before_install:
   - cd .. && cd app && yarn
 
 script:
-  - cd api && npm run build
-  - cd .. && cd app && yarn build
+  - yarn build
+  - cd .. && cd api && npm run build
 
 branches:
   only:
     - master
+
+after_install:
+  - npm run test
+  - cd .. && cd app && yarn test
