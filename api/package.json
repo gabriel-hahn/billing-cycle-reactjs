@@ -4,7 +4,7 @@
   "main": "src/app.js",
   "scripts": {
     "start": "nodemon src/server.js --ignore __tests__",
-    "build": "sucrase ./src -d ./dist",
+    "build": "rimraf dist/ && rimraf coverage/ && ./node_modules/.bin/babel ./ --out-dir dist/ --ignore ./node_modules --copy-files",
     "test": "./node_modules/.bin/jest",
     "test:watch": "./node_modules/.bin/jest --watchAll"
   },
@@ -22,6 +22,14 @@
     "sequelize": "^5.21.5"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-minify": "^0.5.1",
+    "babel-register": "^6.26.0",
+    "coveralls": "^3.0.11",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.1",
