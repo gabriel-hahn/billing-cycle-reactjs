@@ -5,7 +5,7 @@ import { RotateSpinner } from 'react-spinners-kit';
 import api from '../../services/api';
 
 import { lineChartConfig } from '../../config/highcharts';
-import { currentDateFormat, dateThreeMonthBefore } from '../../utils/date';
+import { dateThreeMonthBefore } from '../../utils/date';
 import { formatToChartDateObject } from '../../utils/format';
 import { TransactionInterface } from '../../interfaces/transaction';
 import { ChartInterface, KeyValueNumberInterface } from '../../interfaces/charts';
@@ -41,7 +41,7 @@ const LineChart: React.FC = () => {
 
   const getAllByLastThreeMonths = async () => {
     const startDate = dateThreeMonthBefore();
-    const endDate = currentDateFormat();
+    const endDate = new Date();
 
     const { data: debitData } = await api.get<TransactionInterface[]>('debits', { params: { startDate, endDate } });
     const { data: creditData } = await api.get<TransactionInterface[]>('credits', { params: { startDate, endDate } });

@@ -5,3 +5,5 @@ export const Loading = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+Loading.displayName = 'Loading';

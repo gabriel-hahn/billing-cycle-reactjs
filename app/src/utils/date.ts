@@ -1,8 +1,16 @@
-const LANGUAGE = 'en-EN';
+import { getSettings } from './settings';
+
 const MONTH = 30;
 const THREE_MONTHS = 90;
-
 const offset = new Date().getTimezoneOffset();
+
+export const getLanguageState = () => {
+  const { dateFormat } = getSettings();
+
+  return dateFormat;
+};
+
+export const toLocaleDateString = (date: Date) => date.toLocaleDateString(getLanguageState());
 
 export const currentDateInputFormat = (date?: Date) => {
   let dateFormat = date;
@@ -16,8 +24,11 @@ export const currentDateInputFormat = (date?: Date) => {
   return dateFormat.toISOString().split('T')[0];
 };
 
-export const currentDateFormat = (): string => new Date().toLocaleDateString(LANGUAGE);
-export const currentDate = (): Date => new Date();
+export const currentDateFormat = () => {
+  const date = new Date().toLocaleDateString(getLanguageState());
+
+  return date;
+};
 
 export const dateOneMonthBefore = (): Date => {
   const date = new Date();
@@ -40,7 +51,7 @@ export const dateOneMonthBeforeFormat = (): string => {
 
   date.setDate(date.getDate() - MONTH);
 
-  return date.toLocaleDateString(LANGUAGE);
+  return date.toLocaleDateString(getLanguageState());
 };
 
 export const getMonthDescriptionByMonth = (month: string) => {
@@ -62,10 +73,19 @@ export const getMonthDescriptionByMonth = (month: string) => {
   return months[parseInt(month, 10)];
 };
 
-export const toLocaleDateString = (date: Date) => date.toLocaleDateString(LANGUAGE);
-
 export const toBarFormat = (date: string) => {
   const arr = date.split('-');
 
   return `${arr[1]}/${arr[2]}/${arr[0]}`;
+};
+
+export const formatFromPtToEn = (dateStr: string): string => {
+  const dateArr = dateStr.split('/');
+  const regexRemoveInitialZeros = /^(0+)/g;
+
+  const day = dateArr[0].replace(regexRemoveInitialZeros, '');
+  const month = dateArr[1].replace(regexRemoveInitialZeros, '');
+  const year = dateArr[2];
+
+  return `${month}/${day}/${year}`;
 };

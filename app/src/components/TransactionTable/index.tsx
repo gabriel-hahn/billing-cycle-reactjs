@@ -9,6 +9,7 @@ import {
   faReceipt,
 } from '@fortawesome/free-solid-svg-icons';
 
+import { getSettings } from '../../utils/settings';
 import { Creators as TransactionsActions } from '../../store/ducks/transactions';
 import { TransactionInterface, TransactionsRangeDateInterface, TransactionType } from '../../interfaces/transaction';
 import { StoreInterface } from '../../interfaces/store';
@@ -63,6 +64,7 @@ const TransactionTable: React.FC = () => {
 
   const pagination = (allTransactions.length / TRANSACTIONS_PAGE);
   const needsPagination = pagination % 1 !== 0 && pagination > 1;
+  const currencyFormat = getSettings().currency;
 
   const handleUpdateRange = () => {
     dispatch(TransactionsActions.getTransactionsRequest(dateRange.startDate, dateRange.endDate));
@@ -184,7 +186,7 @@ const TransactionTable: React.FC = () => {
           <tr>
             <th>Description</th>
             <th>Date</th>
-            <CategoryHead>Value (R$)</CategoryHead>
+            <CategoryHead>Value ({currencyFormat})</CategoryHead>
             <th>Category</th>
             <th />
           </tr>

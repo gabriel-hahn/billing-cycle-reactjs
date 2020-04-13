@@ -6,3 +6,5 @@ export const Loading = styled.div`
   align-items: center;
   width: 50vw;
 `;
+
+Loading.displayName = 'Loading';

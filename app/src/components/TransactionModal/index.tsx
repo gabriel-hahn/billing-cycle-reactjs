@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Creators as TransactionsActions } from '../../store/ducks/transactions';
 import { currentDateInputFormat, toBarFormat } from '../../utils/date';
+import { formatCurrencyForInputs, getMoneyPersistFormat } from '../../utils/currency';
 import { CreditType, DebitType } from '../../enums/transactions';
 
 import {
@@ -22,7 +23,7 @@ import {
 import { TransactionType, TransactionInterface } from '../../interfaces/transaction';
 import { StoreInterface } from '../../interfaces/store';
 
-interface TransactionModalPropsInterface {
+export interface TransactionModalPropsInterface {
   onClose: () => void;
 }
 
@@ -32,6 +33,7 @@ export interface StylesProps {
   debit?: boolean;
   credit?: boolean;
   selected?: boolean;
+  disabled?: boolean;
 }
 
 const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose }) => {
@@ -40,6 +42,7 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
     category: TransactionType.DEBIT,
     date: currentDateInputFormat(),
   });
+  const [money, setMoney] = useState<string>('');
 
   const transactionSelected = useSelector((store: StoreInterface) => (
     store.transactions.transactionSelected));
@@ -50,6 +53,7 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
     if (transactionSelected) {
       transactionSelected.date = currentDateInputFormat(new Date(transactionSelected.date));
 
+      setMoney(transactionSelected.value ? formatCurrencyForInputs(transactionSelected.value.toString()) : '');
       setTransaction(transactionSelected);
     }
   }, [transactionSelected]);
@@ -64,6 +68,7 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
     const localeDate = toBarFormat(transaction.date);
 
     transaction.date = new Date(localeDate).toISOString();
+    transaction.value = +getMoneyPersistFormat(money);
 
     dispatch(transaction.id
       ? TransactionsActions.updateTransactionRequest(transaction)
@@ -74,6 +79,12 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
 
   const handleTransactionChanged = (e: FormEvent<HTMLInputElement>) => {
     setTransaction({ ...transaction, [e.currentTarget.name]: e.currentTarget.value });
+  };
+
+  const handleMoneyChanged = (e: FormEvent<HTMLInputElement>) => {
+    const value = formatCurrencyForInputs(e.currentTarget.value);
+
+    setMoney(value);
   };
 
   const handleCreditClick = () => {
@@ -96,7 +107,7 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
     <Container>
       <ModalContainer>
         <FormContainer>
-          <InputValue value={transaction.value} onChange={handleTransactionChanged} required />
+          <InputValue value={money} onChange={handleMoneyChanged} required />
           <InputDescription
             value={transaction.description}
             onChange={handleTransactionChanged}
@@ -128,7 +139,7 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
           </Button>
         </ButtonsContainer>
         <ButtonsFormContainer>
-          <ButtonActions onClick={handleAddTransaction}>{`${transaction.id ? 'Update' : 'Add'} Transaction`}</ButtonActions>
+          <ButtonActions disabled={(!transaction.date || !money)} onClick={handleAddTransaction}>{`${transaction.id ? 'Update' : 'Add'} Transaction`}</ButtonActions>
           <ButtonActions transparent onClick={handleCloseModal}>Close</ButtonActions>
         </ButtonsFormContainer>
       </ModalContainer>

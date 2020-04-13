@@ -17,7 +17,9 @@ interface TotalTransactionInterface {
 }
 
 const Overview = () => {
-  const [totalTransactions, setTotalTransactions] = useState(0);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [totalLoading, setTotalLoading] = useState<boolean>(true);
+  const [totalTransactions, setTotalTransactions] = useState<number>(0);
   const totalCredits = useSelector((state: StoreInterface) => (
     state.transactions.data
       .filter((transaction: TransactionInterface) => transaction.category === TransactionType.CREDIT)
@@ -35,19 +37,26 @@ const Overview = () => {
     const balance = data.credit - data.debit;
 
     setTotalTransactions(balance);
+    setTotalLoading(false);
   };
 
   useEffect(() => {
     handleTransactionsTotalRequest();
   }, []);
 
+  useEffect(() => {
+    if (totalDebits && totalDebits && currentBalance) {
+      setLoading(false);
+    }
+  }, [totalCredits, totalDebits, currentBalance]);
+
   return (
     <Container>
       <AmountContainer>
-        <Amount showDate value={totalCredits} color={globalVariables.mainGreen} description="Credits" />
-        <Amount showDate value={totalDebits} color={globalVariables.mainPink} description="Debits" />
-        <Amount showDate value={currentBalance} color={globalVariables.mainBlue} description="Current balance" />
-        <Amount value={totalTransactions} color={globalVariables.mainBlue} description="Total" />
+        <Amount showDate loading={loading} value={totalCredits} color={globalVariables.mainGreen} description="Credits" />
+        <Amount showDate loading={loading} value={totalDebits} color={globalVariables.mainPink} description="Debits" />
+        <Amount showDate loading={loading} value={currentBalance} color={globalVariables.mainBlue} description="Current balance" />
+        <Amount loading={totalLoading} value={totalTransactions} color={globalVariables.mainBlue} description="Total" />
       </AmountContainer>
       <TransactionsContainer>
         <TransactionTable />

@@ -4,8 +4,8 @@ import { mount, ReactWrapper } from 'enzyme';
 import createStore from 'redux-mock-store';
 import { BrowserRouter } from 'react-router-dom';
 
-import { props } from '../utils/props';
-import { INITIAL_STATE } from '../utils/state';
+import { props } from '../mocks/props';
+import { INITIAL_STATE } from '../mocks/state';
 
 import Dashboard from '../../pages/Dashboard';
 import NavBar from '../../components/Navbar';
@@ -24,6 +24,10 @@ beforeEach(() => {
       </BrowserRouter>
     </Provider>,
   );
+});
+
+afterEach(() => {
+  wrapper.unmount();
 });
 
 describe('Login Page', () => {

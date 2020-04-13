@@ -4,7 +4,7 @@ import {
   TransactionStateInterface,
 } from '../../interfaces/transaction';
 
-import { RANGE, TRANSACTIONS_CREDIT } from '../utils/transactions';
+import { RANGE, TRANSACTIONS_CREDIT } from '../mocks/transactions';
 
 const INITIAL_STATE: TransactionStateInterface = {
   data: [],

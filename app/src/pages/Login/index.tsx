@@ -1,4 +1,9 @@
-import React, { useState, useEffect, FormEvent } from 'react';
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  FormEvent,
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import Lottie, { Options } from 'react-lottie';
@@ -41,8 +46,10 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [isLogin, setIsLogin] = useState<boolean>(true);
+  const [enableLoginButton, setEnableLoginButton] = useState<boolean>(false);
   const [isForgotPassword, setIsForgotPassword] = useState<boolean>(false);
   const [isForgotRequest, setIsForgotRequest] = useState<boolean>(false);
+  const formEl = useRef<HTMLFormElement>(null);
 
   const dispatch = useDispatch();
   const { data: userState, loading } = useSelector((state: StoreInterface) => state.users);
@@ -69,16 +76,23 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
     }
   };
 
+  const checkFormIsValid = () => {
+    setEnableLoginButton(formEl.current ? formEl.current.checkValidity() : enableLoginButton);
+  };
+
   const handleNameChange = (e: FormEvent<HTMLInputElement>) => {
     setName(e.currentTarget.value);
+    checkFormIsValid();
   };
 
   const handleEmailChange = (e: FormEvent<HTMLInputElement>) => {
     setEmail(e.currentTarget.value.trim());
+    checkFormIsValid();
   };
 
   const handlePasswordChange = (e: FormEvent<HTMLInputElement>) => {
     setPassword(e.currentTarget.value.trim());
+    checkFormIsValid();
   };
 
   const handleLoginChange = () => {
@@ -105,13 +119,13 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
         { isForgotRequest && !loading && (
           <ResetTitle>Please, check your e-mail and set the new password.</ResetTitle>
         ) }
-        <FormInputs>
+        <FormInputs ref={formEl}>
           {!isLogin && !isForgotPassword && !isForgotRequest && (
             <div>
               <IconsContainer>
                 <FontAwesomeIcon className="font-icon" icon={faFont} />
               </IconsContainer>
-              <Input value={name} onChange={handleNameChange} placeholder="Name" name="name" />
+              <Input required value={name} onChange={handleNameChange} placeholder="Name" name="name" />
             </div>
             )}
           { !isForgotRequest && (
@@ -119,7 +133,7 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
               <IconsContainer>
                 <FontAwesomeIcon className="font-icon" icon={faUser} />
               </IconsContainer>
-              <Input value={email} onChange={handleEmailChange} placeholder="E-mail" name="email" />
+              <Input required value={email} onChange={handleEmailChange} placeholder="E-mail" name="email" />
             </div>
           )}
           { !isForgotPassword && !isForgotRequest && (
@@ -127,11 +141,11 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
               <IconsContainer>
                 <FontAwesomeIcon className="font-icon" icon={faLock} />
               </IconsContainer>
-              <Input value={password} onChange={handlePasswordChange} placeholder="Password" name="password" type="password" />
+              <Input required value={password} onChange={handlePasswordChange} placeholder="Password" name="password" type="password" />
             </div>
           )}
           { !isForgotRequest && (
-            <LoginButton>
+            <LoginButton disabled={!enableLoginButton}>
               { loading ? <RotateSpinner size={22} color="#FFF" /> : (isLogin ? 'Login' : (isForgotPassword ? 'Reset' : 'Register')) }
             </LoginButton>
           ) }

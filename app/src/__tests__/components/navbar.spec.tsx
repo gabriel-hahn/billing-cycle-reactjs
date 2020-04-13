@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { mount, ReactWrapper } from 'enzyme';
 import createStore from 'redux-mock-store';
 
-import { INITIAL_STATE } from '../utils/state';
+import { INITIAL_STATE } from '../mocks/state';
 import Navbar, { NavbarPropsInterface } from '../../components/Navbar';
 
 const mockStore = createStore();
@@ -23,6 +23,10 @@ beforeEach(() => {
       </BrowserRouter>
     </Provider>,
   );
+});
+
+afterEach(() => {
+  wrapper.unmount();
 });
 
 describe('Navbar component', () => {

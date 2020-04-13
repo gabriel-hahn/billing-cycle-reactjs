@@ -84,8 +84,9 @@ export const ButtonActions = styled.button.attrs({
   height: 2em;
   width: inherit;
   margin-bottom: 5px;
-  background: ${(props: StylesProps) => (props.transparent ? `${globalVariables.white}` : `${globalVariables.mainBlue}`)};
+  background: ${(props: StylesProps) => (props.transparent ? `${globalVariables.white}` : (props.disabled ? `${globalVariables.mainBlueLigth}` : `${globalVariables.mainBlue}`))};
   color: ${(props: StylesProps) => (props.transparent ? `${globalVariables.mainBlue}` : `${globalVariables.white}`)};
+  pointer-events: ${(props: StylesProps) => (props.disabled ? 'none' : 'all')};
   font-size: 16px;
   border-radius: 5px;
   transition: all 0.3s;
@@ -121,3 +122,9 @@ export const SelectType = styled.select.attrs({
   border-bottom: 1px solid ${globalVariables.mainGreen};
   font-size: 14px;
 `;
+
+InputValue.displayName = 'InputValue';
+InputDescription.displayName = 'InputDescription';
+SelectType.displayName = 'SelectType';
+FormContainer.displayName = 'FormContainer';
+ButtonsContainer.displayName = 'ButtonsContainer';

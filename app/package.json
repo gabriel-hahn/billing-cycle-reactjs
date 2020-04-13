@@ -49,6 +49,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
+    "jest-canvas-mock": "^2.2.0",
     "prettier": "^1.16.4",
     "redux-mock-store": "^1.5.4",
     "ts-jest": "^25.2.1"
@@ -56,8 +57,18 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --testPathIgnorePatterns=src/__tests__/utils",
+    "test": "react-scripts test --testPathIgnorePatterns=src/__tests__/mocks",
     "eject": "react-scripts eject"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/components/**/*.tsx",
+      "src/pages/**/**/*.tsx",
+      "src/store/**/*.ts",
+      "src/utils/*.ts",
+      "!src/store/**/index.ts",
+      "!src/store/index.ts"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"
