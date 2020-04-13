@@ -40,8 +40,9 @@ export const formatCurrencyForInputs = (valueStr: string): string => {
   const decimals = value.substr(value.length - 2, value.length);
   const rest = value.substr(0, value.length - 2).split('').reverse().join('');
   const arrSufix = rest.match(/.{1,3}/g);
+  const arrOrder = arrSufix ? arrSufix.map(item => item.split('').reverse().join('')) : arrSufix;
 
-  const sufix = arrSufix ? arrSufix.reverse().join('.') : '';
+  const sufix = arrOrder ? arrOrder.reverse().join('.') : '';
 
   return `${sufix},${decimals}`;
 };
