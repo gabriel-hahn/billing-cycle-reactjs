@@ -3,8 +3,8 @@ import { Provider } from 'react-redux';
 import { mount, ReactWrapper } from 'enzyme';
 import createStore from 'redux-mock-store';
 
-import { props } from '../utils/props';
-import { INITIAL_STATE } from '../utils/state';
+import { props } from '../mocks/props';
+import { INITIAL_STATE } from '../mocks/state';
 import ResetPassword from '../../pages/ResetPassword';
 
 const mockStore = createStore();

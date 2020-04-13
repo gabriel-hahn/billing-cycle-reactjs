@@ -1,7 +1,7 @@
 import MockAdapter from 'axios-mock-adapter';
 
 import api from '../../services/api';
-import { runSagaTest } from '../utils/sagas';
+import { runSagaTest } from '../mocks/sagas';
 import { login, register } from '../../store/sagas/users';
 import { Types as UserTypes } from '../../store/ducks/users';
 import { UserInterface, UserActionInterface } from '../../interfaces/user';

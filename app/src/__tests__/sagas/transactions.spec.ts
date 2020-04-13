@@ -1,7 +1,7 @@
 import MockAdapter from 'axios-mock-adapter';
 
 import api from '../../services/api';
-import { runSagaTest, runSagaTestState } from '../utils/sagas';
+import { runSagaTest, runSagaTestState } from '../mocks/sagas';
 import { Types as TransactionsTypes } from '../../store/ducks/transactions';
 import { TransactionsActionsInterface, TransactionType } from '../../interfaces/transaction';
 import {
@@ -11,13 +11,13 @@ import {
   updateTransaction,
 } from '../../store/sagas/transactions';
 
-import { INITIAL_STATE_FILLED } from '../utils/state';
+import { INITIAL_STATE_FILLED } from '../mocks/state';
 import {
   TRANSACTIONS,
   TRANSACTIONS_CREDIT,
   TRANSACTIONS_DEBIT,
   RANGE,
-} from '../utils/transactions';
+} from '../mocks/transactions';
 
 const apiMock = new MockAdapter(api);
 

@@ -3,8 +3,8 @@ import { Provider } from 'react-redux';
 import createStore from 'redux-mock-store';
 import { mount, ReactWrapper } from 'enzyme';
 
-import { wrapperUpdateFunction } from '../utils/geral';
-import { INITIAL_STATE } from '../utils/state';
+import { wrapperUpdateFunction } from '../mocks/geral';
+import { INITIAL_STATE } from '../mocks/state';
 import TransactionModal, { TransactionModalPropsInterface } from '../../components/TransactionModal';
 
 const props: TransactionModalPropsInterface = {

@@ -57,7 +57,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --testPathIgnorePatterns=src/__tests__/utils",
+    "test": "react-scripts test --testPathIgnorePatterns=src/__tests__/mocks",
     "eject": "react-scripts eject"
   },
   "jest": {

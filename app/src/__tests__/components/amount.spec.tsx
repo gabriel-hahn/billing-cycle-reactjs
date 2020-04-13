@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import createStore from 'redux-mock-store';
 import { mount, ReactWrapper } from 'enzyme';
 
-import { INITIAL_STATE } from '../utils/state';
+import { INITIAL_STATE } from '../mocks/state';
 import Amount, { AmountPropsInterface } from '../../components/Amount';
 
 const props: AmountPropsInterface = {

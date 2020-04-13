@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { mount, ReactWrapper } from 'enzyme';
 import createStore from 'redux-mock-store';
 
-import { INITIAL_STATE } from '../utils/state';
+import { INITIAL_STATE } from '../mocks/state';
 import Settings from '../../pages/Dashboard/Settings';
 
 const mockStore = createStore();

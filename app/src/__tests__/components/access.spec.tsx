@@ -5,7 +5,7 @@ import { mount, ReactWrapper } from 'enzyme';
 import { BrowserRouter } from 'react-router-dom';
 
 import { Private, Public, RoutePropsInterface } from '../../components/Access';
-import { INITIAL_STATE } from '../utils/state';
+import { INITIAL_STATE } from '../mocks/state';
 import { StoreInterface } from '../../interfaces/store';
 
 const state: StoreInterface = {
