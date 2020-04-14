@@ -56,7 +56,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "./node_modules/.bin/tsc -p tsconfig.json && react-scripts build",
+    "build": "./node_modules/.bin/tsc -p tsconfig.production.json && react-scripts build",
     "test": "react-scripts test --testPathIgnorePatterns=src/__tests__/mocks",
     "eject": "react-scripts eject",
     "publish:heroku": "cd ../  && git subtree push --prefix app billing-cycle-app master || true"
