@@ -4,7 +4,6 @@ import { RotateSpinner } from 'react-spinners-kit';
 
 import { getSettings } from '../../utils/settings';
 import { formatCurrency } from '../../utils/currency';
-import { toLocaleDateString } from '../../utils/date';
 import { globalVariables } from '../../styles/variables';
 
 import {
