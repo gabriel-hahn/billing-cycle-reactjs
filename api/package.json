@@ -6,6 +6,7 @@
     "start": "node src/server.js --ignore __tests__",
     "start:dev": "nodemon src/server.js --ignore __tests__",
     "build": "rm -rf dist/ && rm -rf coverage/ && ./node_modules/.bin/babel ./ --out-dir dist/ --ignore ./node_modules --copy-files",
+    "publish:heroku": "heroku container:push web -a billing-cycle-api && heroku container:release web -a billing-cycle-api",
     "test": "./node_modules/.bin/jest"
   },
   "keywords": [],
