@@ -30,6 +30,9 @@ const Overview = () => {
       .filter((transaction: TransactionInterface) => transaction.category === TransactionType.DEBIT)
       .reduce((total, debit) => total + (debit.value || 0), 0)));
 
+  const transactionsLoading = useSelector((state: StoreInterface) => (
+    state.transactions.loading.allLoading));
+
   const currentBalance = totalCredits - totalDebits;
 
   const handleTransactionsTotalRequest = async () => {
@@ -45,10 +48,10 @@ const Overview = () => {
   }, []);
 
   useEffect(() => {
-    if (totalDebits && totalDebits && currentBalance) {
+    if (totalDebits && totalDebits && currentBalance && !transactionsLoading) {
       setLoading(false);
     }
-  }, [totalCredits, totalDebits, currentBalance]);
+  }, [totalCredits, totalDebits, currentBalance, transactionsLoading]);
 
   return (
     <Container>

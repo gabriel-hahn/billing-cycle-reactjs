@@ -39,10 +39,10 @@ export interface TransactionInterface {
 }
 
 export interface TransactionLoading {
-  allLoading: false,
-  addLoading: false,
-  editLoading: false,
-  deleteLoading: false,
+  allLoading: boolean,
+  addLoading: boolean,
+  editLoading: boolean,
+  deleteLoading: boolean,
 }
 
 export interface TransactionStateInterface {
