@@ -20,18 +20,18 @@ class TransactionsService {
 
     const cashFlow = {};
 
-    debits.forEach((transaction) => {
+    credits.forEach((transaction) => {
       const transactionMonth = transaction.date.getMonth();
       const value = cashFlow[transactionMonth] || 0;
 
       cashFlow[transactionMonth] = (transaction.value + value);
     });
 
-    credits.forEach((transaction) => {
+    debits.forEach((transaction) => {
       const transactionMonth = transaction.date.getMonth();
       const value = cashFlow[transactionMonth] || 0;
 
-      cashFlow[transactionMonth] = (transaction.value - value);
+      cashFlow[transactionMonth] = (value - transaction.value);
     });
 
     return cashFlow;
