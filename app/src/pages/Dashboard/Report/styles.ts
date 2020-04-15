@@ -24,8 +24,9 @@ export const BottomContainer = styled.div`
     margin-left: 2em;
   }
 
-  @media ${device.mobileG}, ${device.heightMobileL} {
+  @media ${device.laptopM}, ${device.heightMobileL} {
     flex-direction: column;
+    justify-content: unset;
     height: 52em;
 
     & > :last-child {
