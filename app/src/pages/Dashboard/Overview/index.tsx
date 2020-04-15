@@ -48,7 +48,7 @@ const Overview = () => {
   }, []);
 
   useEffect(() => {
-    if (totalDebits && totalDebits && currentBalance && !transactionsLoading) {
+    if (totalDebits >= 0 && totalDebits >= 0 && currentBalance >= 0 && !transactionsLoading) {
       setLoading(false);
     }
   }, [totalCredits, totalDebits, currentBalance, transactionsLoading]);
