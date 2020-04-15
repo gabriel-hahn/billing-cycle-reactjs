@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import api from '../../../services/api';
 
@@ -20,20 +20,18 @@ const Overview = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [totalLoading, setTotalLoading] = useState<boolean>(true);
   const [totalTransactions, setTotalTransactions] = useState<number>(0);
-  const totalCredits = useSelector((state: StoreInterface) => (
-    state.transactions.data
-      .filter((transaction: TransactionInterface) => transaction.category === TransactionType.CREDIT)
-      .reduce((total, credits) => total + (credits.value || 0), 0)));
 
-  const totalDebits = useSelector((state: StoreInterface) => (
-    state.transactions.data
-      .filter((transaction: TransactionInterface) => transaction.category === TransactionType.DEBIT)
-      .reduce((total, debit) => total + (debit.value || 0), 0)));
+  const transactions = useSelector((state: StoreInterface) => state.transactions);
 
-  const transactionsLoading = useSelector((state: StoreInterface) => (
-    state.transactions.loading.allLoading));
+  const memoizedTotalCredit = useMemo(() => (transactions.data
+    .filter((transaction: TransactionInterface) => transaction.category === TransactionType.CREDIT)
+    .reduce((total, credits) => total + (credits.value || 0), 0)), [transactions.data]);
 
-  const currentBalance = totalCredits - totalDebits;
+  const memoizedTotalDebit = useMemo(() => (transactions.data
+    .filter((transaction: TransactionInterface) => transaction.category === TransactionType.DEBIT)
+    .reduce((total, credits) => total + (credits.value || 0), 0)), [transactions.data]);
+
+  const currentBalance = memoizedTotalCredit - memoizedTotalDebit;
 
   const handleTransactionsTotalRequest = async () => {
     const { data } = await api.get<TotalTransactionInterface>('/transactions/completeCashFlow');
@@ -48,16 +46,16 @@ const Overview = () => {
   }, []);
 
   useEffect(() => {
-    if (totalDebits >= 0 && totalDebits >= 0 && currentBalance >= 0 && !transactionsLoading) {
+    if (memoizedTotalDebit >= 0 && memoizedTotalCredit >= 0 && currentBalance >= 0 && !transactions.loading.allLoading) {
       setLoading(false);
     }
-  }, [totalCredits, totalDebits, currentBalance, transactionsLoading]);
+  }, [memoizedTotalCredit, memoizedTotalDebit, currentBalance, transactions.loading.allLoading]);
 
   return (
     <Container>
       <AmountContainer>
-        <Amount showDate loading={loading} value={totalCredits} color={globalVariables.mainGreen} description="Credits" />
-        <Amount showDate loading={loading} value={totalDebits} color={globalVariables.mainPink} description="Debits" />
+        <Amount showDate loading={loading} value={memoizedTotalCredit} color={globalVariables.mainGreen} description="Credits" />
+        <Amount showDate loading={loading} value={memoizedTotalDebit} color={globalVariables.mainPink} description="Debits" />
         <Amount showDate loading={loading} value={currentBalance} color={globalVariables.mainBlue} description="Current balance" />
         <Amount loading={totalLoading} value={totalTransactions} color={globalVariables.mainBlue} description="Total" />
       </AmountContainer>
