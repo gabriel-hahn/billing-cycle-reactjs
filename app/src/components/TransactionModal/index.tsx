@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Creators as TransactionsActions } from '../../store/ducks/transactions';
 import { currentDateInputFormat, toBarFormat } from '../../utils/date';
-import { formatCurrencyForInputs, getMoneyPersistFormat } from '../../utils/currency';
+import { formatCurrencyForInputs, getMoneyPersistFormat, formatCurrency } from '../../utils/currency';
 import { CreditType, DebitType } from '../../enums/transactions';
 
 import {
@@ -51,9 +51,12 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
 
   useEffect(() => {
     if (transactionSelected) {
+      const value = formatCurrency(transactionSelected.value || 0);
+
+      setMoney(transactionSelected.value ? formatCurrencyForInputs(value) : '');
+
       transactionSelected.date = currentDateInputFormat(new Date(transactionSelected.date));
 
-      setMoney(transactionSelected.value ? formatCurrencyForInputs(transactionSelected.value.toString()) : '');
       setTransaction(transactionSelected);
     }
   }, [transactionSelected]);
