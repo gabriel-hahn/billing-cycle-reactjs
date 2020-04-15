@@ -30,8 +30,8 @@ export const Container = styled.div`
     height: 22vh;
   }
 
-  @media ${device.mobileLL} {
-    width: 13em;
+  @media ${device.mobileL} {
+    width: 15em;
   }
 `;
 
@@ -83,6 +83,11 @@ export const Value = styled.h2`
   @media ${device.mobileG} {
     font-size: 1.8em;
     margin-top: 14px;
+  }
+
+  @media ${device.heightMobileLM} {
+    font-size: 1em;
+    margin-top: 20px;
   }
 `;
 

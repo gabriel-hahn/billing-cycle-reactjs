@@ -165,7 +165,7 @@ export const ActionsButton = styled.div`
 
 export const SmallTableContainer = styled.div`
   background-color: ${globalVariables.white};
-  width: 13em;
+  width: 15em;
   border-radius: 5px;
   border: 1px solid rgba(0,0,0,0.1);
   display: none;

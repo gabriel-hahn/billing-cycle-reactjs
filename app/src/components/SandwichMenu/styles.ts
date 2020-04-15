@@ -48,7 +48,7 @@ export const SmallNavBarContainer = styled.div`
   box-shadow: 1.5px 1.5px 10px 0 rgba(0,0,0,0.3);
   z-index: 2;
 
-  @media ${device.mobileM} {
+  @media ${device.mobileLL} {
     display: flex;
     position: fixed;
     bottom: 5em;

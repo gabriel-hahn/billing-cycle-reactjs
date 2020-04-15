@@ -11,7 +11,7 @@ export default createGlobalStyle`
     box-sizing: border-box;
     overflow: hidden;
 
-    @media ${device.mobileLM} {
+    @media ${device.mobileLM}, ${device.heightMobileLM} {
       overflow-y: visible;
     }
   }
