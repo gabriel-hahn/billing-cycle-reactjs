@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -40,7 +40,14 @@ const Navbar: React.FC<NavbarPropsInterface> = ({ onLogout }) => {
   const [sandwichMenuSelected, setSandwichMenuSelected] = useState<boolean>(false);
   const [selected, setSelected] = useState<PageType>(PageType.OVERVIEW);
 
+  const location = useLocation();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const path = location.pathname.split('/')[2];
+
+    setSelected(path as PageType);
+  }, []);
 
   const handleLogout = () => {
     dispatch(UsersTypes.logoutRequest());
