@@ -27,7 +27,7 @@ export const FormContainer = styled.div`
   position: relative;
 
   @media ${device.mobileL} {
-    flex: none;
+    justify-content: unset;
   }
 `;
 
@@ -40,7 +40,6 @@ export const AnimationContainer = styled.div`
   overflow-y: hidden;
 
   @media ${device.mobileL} {
-    flex: none;
     justify-content: center;
     align-items: flex-end;
     background: ${globalVariables.white};
@@ -71,10 +70,6 @@ export const Animation = styled.div`
 
   @media ${device.tabletG} {
     width: 65%;
-  }
-
-  @media ${device.mobileL} {
-    width: 55%;
   }
 `;
 
@@ -118,8 +113,8 @@ export const Input = styled.input`
 
   @media ${device.tablet} {
     font-size: 12px;
-    width: 220px;
-    padding: 10px 10px 10px 40px;
+    width: 280px;
+    padding: 14px 14px 10px 40px;
 
     &::-webkit-input-placeholder {
       font-size: 12px;
@@ -135,7 +130,7 @@ const sharedButtonStyle = styled.button`
   margin: 5px;
 
   @media ${device.tablet} {
-    max-width: 220px;
+    max-width: 280px;
     font-size: 12px;
     padding: 5px 0;
     height: 40px;
@@ -181,7 +176,7 @@ export const FormInputs = styled.form`
   flex-direction: column;
 
   @media ${device.tablet} {
-    width: 230px;
+    width: 290px;
   }
 `;
 
