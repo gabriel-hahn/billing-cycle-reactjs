@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { device } from '../../../styles/variables';
+import { device, globalVariables } from '../../../styles/variables';
 
 export const Container = styled.div`
   padding: 2.25em;
@@ -33,4 +33,9 @@ export const BottomContainer = styled.div`
       margin-left: 0;
     }
   }
+`;
+
+export const NoChartsTitle = styled.p`
+  font-size: 18px;
+  color: ${globalVariables.fontBlackColor};
 `;
