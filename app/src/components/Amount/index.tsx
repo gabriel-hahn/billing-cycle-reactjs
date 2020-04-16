@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
 import { RotateSpinner } from 'react-spinners-kit';
 
@@ -55,4 +55,4 @@ const Amount: React.FC<AmountPropsInterface> = ({
   );
 };
 
-export default Amount;
+export default memo(Amount);
