@@ -22,9 +22,9 @@ NodeJS |Express|Sequelize|PG    |React |Redux|Typescript|Highcharts|Docker |Dock
 
 ## Getting Started
 
-I recommend use [NPM](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/) as package management and install all dependencies using it, running ```yarn``` or ```npm install``` inside each folder (```app``` and ```api```).
+> I recommend use [NPM](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/) as package management and install all dependencies using it, running ```yarn``` or ```npm install``` inside each folder (```app``` and ```api```).
 
-If you have some issues related to permissions, just add the sudo command before yarn/npm command, as ```sudo yarn```.
+> If you have some issues related to permissions, just add the sudo command before yarn/npm command, as ```sudo yarn```.
 
 ### Environment Variables
 
@@ -63,7 +63,7 @@ Inside ```app``` folder, you should run the following command, opening the proje
 yarn start
 ```
 
-You can replace the command above for ```npm run start``` if you are using NPM as package management.
+> You can replace the command above for ```npm run start``` if you are using NPM as package management.
 
 ## Contributing
 
