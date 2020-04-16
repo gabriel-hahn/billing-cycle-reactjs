@@ -22,13 +22,13 @@ NodeJS |Express|Sequelize|PG    |React |Redux|Typescript|Highcharts|Docker |Dock
 
 ## Getting Started
 
-> I recommend use [NPM](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/) as package management and install all dependencies using it, running ```yarn``` or ```npm install``` inside each folder (```app``` and ```api```).
+> I recommend use [NPM](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/) as package management and install all dependencies using it, running ```yarn``` or ```npm install``` inside each folder (<b>app</b> and <b>api</b>).
 
 > If you have some issues related to permissions, just add the sudo command before yarn/npm command, as ```sudo yarn```.
 
 ### Environment Variables
 
-One important thing before start running this project locally is set up all environments variables. You can set them for back-end creating a ```.env``` file on ```api``` folder root and following this structure:
+One important thing before start running this project locally is set up all environments variables. You can set them for back-end creating a ```.env``` file on <strong>api</strong> folder root and following this structure:
 
 ```
   APP_SECRET=You can set some application secret here to create user password encryption
@@ -41,7 +41,7 @@ One important thing before start running this project locally is set up all envi
   POSTGRES_PASSWORD=Database password
 ```
 
-You should do the same on front-end, adding an ```.env``` file to ```app``` folder root:
+You should do the same on front-end, adding an ```.env``` file to <b>app</b> folder root:
 
 ```
   REACT_APP_API_URL=Api domain with port, probably http://localhost:3333 running it locally.
@@ -49,7 +49,7 @@ You should do the same on front-end, adding an ```.env``` file to ```app``` fold
 
 ### Back-end
 
-Inside ```api``` folder, you should run the following command which will use docker to start up our server:
+Inside <strong>api</strong> folder, you should run the following command which will use docker to start up our server:
 
 ```$
 docker-compose up
@@ -57,13 +57,17 @@ docker-compose up
 
 ### Front-end
 
-Inside ```app``` folder, you should run the following command, opening the project at ```localhost:3000```:
+Inside <strong>app</strong> folder, you should run the following command, opening the project at ```localhost:3000```:
 
 ```$
 yarn start
 ```
 
 > You can replace the command above for ```npm run start``` if you are using NPM as package management.
+
+## Tests
+
+You can run ```yarn test``` inside <strong>app</strong> folder for Front-end tests. The same you can do on <strong>api</strong> folder for Back-end tests with ```npm run test```.
 
 ## Contributing
 
