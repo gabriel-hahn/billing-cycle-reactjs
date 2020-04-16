@@ -10,10 +10,11 @@ import { formatToChartDateObject } from '../../utils/format';
 import { TransactionInterface } from '../../interfaces/transaction';
 import { ChartInterface, KeyValueNumberInterface } from '../../interfaces/charts';
 import { globalVariables } from '../../styles/variables';
+import { ChartDataProps } from '../../pages/Dashboard/Report';
 
 import { Loading } from './styles';
 
-const LineChart: React.FC = () => {
+const LineChart: React.FC<ChartDataProps> = ({ onEmpty }) => {
   let debitsFormatted: ChartInterface[];
   let creditsFormatted: ChartInterface[];
   let debits: TransactionInterface[];
@@ -45,6 +46,12 @@ const LineChart: React.FC = () => {
 
     const { data: debitData } = await api.get<TransactionInterface[]>('debits', { params: { startDate, endDate } });
     const { data: creditData } = await api.get<TransactionInterface[]>('credits', { params: { startDate, endDate } });
+
+    if (debitData.length === 0 && creditData.length === 0) {
+      onEmpty();
+
+      return;
+    }
 
     debits = debitData.reverse();
     credits = creditData.reverse();

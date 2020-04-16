@@ -26,8 +26,6 @@ export const globalVariables = {
 };
 
 const size = {
-  mobileS: '320px',
-  mobileM: '375px',
   mobileL: '445px',
   mobileLM: '499px',
   mobileLL: '600px',
@@ -42,8 +40,6 @@ const size = {
 };
 
 export const device = {
-  mobileS: `(max-width: ${size.mobileS})`,
-  mobileM: `(max-width: ${size.mobileM})`,
   mobileL: `(max-width: ${size.mobileL})`,
   mobileLM: `(max-width: ${size.mobileLM})`,
   mobileLL: `(max-width: ${size.mobileLL})`,
@@ -57,4 +53,5 @@ export const device = {
   desktop: `(max-width: ${size.desktop})`,
   desktopL: `(max-width: ${size.desktop})`,
   heightMobileL: `(max-height: ${size.mobileL})`,
+  heightMobileLM: `(max-height: ${size.mobileLM})`,
 };

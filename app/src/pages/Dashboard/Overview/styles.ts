@@ -5,6 +5,12 @@ import { device } from '../../../styles/variables';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+
+  @media ${device.mobileLL} {
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
 `;
 
 export const AmountContainer = styled.div`

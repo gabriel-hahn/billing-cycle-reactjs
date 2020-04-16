@@ -42,7 +42,7 @@ const Amount: React.FC<AmountPropsInterface> = ({
             {description} ({currencyFormat})
           </Description>
           <Value>
-            {formatCurrency(value)}
+            { value ? formatCurrency(value) : '0,00' }
           </Value>
           { showDate && dateRange && (
             <DateItem>

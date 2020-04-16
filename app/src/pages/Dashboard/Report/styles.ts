@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { device } from '../../../styles/variables';
+import { device, globalVariables } from '../../../styles/variables';
 
 export const Container = styled.div`
   padding: 2.25em;
@@ -24,8 +24,9 @@ export const BottomContainer = styled.div`
     margin-left: 2em;
   }
 
-  @media ${device.mobileG}, ${device.heightMobileL} {
+  @media ${device.laptopM}, ${device.heightMobileL} {
     flex-direction: column;
+    justify-content: unset;
     height: 52em;
 
     & > :last-child {
@@ -33,4 +34,9 @@ export const BottomContainer = styled.div`
       margin-left: 0;
     }
   }
+`;
+
+export const NoChartsTitle = styled.p`
+  font-size: 18px;
+  color: ${globalVariables.fontBlackColor};
 `;

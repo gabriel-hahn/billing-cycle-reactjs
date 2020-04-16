@@ -8,11 +8,15 @@ export const Container = styled.div`
   flex-direction: column;
 
   @media ${device.mobileG} {
-    width: 20em;
+    width: 30em;
     height: 33vh;
-    margin: 0 0.8em;
     display: flex;
     align-items: center;
+  }
+
+  @media ${device.mobileL} {
+    margin: 0 0.8em;
+    width: 20em;
   }
 `;
 
@@ -165,7 +169,7 @@ export const ActionsButton = styled.div`
 
 export const SmallTableContainer = styled.div`
   background-color: ${globalVariables.white};
-  width: 13em;
+  width: 15em;
   border-radius: 5px;
   border: 1px solid rgba(0,0,0,0.1);
   display: none;
@@ -173,6 +177,11 @@ export const SmallTableContainer = styled.div`
 
   @media ${device.mobileG} {
     display: block;
+    width: 100%;
+  }
+
+  @media ${device.mobileL} {
+    width: 15em;
   }
 `;
 

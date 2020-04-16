@@ -21,7 +21,7 @@ export const Types = {
 
 export const LOADING_DEFAULT: TransactionLoading = {
   addLoading: false,
-  allLoading: false,
+  allLoading: true,
   deleteLoading: false,
   editLoading: false,
 };

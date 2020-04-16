@@ -24,7 +24,7 @@ export const Container = styled.div`
     min-width: 150px;
   }
 
-  @media ${device.mobileM} {
+  @media ${device.mobileLL} {
     display: ${(props: StylesProps) => (props.sandwichMenuSelected ? 'flex' : 'none')};
     width: 60px;
     min-width: 60px;

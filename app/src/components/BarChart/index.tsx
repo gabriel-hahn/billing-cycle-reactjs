@@ -10,10 +10,11 @@ import { barChartConfig } from '../../config/highcharts';
 import { KeyValueStringInterface, ChartInterface } from '../../interfaces/charts';
 import { formatToChartStringObject } from '../../utils/format';
 import { globalVariables } from '../../styles/variables';
+import { ChartDataProps } from '../../pages/Dashboard/Report';
 
 import { Loading } from './styles';
 
-const BarChart: React.FC = () => {
+const BarChart: React.FC<ChartDataProps> = ({ onEmpty }) => {
   let cashFlowFormatted: ChartInterface[];
   const [chartOptions, setChartOptions] = useState<any>();
 
@@ -33,6 +34,12 @@ const BarChart: React.FC = () => {
 
   const getTransactions = async () => {
     const { data: cashFlow } = await api.get<CashFlowInterface>('transactions/cashFlow');
+
+    if (Object.keys(cashFlow).length === 0) {
+      onEmpty();
+
+      return;
+    }
 
     formatTransactions(cashFlow);
   };

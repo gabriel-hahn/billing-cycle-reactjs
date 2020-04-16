@@ -114,7 +114,7 @@ describe('Transactions Reducer', () => {
     const state = transactionsReducer(INITIAL_STATE, action);
 
     expect(state.error).toBeNull();
-    expect(state.loading).toEqual({ ...LOADING_DEFAULT, allLoading: false });
+    expect(state.loading).toEqual({ ...LOADING_DEFAULT, addLoading: false });
     expect(state.data).toEqual([transaction]);
   });
 
