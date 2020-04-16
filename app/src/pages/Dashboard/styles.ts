@@ -39,15 +39,7 @@ export const AddTransactionContainer = styled.div`
     width: 60px;
   }
 
-  @media ${device.tabletG} {
-    height: 55px;
-    width: 55px;
-  }
-
   @media ${device.mobileG} {
-    height: 50px;
-    width: 50px;
-
     right: 0.9em;
     bottom: 0.9em;
 

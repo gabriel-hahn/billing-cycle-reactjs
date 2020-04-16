@@ -51,7 +51,9 @@ export const SmallNavBarContainer = styled.div`
   @media ${device.mobileLL} {
     display: flex;
     position: fixed;
-    bottom: 5em;
+    bottom: 5.5em;
     right: 1em;
+    width: 60px;
+    height: 60px;
   }
 `;
