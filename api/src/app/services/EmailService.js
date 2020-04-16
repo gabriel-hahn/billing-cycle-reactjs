@@ -9,7 +9,7 @@ class EmailService {
   async sendResetPassword(email, newHash) {
     mailData.to = email;
     mailData.html = `
-      <h3>Reset password reset</h3>
+      <h3>Request password reset</h3>
 
       <p>Hi! To reset the password of your ConMoney account, please access the following link and set the new password:</p>
 
@@ -17,7 +17,7 @@ class EmailService {
 
       <br />
 
-      <small>If you have some problems, please contact conmoneymail@gmail.com. Thanks for using ConMoney</small>
+      <small>If you have any problem, please contact conmoneymail@gmail.com. Thanks for using ConMoney</small>
     `;
 
     await EmailTransporter.sendMail(mailData);
