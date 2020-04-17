@@ -1,4 +1,9 @@
-const { Credit, User, Sequelize } = require('../../database/models');
+const {
+  Credit,
+  Debit,
+  User,
+  Sequelize,
+} = require('../../database/models');
 
 const order = [
   ['date', 'DESC'],
@@ -65,7 +70,12 @@ class CreditsService {
     const credit = await Credit.findByPk(newCredit.id);
 
     if (!credit) {
-      return { error: { status: 404, message: 'Credit does not exist!' } };
+      const newCreditObject = { ...newCredit, id: null };
+      const creditCreated = await Credit.create(newCreditObject);
+
+      await Debit.destroy({ where: { id: newCredit.id } });
+
+      return creditCreated;
     }
 
     const creditUpdated = await credit.update(newCredit);

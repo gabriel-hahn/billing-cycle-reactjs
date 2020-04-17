@@ -46,7 +46,7 @@ const Overview = () => {
   }, []);
 
   useEffect(() => {
-    if (memoizedTotalDebit >= 0 && memoizedTotalCredit >= 0 && currentBalance >= 0 && !transactions.loading.allLoading) {
+    if (!transactions.loading.allLoading) {
       setLoading(false);
     }
   }, [memoizedTotalCredit, memoizedTotalDebit, currentBalance, transactions.loading.allLoading]);
