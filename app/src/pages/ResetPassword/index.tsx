@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 import { RotateSpinner } from 'react-spinners-kit';
 
-import pigAnimation from '../../config/piggy-bank.json';
+import pigAnimation from '../../assets/piggy-bank.json';
 import { Creators as UsersTypes } from '../../store/ducks/users';
 
 import {

@@ -8,7 +8,7 @@ export const Container = styled.div`
   flex: 1;
   display: inline-block;
 
-  @media ${device.heightMobileL} {
+  @media ${device.heightMobileL}, ${device.minlaptopG} {
     overflow-y: visible;
   }
 `;
@@ -24,7 +24,7 @@ export const BottomContainer = styled.div`
     margin-left: 2em;
   }
 
-  @media ${device.laptopM}, ${device.heightMobileL} {
+  @media ${device.laptopM}, ${device.heightMobileL}, ${device.minlaptopG} {
     flex-direction: column;
     justify-content: unset;
     height: 52em;
