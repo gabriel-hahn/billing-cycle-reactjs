@@ -3,17 +3,17 @@
   "name": "ConMoney - Know where your money is",
   "icons": [
     {
-      "src": "/images/icons-512.png",
+      "src": "./images/icons-512.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "/images/icons-512.png",
+      "src": "./images/icons-512.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "/images/icons-512.png",
+      "src": "./images/icons-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
