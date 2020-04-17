@@ -1,8 +1,13 @@
 const sinon = require('sinon');
 
-const { Credit, User } = require('../../database/models');
+const { Credit, Debit, User } = require('../../database/models');
 const CreditsService = require('../../app/services/CreditsService');
-const { USER, CREDIT, CREDIT_ARRAY } = require('../dummy');
+const {
+  USER,
+  DEBIT,
+  CREDIT,
+  CREDIT_ARRAY,
+} = require('../dummy');
 
 describe('Credits Service', () => {
   beforeEach(() => {
@@ -31,15 +36,6 @@ describe('Credits Service', () => {
     it('Should return credit does not exist - Destroy method', async () => {
       sinon.stub(Credit, 'findByPk').resolves(null);
       const response = await CreditsService.destroy(5);
-
-      expect(response.error).toBeTruthy();
-      expect(response.error.status).toBe(404);
-      expect(response.error.message).toBe('Credit does not exist!');
-    });
-
-    it('Should return credit does not exist - Update method', async () => {
-      sinon.stub(Credit, 'findByPk').resolves(null);
-      const response = await CreditsService.update(CREDIT);
 
       expect(response.error).toBeTruthy();
       expect(response.error.status).toBe(404);
@@ -109,6 +105,16 @@ describe('Credits Service', () => {
       sinon.stub(Credit, 'findByPk').resolves(CREDIT);
       sinon.stub(CREDIT, 'update').resolves(CREDIT);
 
+      const response = await CreditsService.update(CREDIT);
+
+      expect(response.error).toBeFalsy();
+      expect(response).toEqual(CREDIT);
+    });
+
+    it('Should return new credit by debit updated', async () => {
+      sinon.stub(Credit, 'findByPk').resolves(null);
+      sinon.stub(Credit, 'create').resolves(CREDIT);
+      sinon.stub(Debit, 'destroy').resolves(DEBIT);
       const response = await CreditsService.update(CREDIT);
 
       expect(response.error).toBeFalsy();
