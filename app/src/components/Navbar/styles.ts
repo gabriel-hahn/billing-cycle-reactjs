@@ -47,6 +47,7 @@ export const PagesList = styled.ul`
 `;
 
 export const Page = styled.li`
+  display: flex;
   height: 4em;
   border: 1px solid ${globalVariables.mainBlueHover};
   transition: all 0.3s;
@@ -59,6 +60,7 @@ export const Page = styled.li`
   & > a {
     display: flex;
     height: 100%;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
     text-decoration: none;
@@ -73,6 +75,7 @@ export const Page = styled.li`
     p {
       font-size: 1.2em;
       margin-right: 35px;
+      /* margin: 0 35px 0 30px; */
 
       @media ${device.laptop} {
         font-size: 1em;
