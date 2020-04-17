@@ -2,6 +2,7 @@ require('dotenv').config({ path: `${__dirname}/../.env` });
 
 const express = require('express');
 const cors = require('cors');
+const helmet = require('helmet');
 const routes = require('./app/routes');
 
 class AppController {
@@ -14,7 +15,11 @@ class AppController {
 
   middlewares() {
     this.express.use(express.json());
-    this.express.use(cors());
+    this.express.use(helmet());
+
+    this.express.use(cors({
+      origin: process.env.APP_DOMAIN,
+    }));
   }
 
   routes() {
