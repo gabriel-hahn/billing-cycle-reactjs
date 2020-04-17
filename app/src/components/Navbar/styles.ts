@@ -34,6 +34,14 @@ export const Container = styled.div`
   }
 `;
 
+export const Title = styled.p`
+  display: block;
+
+  @media ${device.mobileLL} {
+    display: none;
+  }
+`;
+
 export const PagesList = styled.ul`
 
 `;

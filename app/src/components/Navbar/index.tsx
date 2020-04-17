@@ -13,6 +13,7 @@ import {
 import {
   Container,
   Page,
+  Title,
   Logout,
   PagesList,
 } from './styles';
@@ -70,7 +71,7 @@ const Navbar: React.FC<NavbarPropsInterface> = ({ onLogout }) => {
           >
             <Link to="overview">
               <FontAwesomeIcon icon={faBookOpen} />
-              <p>Overview</p>
+              <Title>Overview</Title>
             </Link>
           </Page>
           <Page
@@ -79,7 +80,7 @@ const Navbar: React.FC<NavbarPropsInterface> = ({ onLogout }) => {
           >
             <Link to="report">
               <FontAwesomeIcon icon={faChartLine} />
-              <p>Reports</p>
+              <Title>Reports</Title>
             </Link>
           </Page>
           <Page
@@ -88,14 +89,14 @@ const Navbar: React.FC<NavbarPropsInterface> = ({ onLogout }) => {
           >
             <Link to="settings">
               <FontAwesomeIcon icon={faCog} />
-              <p>Settings</p>
+              <Title>Settings</Title>
             </Link>
           </Page>
         </PagesList>
 
         <Logout onClick={handleLogout}>
           <FontAwesomeIcon icon={faSignOutAlt} />
-          <p>Logout</p>
+          <Title>Logout</Title>
         </Logout>
       </Container>
     </>
