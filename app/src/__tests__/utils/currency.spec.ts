@@ -63,6 +63,13 @@ fdescribe('Currency utils', () => {
     expect(valueFormatted).toEqual('3,21');
   });
 
+  it('Should return empty when the value contains only characteres', () => {
+    const value = ',ke';
+    const valueFormatted = formatCurrencyForInputs(value);
+
+    expect(valueFormatted).toBe('');
+  });
+
   it('Should format value as persist value - Number only with dots', () => {
     const value = '3.255,05';
     const valueFormatted = getMoneyPersistFormat(value);

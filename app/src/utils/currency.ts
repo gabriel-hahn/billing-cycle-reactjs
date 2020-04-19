@@ -16,7 +16,11 @@ export const getJustDigitsFromString = (valueStr: string): number => {
 export const formatCurrencyForInputs = (valueStr: string): string => {
   const justDigits = getJustDigitsFromString(valueStr);
 
-  const value = justDigits ? justDigits.toString() : '';
+  if (!justDigits) {
+    return '';
+  }
+
+  const value = justDigits.toString();
 
   if (value.length === 1) {
     return `0,0${value}`;

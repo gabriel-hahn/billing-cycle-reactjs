@@ -41,7 +41,7 @@ export const InputValue = styled(Input).attrs({
   placeholder: '0,00',
   name: 'value',
 })`
-  margin: 5px 0;
+  margin: 5px 0 5px 5px;
 `;
 
 export const InputDate = styled(Input).attrs({
@@ -57,7 +57,7 @@ export const InputDescription = styled(Input).attrs({
   name: 'description',
   type: 'text',
 })`
-  margin: 5px 0;
+  margin: 5px 0 5px 5px;
 `;
 
 export const FormContainer = styled.div`
