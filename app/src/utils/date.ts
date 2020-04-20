@@ -2,7 +2,6 @@ import { getSettings } from './settings';
 
 const MONTH = 30;
 const THREE_MONTHS = 90;
-const offset = new Date().getTimezoneOffset();
 
 export const getLanguageState = () => {
   const { dateFormat } = getSettings();
@@ -18,8 +17,6 @@ export const currentDateInputFormat = (date?: Date) => {
   if (!dateFormat) {
     dateFormat = new Date();
   }
-
-  dateFormat = new Date(dateFormat.getTime() + (offset * 60 * 1000));
 
   return dateFormat.toISOString().split('T')[0];
 };

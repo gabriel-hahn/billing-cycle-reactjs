@@ -41,6 +41,8 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
     type: CreditType.Others,
     category: TransactionType.DEBIT,
     date: currentDateInputFormat(),
+    description: '',
+    value: 0,
   });
   const [money, setMoney] = useState<string>('');
 
