@@ -153,7 +153,9 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
         { !isForgotRequest && (
           <>
             <RegisterButton onClick={handleLoginChange}>{ isLogin ? 'Register' : 'Login' }</RegisterButton>
-            <ForgotButton onClick={handleForgotPassword}>Forgot password?</ForgotButton>
+            { isLogin && (
+              <ForgotButton onClick={handleForgotPassword}>Forgot password?</ForgotButton>
+            ) }
           </>
         )}
       </FormContainer>

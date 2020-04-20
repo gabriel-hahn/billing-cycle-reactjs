@@ -37,12 +37,14 @@ export interface StylesProps {
 }
 
 const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose }) => {
+  const [money, setMoney] = useState<string>('');
   const [transaction, setTransaction] = useState<TransactionInterface>({
     type: CreditType.Others,
     category: TransactionType.DEBIT,
     date: currentDateInputFormat(),
+    description: '',
+    value: 0,
   });
-  const [money, setMoney] = useState<string>('');
 
   const transactionSelected = useSelector((store: StoreInterface) => (
     store.transactions.transactionSelected));
