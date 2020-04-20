@@ -47,7 +47,12 @@ export function* loadAllByDate({ payload: { range, category } }: TransactionsAct
       transactions = [...debits, ...credits];
     }
 
-    yield put(TransactionsActions.getTransactionsSuccess(transactions));
+    const transactionsSorted = transactions
+      .slice()
+      .sort((a: TransactionInterface, b: TransactionInterface) => (
+        +new Date(b.date) - +new Date(a.date)));
+
+    yield put(TransactionsActions.getTransactionsSuccess(transactionsSorted));
   } catch (err) {
     yield put(TransactionsActions.transactionsError('Request error'));
     yield put(toastrActions.add({
