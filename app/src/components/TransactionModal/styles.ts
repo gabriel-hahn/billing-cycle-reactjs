@@ -18,8 +18,8 @@ export const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
   background: ${globalVariables.white};
-  height: 320px;
-  width: 280px;
+  height: 330px;
+  width: 300px;
   padding: 10px;
   border-radius: 5px;
 `;
@@ -34,7 +34,7 @@ export const Input = styled.input`
   border: 0;
   outline: 0;
   border-bottom: 0.2px solid ${globalVariables.mediumGrey};
-  font-size: 14px;
+  font-size: 16px;
 `;
 
 export const InputValue = styled(Input).attrs({
@@ -101,7 +101,7 @@ export const Button = styled.button.attrs({
   type: 'button',
 })`
   height: 2em;
-  width: 125px;
+  width: 135px;
   font-size: 16px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 5px;
@@ -120,7 +120,7 @@ export const SelectType = styled.select.attrs({
   border: 0;
   outline: 0;
   border-bottom: 1px solid ${globalVariables.mainGreen};
-  font-size: 14px;
+  font-size: 16px;
 `;
 
 InputValue.displayName = 'InputValue';

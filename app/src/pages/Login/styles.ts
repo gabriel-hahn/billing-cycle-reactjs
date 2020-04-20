@@ -75,12 +75,12 @@ export const Animation = styled.div`
 
 export const Title = styled.h3`
   color: ${globalVariables.mainBlue};
-  font-size: 34px;
+  font-size: 36px;
   font-weight: 100;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 
   @media ${device.tablet} {
-    font-size: 30px;
+    font-size: 32px;
   }
 
   @media ${device.mobileL} {
@@ -104,26 +104,21 @@ export const Input = styled.input`
   width: 300px;
   border: 1px solid ${globalVariables.mainBlue};
   border-radius: 5px;
-  font-size: 14px;
+  font-size: 16px;
 
   &::-webkit-input-placeholder {
     color: ${globalVariables.mainBlue};
-    font-size: 14px;
+    font-size: 16px;
   }
 
   @media ${device.tablet} {
-    font-size: 12px;
     width: 280px;
     padding: 14px 14px 10px 40px;
-
-    &::-webkit-input-placeholder {
-      font-size: 12px;
-    }
   }
 `;
 
 const sharedButtonStyle = styled.button`
-  font-size: 14px;
+  font-size: 16px;
   text-transform: uppercase;
   display: inline-block;
   max-width: 300px;
@@ -131,7 +126,6 @@ const sharedButtonStyle = styled.button`
 
   @media ${device.tablet} {
     max-width: 280px;
-    font-size: 12px;
     padding: 5px 0;
     height: 40px;
   }
@@ -144,7 +138,6 @@ export const RegisterButton = styled(sharedButtonStyle)`
   border: none;
   transition: all 0.3s;
   margin: 0;
-  font-size: 12px;
 
   &:hover {
     color: ${globalVariables.mainBlueHover};
