@@ -38,6 +38,7 @@ module.exports = {
     'react/prop-types': 'off',
     'import/extensions': 'off',
     'no-nested-ternary': 'off',
+    'no-restricted-globals': 'off',
     'react/no-array-index-key': 'off',
     '@typescript-eslint/camelcase': 'off',
     'react/jsx-one-expression-per-line': 'off',
