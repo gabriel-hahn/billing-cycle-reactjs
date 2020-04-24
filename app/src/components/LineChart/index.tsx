@@ -27,11 +27,17 @@ const LineChart: React.FC<ChartDataProps> = ({ onEmpty }) => {
     const totalCredits: KeyValueNumberInterface = { };
 
     debits.forEach((debit) => {
-      totalDebits[debit.date] = debit.value;
+      const value = totalDebits[debit.date] || 0;
+      const total = debit.value ? (value + debit.value) : value;
+
+      totalDebits[debit.date] = total;
     });
 
     credits.forEach((credit) => {
-      totalCredits[credit.date] = credit.value;
+      const value = totalCredits[credit.date] || 0;
+      const total = credit.value ? (value + credit.value) : value;
+
+      totalCredits[credit.date] = total;
     });
 
     debitsFormatted = formatToChartDateObject(totalDebits);
