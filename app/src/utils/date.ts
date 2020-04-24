@@ -3,6 +3,14 @@ import { getSettings } from './settings';
 const MONTH = 30;
 const THREE_MONTHS = 90;
 
+// In some cases isn't possible use .toISOString because it takes the default timezone, creating
+// some issues with users from other timezones.
+const formatFromLocaleFormatToDateInput = (dateStr: string): string => {
+  const dateArr = dateStr.split('/');
+
+  return `${dateArr[2]}-${dateArr[1]}-${dateArr[0]}`;
+};
+
 export const getLanguageState = () => {
   const { dateFormat } = getSettings();
 
@@ -18,7 +26,9 @@ export const currentDateInputFormat = (date?: Date) => {
     dateFormat = new Date();
   }
 
-  return dateFormat.toISOString().split('T')[0];
+  const localeStringDateFormat = dateFormat.toLocaleDateString(getLanguageState());
+
+  return formatFromLocaleFormatToDateInput(localeStringDateFormat);
 };
 
 export const currentDateFormat = () => {
