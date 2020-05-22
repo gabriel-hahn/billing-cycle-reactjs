@@ -64,7 +64,7 @@ export default function Transactions(state = INITIAL_STATE, action: Transactions
         ...state,
         error: null,
         loading: { ...state.loading, addLoading: false },
-        data: [...state.data, payload.transaction],
+        data: [payload.transaction, ...state.data],
       };
     case Types.UPDATE_TRANSACTION_SUCCESS:
       return {

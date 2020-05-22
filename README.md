@@ -32,7 +32,7 @@ NodeJS |Express|Sequelize|PG    |React |Redux|Typescript|Highcharts|Docker |Dock
 
 ### Environment Variables
 
-One important thing before start running this project locally is set up all environments variables. You can set them for back-end creating a ```.env``` file on <strong>api</strong> folder root and following this structure:
+One important thing before start running this project locally is set up all environment variables. You can set them for back-end creating a ```.env``` file on <strong>api</strong> folder root and following this structure:
 
 ```
   APP_SECRET=You can set some application secret here to create user password encryption
