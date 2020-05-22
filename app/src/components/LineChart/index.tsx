@@ -20,7 +20,7 @@ const LineChart: React.FC<ChartDataProps> = ({ onEmpty }) => {
   let debits: TransactionInterface[];
   let credits: TransactionInterface[];
 
-  const [chartOptions, setChartOptions] = useState<any>();
+  const [chartOptions, setChartOptions] = useState<unknown>();
 
   const formatTransactions = () => {
     const totalDebits: KeyValueNumberInterface = { };

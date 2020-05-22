@@ -16,7 +16,7 @@ const PieChart: React.FC = () => {
   let debitsFormatted: ChartInterface[];
   let debits: TransactionInterface[];
 
-  const [chartOptions, setChartOptions] = useState<any>();
+  const [chartOptions, setChartOptions] = useState<unknown>();
 
   const formatTransactions = () => {
     const totalDebits: KeyValueNumberInterface = { };

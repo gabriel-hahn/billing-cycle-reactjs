@@ -16,7 +16,7 @@ import { Loading } from './styles';
 
 const BarChart: React.FC<ChartDataProps> = ({ onEmpty }) => {
   let cashFlowFormatted: ChartInterface[];
-  const [chartOptions, setChartOptions] = useState<any>();
+  const [chartOptions, setChartOptions] = useState<unknown>();
 
   const formatTransactions = (cashFlow: CashFlowInterface) => {
     const flowData: KeyValueStringInterface = {};
