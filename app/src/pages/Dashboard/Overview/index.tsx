@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import api from '../../../services/api';
 
 import { StoreInterface } from '../../../interfaces/store';
@@ -8,6 +8,7 @@ import { globalVariables } from '../../../styles/variables';
 import Amount from '../../../components/Amount';
 import TransactionTable from '../../../components/TransactionTable';
 
+import { Creators as TransactionsActions } from '../../../store/ducks/transactions';
 import { Container, AmountContainer, TransactionsContainer } from './styles';
 import { TransactionInterface, TransactionType } from '../../../interfaces/transaction';
 
@@ -20,6 +21,7 @@ const Overview = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [totalLoading, setTotalLoading] = useState<boolean>(true);
   const [totalTransactions, setTotalTransactions] = useState<number>(0);
+  const dispatch = useDispatch();
 
   const transactions = useSelector((state: StoreInterface) => state.transactions);
 
@@ -34,9 +36,17 @@ const Overview = () => {
   const currentBalance = memoizedTotalCredit - memoizedTotalDebit;
 
   const handleTransactionsTotalRequest = async () => {
+    if (transactions.totalAllTransactions) {
+      setTotalTransactions(transactions.totalAllTransactions);
+      setTotalLoading(false);
+
+      return;
+    }
+
     const { data } = await api.get<TotalTransactionInterface>('/transactions/completeCashFlow');
     const balance = data.credit - data.debit;
 
+    dispatch(TransactionsActions.addTotalTransactions(balance));
     setTotalTransactions(balance);
     setTotalLoading(false);
   };

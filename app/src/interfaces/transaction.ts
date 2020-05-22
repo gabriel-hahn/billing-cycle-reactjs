@@ -16,8 +16,9 @@ export interface TransactionsActionsInterface {
     transactions: TransactionInterface[],
     transaction?: TransactionInterface,
     dateRange?: TransactionsRangeDateInterface,
-    error?: string,
     range?: TransactionsRangeDateInterface,
+    total?: number,
+    error?: string,
   },
 }
 
@@ -48,6 +49,7 @@ export interface TransactionLoading {
 export interface TransactionStateInterface {
   transactionSelected?: TransactionInterface | null,
   currentDateRange?: TransactionsRangeDateInterface | null,
+  totalAllTransactions: number | null,
   data: TransactionInterface[];
   loading: TransactionLoading;
   modalOpen: boolean;

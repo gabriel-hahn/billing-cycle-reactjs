@@ -17,6 +17,8 @@ export const Types = {
   UPDATE_TRANSACTION_SUCCESS: '@transaction/UPDATE_TRANSACTION_SUCCESS',
   TRANSACTIONS_ERROR: '@transaction/TRANSACTIONS_ERROR',
   TRANSACTION_MODAL_TOGGLE: '@transaction/TRANSACTION_MODAL_TOGGLE',
+  ADD_TOTAL_TRANSACTIONS: '@transaction/ADD_TOTAL_TRANSACTIONS',
+  CLEAR_TOTAL_TRANSACTIONS: '@transaction/CLEAR_TOTAL_TRANSACTIONS',
 };
 
 export const LOADING_DEFAULT: TransactionLoading = {
@@ -29,6 +31,7 @@ export const LOADING_DEFAULT: TransactionLoading = {
 const INITIAL_STATE: TransactionStateInterface = {
   data: [],
   error: null,
+  totalAllTransactions: null,
   currentDateRange: null,
   transactionSelected: null,
   loading: LOADING_DEFAULT,
@@ -39,6 +42,10 @@ export default function Transactions(state = INITIAL_STATE, action: Transactions
   const { payload } = action;
 
   switch (action.type) {
+    case Types.ADD_TOTAL_TRANSACTIONS:
+      return { ...state, totalAllTransactions: payload.total };
+    case Types.CLEAR_TOTAL_TRANSACTIONS:
+      return { ...state, totalAllTransactions: null };
     case Types.GET_TRANSACTIONS_REQUEST:
       return {
         ...state,
@@ -65,12 +72,14 @@ export default function Transactions(state = INITIAL_STATE, action: Transactions
         error: null,
         loading: { ...state.loading, addLoading: false },
         data: [payload.transaction, ...state.data],
+        totalAllTransactions: null,
       };
     case Types.UPDATE_TRANSACTION_SUCCESS:
       return {
         ...state,
         error: null,
         transactionSelected: null,
+        totalAllTransactions: null,
         loading: { ...state.loading, editLoading: false },
         data: state.data.map(item => (
           payload.transaction && item.id === payload.transaction.id
@@ -80,6 +89,7 @@ export default function Transactions(state = INITIAL_STATE, action: Transactions
     case Types.DELETE_TRANSACTION_SUCCESS:
       return {
         ...state,
+        totalAllTransactions: null,
         loading: { ...state.loading, deleteLoading: false },
         data: state.data.filter(item => payload.transaction && item.id !== payload.transaction.id),
       };
@@ -133,5 +143,12 @@ export const Creators = {
   transactionModalToggle: (transaction?: TransactionInterface) => ({
     type: Types.TRANSACTION_MODAL_TOGGLE,
     payload: { transaction },
+  }),
+  addTotalTransactions: (total: number) => ({
+    type: Types.ADD_TOTAL_TRANSACTIONS,
+    payload: { total },
+  }),
+  clearTotalTransactions: () => ({
+    type: Types.CLEAR_TOTAL_TRANSACTIONS,
   }),
 };
