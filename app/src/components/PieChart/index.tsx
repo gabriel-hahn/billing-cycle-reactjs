@@ -9,11 +9,10 @@ import { TransactionInterface } from '../../interfaces/transaction';
 import { ChartInterface, KeyValueNumberInterface } from '../../interfaces/charts';
 import { formatToChartNumberObject, capitalize } from '../../utils/format';
 import { globalVariables } from '../../styles/variables';
-import { ChartDataProps } from '../../pages/Dashboard/Report';
 
 import { Loading } from './styles';
 
-const PieChart: React.FC<ChartDataProps> = ({ onEmpty }) => {
+const PieChart: React.FC = () => {
   let debitsFormatted: ChartInterface[];
   let debits: TransactionInterface[];
 
@@ -35,12 +34,6 @@ const PieChart: React.FC<ChartDataProps> = ({ onEmpty }) => {
 
   const getAllDataByCurrentMonth = async () => {
     const { data: debitData } = await api.get<TransactionInterface[]>('debits/allByCurrentMonth');
-
-    if (debitData.length === 0) {
-      onEmpty();
-
-      return;
-    }
 
     debits = debitData;
 

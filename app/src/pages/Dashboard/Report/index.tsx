@@ -26,7 +26,7 @@ const Report = () => {
           <LineChart onEmpty={onEmpty} />
           <BottomContainer>
             <BarChart onEmpty={onEmpty} />
-            <PieChart onEmpty={onEmpty} />
+            <PieChart />
           </BottomContainer>
         </>
       ) }
