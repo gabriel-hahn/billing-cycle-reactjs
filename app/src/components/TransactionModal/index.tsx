@@ -49,17 +49,19 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
   const transactionSelected = useSelector((store: StoreInterface) => (
     store.transactions.transactionSelected));
 
+  const transactionType = transaction.category === TransactionType.CREDIT ? CreditType : DebitType;
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (transactionSelected) {
-      const value = formatCurrency(transactionSelected.value || 0);
+      const transactionState = { ...transactionSelected };
+      const value = formatCurrency(transactionState.value || 0);
 
-      setMoney(transactionSelected.value ? formatCurrencyForInputs(value) : '');
+      setMoney(transactionState.value ? formatCurrencyForInputs(value) : '');
 
-      transactionSelected.date = currentDateInputFormat(new Date(transactionSelected.date));
+      transactionState.date = currentDateInputFormat(new Date(transactionState.date));
 
-      setTransaction(transactionSelected);
+      setTransaction(transactionState);
     }
   }, [transactionSelected]);
 
@@ -93,11 +95,11 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
   };
 
   const handleCreditClick = () => {
-    setTransaction({ ...transaction, category: TransactionType.CREDIT });
+    setTransaction({ ...transaction, category: TransactionType.CREDIT, type: CreditType.Others });
   };
 
   const handleDebitClick = () => {
-    setTransaction({ ...transaction, category: TransactionType.DEBIT });
+    setTransaction({ ...transaction, category: TransactionType.DEBIT, type: DebitType.Others });
   };
 
   const handleTypeChanged = (e: FormEvent<HTMLSelectElement>) => {
@@ -119,9 +121,8 @@ const TransactionModal: React.FC<TransactionModalPropsInterface> = ({ onClose })
           />
           <InputContainer>
             <SelectType value={transaction.type} onChange={handleTypeChanged}>
-              { Object.entries(transaction.category === TransactionType.CREDIT
-                ? CreditType : DebitType).map((type : [string, CreditType]) => (
-                  <option key={type[1]} value={type[1]}>{type[0]}</option>
+              { Object.keys(transactionType).map((type: string) => (
+                <option key={transactionType[type]} value={transactionType[type]}>{type}</option>
               )) }
             </SelectType>
             <InputDate value={transaction.date} onChange={handleTransactionChanged} required />
