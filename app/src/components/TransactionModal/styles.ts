@@ -40,6 +40,7 @@ export const Input = styled.input`
 export const InputValue = styled(Input).attrs({
   placeholder: '0,00',
   name: 'value',
+  inputmode: 'numeric'
 })`
   margin: 5px 0 5px 5px;
 `;
