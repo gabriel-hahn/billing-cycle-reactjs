@@ -1,5 +1,6 @@
 {
   "name": "billing-cycle-app",
+  "description": "Billing Cycle Application",
   "version": "0.1.0",
   "homepage": "https://www.conmoney.online",
   "dependencies": {
