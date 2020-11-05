@@ -13,8 +13,10 @@ module.exports = async (req, res, next) => {
   try {
     const decoded = await promisify(jwt.verify)(token, process.env.APP_SECRET);
 
+    console.log(req.headers);
+
     if (req.headers.userId && req.headers.userId !== decoded.id) {
-      return res.status(401).json({ message: 'Request not allowed' });
+      return res.status(401).json({ message: 'This request is not allowed' });
     }
 
     req.userId = decoded.id;
