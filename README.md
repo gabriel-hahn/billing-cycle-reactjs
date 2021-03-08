@@ -6,8 +6,6 @@
   <img src="https://i.imgur.com/OPfdvWO.jpg">
 </p>
 
-[ConMoney link](https://www.conmoney.online)
-
 ConMoney developed to manage the money of users and showing the balance of your credits and debits :globe_with_meridians: :moneybag:
 
 Using ConMoney to manage your credits and debits, you will have a better control of your money, your bills and how much money you saved in the last few months.
