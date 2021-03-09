@@ -25,7 +25,11 @@ class DebitsService {
 
     console.log('Going to access database!');
 
-    const debit = await Debit.findAll({ where, order });
+    try {
+      const debit = await Debit.findAll({ where, order });
+    } catch (err) {
+      console.log('Erro database: ', err);
+    }
 
     return debit;
   }
