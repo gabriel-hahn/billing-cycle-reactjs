@@ -6,7 +6,11 @@ class DebitsController {
     const { startDate, endDate } = req.query;
     const { userid } = req.headers;
 
+    console.log('Going to access DebitsService!');
+
     const debits = await DebitsService.index(startDate, endDate, userid);
+
+    console.log('Returning data from API');
 
     return res.json(debits);
   }
