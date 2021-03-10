@@ -6,8 +6,10 @@ module.exports = {
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB,
   operatorAliases: false,
+  ssl: true,
   dialectOptions: {
     ssl: {
+      require: true,
       rejectUnauthorized: false
     }
   },

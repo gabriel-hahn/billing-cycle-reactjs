@@ -4,14 +4,8 @@ const order = [['date', 'DESC']];
 
 class DebitsService {
   async index(startDate, endDate, userId) {
-    console.log('startDate: ', startDate);
-    console.log('endDate: ', endDate);
-    console.log('userId: ', userId);
-
     const newEndDate = new Date(endDate);
-    console.log('newEndDate: ', newEndDate);
     newEndDate.setDate(newEndDate.getDate() + 1);
-    console.log('newEndDate after add: ', newEndDate);
 
     const where = {
       user_id: userId,
@@ -23,14 +17,7 @@ class DebitsService {
       }
     };
 
-    console.log('Going to access database!');
-    let debit;
-
-    try {
-      debit = await Debit.findAll({ where, order });
-    } catch (err) {
-      console.log('Erro database: ', err);
-    }
+    const debit = await Debit.findAll({ where, order });
 
     return debit;
   }
