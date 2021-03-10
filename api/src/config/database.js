@@ -1,7 +1,7 @@
 module.exports = {
   dialect: 'postgres',
   // host: '127.0.0.1',
-  host: process.env.POSTGRES_HOST,
+  host: `${process.env.POSTGRES_HOST}?sslmode=require`,
   username: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB,
